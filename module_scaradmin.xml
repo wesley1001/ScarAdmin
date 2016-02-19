@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_scaradmin" default="compile.module.scaradmin">
+  <dirname property="module.scaradmin.basedir" file="${ant.file.module_scaradmin}"/>
+  
+  <property name="module.jdk.home.scaradmin" value="${jdk.home.1.6}"/>
+  <property name="module.jdk.bin.scaradmin" value="${jdk.bin.1.6}"/>
+  <property name="module.jdk.classpath.scaradmin" value="jdk.classpath.1.6"/>
+  
+  <property name="compiler.args.scaradmin" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="scaradmin.output.dir" value="${module.scaradmin.basedir}/out/production/ScarAdmin"/>
+  <property name="scaradmin.testoutput.dir" value="${module.scaradmin.basedir}/out/test/ScarAdmin"/>
+  
+  <path id="scaradmin.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="scaradmin.module.production.classpath">
+    <path refid="${module.jdk.classpath.scaradmin}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="scaradmin.runtime.production.module.classpath">
+    <pathelement location="${scaradmin.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="scaradmin.module.classpath">
+    <path refid="${module.jdk.classpath.scaradmin}"/>
+    <pathelement location="${scaradmin.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="scaradmin.runtime.module.classpath">
+    <pathelement location="${scaradmin.testoutput.dir}"/>
+    <pathelement location="${scaradmin.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.scaradmin">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.scaradmin">
+    <patternset refid="excluded.from.module.scaradmin"/>
+  </patternset>
+  
+  <path id="scaradmin.module.sourcepath">
+    <dirset dir="${module.scaradmin.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.scaradmin" depends="compile.module.scaradmin.production,compile.module.scaradmin.tests" description="Compile module ScarAdmin"/>
+  
+  <target name="compile.module.scaradmin.production" depends="register.custom.compilers" description="Compile module ScarAdmin; production classes">
+    <mkdir dir="${scaradmin.output.dir}"/>
+    <javac2 destdir="${scaradmin.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.scaradmin}/javac">
+      <compilerarg line="${compiler.args.scaradmin}"/>
+      <bootclasspath refid="scaradmin.module.bootclasspath"/>
+      <classpath refid="scaradmin.module.production.classpath"/>
+      <src refid="scaradmin.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.scaradmin"/>
+    </javac2>
+    
+    <copy todir="${scaradmin.output.dir}">
+      <fileset dir="${module.scaradmin.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.scaradmin.tests" depends="register.custom.compilers,compile.module.scaradmin.production" description="compile module ScarAdmin; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.scaradmin" description="cleanup module">
+    <delete dir="${scaradmin.output.dir}"/>
+    <delete dir="${scaradmin.testoutput.dir}"/>
+  </target>
+</project>

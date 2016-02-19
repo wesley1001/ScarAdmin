@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="scaradmin" default="all">
+  
+  
+  <property file="scaradmin.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"/>
+  <path id="jdk.classpath.1.6">
+    <fileset dir="${jdk.home.1.6}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.6}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.6}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.6"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.lib.classpath">
+    <pathelement location="${basedir}/web/WEB-INF/lib/FastInfoset-1.2.12.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/IKAnalyzer3.2.3Stable.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/accessafe.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/activation-1.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/ant.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/antlr-2.7.7.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/aopalliance-1.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/asm-3.3.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/asm-commons-2.2.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/asm-util-2.2.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/chardet-1.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cmbjava15.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/com.springsource.org.codehaus.jackson-1.0.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/com.springsource.org.codehaus.jackson.mapper-1.0.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-beanutils-1.8.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-codec-1.9.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-dbcp.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-email-1.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-fileupload-1.3.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-httpclient-3.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-io-2.4.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-logging.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/commons-pool.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/compiler.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cpdetector_1.0.8.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-2.6.16.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-services-sts-core-2.6.16.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-services-wsn-api-2.6.16.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-services-wsn-core-2.6.16.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-xjc-boolean-2.6.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-xjc-bug671-2.6.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-xjc-dv-2.6.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-xjc-runtime-2.6.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/cxf-xjc-ts-2.6.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/dom4j-1.6.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/ehcache-core-2.5.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/fastjson-1.1.31.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/fontbox-1.2.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/freemarker-2.3.15.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/fscommons_v2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/geronimo-activation_1.1_spec-1.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/geronimo-annotation_1.0_spec-1.1.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/geronimo-javamail_1.4_spec-1.7.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/geronimo-jaxws_2.2_spec-1.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/geronimo-jms_1.1_spec-1.1.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/geronimo-servlet_2.5_spec-1.1.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/geronimo-ws-metadata_2.0_spec-1.1.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/gson-2.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/hessian-4.0.7.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/httpclient-4.2.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/httpcore-4.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/ibatis-2.3.4.726.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/icbc.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/isorelax-20030108.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jargs-1.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/java_memcached-release_2.6.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/javaee.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jaxb-api-2.2.5.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jaxb-impl-2.2.5.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jcert.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jcommon-1.0.14.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jdom.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jeewx-api-1.1-20151118.030852-2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jempbox-1.2.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jettison-1.3.4.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jetty-continuation-7.5.4.v20111024.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jetty-http-7.5.4.v20111024.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jetty-io-7.5.4.v20111024.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jetty-security-7.5.4.v20111024.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jetty-server-7.5.4.v20111024.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jetty-util-7.5.4.v20111024.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jimi-1.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jna.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jnet.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/joda-time-1.6.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/js-1.7R2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/json.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jsoup-1.7.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jsse.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jstl.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/junit-4.4.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/jxl.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/log4j-1.2.17.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/lucene-core-3.6.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/mail.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/mimepull-1.7.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/msv-core-2011.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/neethi-3.0.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/netpay.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/netpayclient.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/netpayclient_qh.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/oauth-20100527.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/oauth-provider-20100527.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/ojdbc6.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/opensaml-2.5.1-1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/openws-1.4.2-1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.aop-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.asm-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.aspects-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.beans-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.context-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.context.support-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.core-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.expression-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.jdbc-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.orm-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.transaction-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.web-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.web.servlet-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/org.springframework.web.struts-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/poi-3.8-20120326.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/poi-ooxml-3.8-20120326.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/poi-ooxml-schemas-3.8-20120326.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/quartz-all-1.8.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/relaxngDatatype-20020414.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/saaj-api-1.3.4.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/saaj-impl-1.3.19.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/serializer-2.7.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/standard-1.1.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/stax-api-1.0.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/stax2-api-3.1.4.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/ueditor1.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/velocity-1.7.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/woodstox-core-asl-4.4.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/wsdl4j-1.6.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/wss4j-1.6.16.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/wstx-asl-3.2.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/xalan-2.7.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/xml-resolver-1.2.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/xmlbeans-2.5.0.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/xmlschema-core-2.0.3.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/xmlsec-1.5.7.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/xmltooling-1.3.2-1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/xsdlib-2010.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/xstream-1.3.1.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/yui-compressor-ant-task-0.4.jar"/>
+    <pathelement location="${basedir}/web/WEB-INF/lib/yuicompressor-2.4.7.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm4-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_scaradmin.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.scaradmin, clean.artifact.scaradmin:war_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.scaradmin" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.c" value="${basedir}/out/artifacts/c"/>
+    <property name="artifact.output.c:war" value="${basedir}/out/artifacts/c"/>
+    <property name="artifact.output.scaradmin:war" value="${basedir}/out/artifacts/ScarAdmin_war"/>
+    <property name="artifact.output.scaradmin:war_exploded" value="${basedir}/out/artifacts/ScarAdmin_war_exploded"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.c.war" value="${artifacts.temp.dir}/c.war"/>
+    <property name="temp.jar.path.c_war.war" value="${artifacts.temp.dir}/c_war.war"/>
+    <property name="temp.jar.path.ScarAdmin_war.war" value="${artifacts.temp.dir}/ScarAdmin_war.war"/>
+  </target>
+  
+  <target name="clean.artifact.scaradmin:war_exploded" description="clean ScarAdmin:war exploded artifact output">
+    <delete dir="${artifact.output.scaradmin:war_exploded}"/>
+  </target>
+  
+  <target name="artifact.c" depends="init.artifacts, artifact.scaradmin:war_exploded" description="Build &#39;c&#39; artifact">
+    <property name="artifact.temp.output.c" value="${artifacts.temp.dir}/c"/>
+    <mkdir dir="${artifact.temp.output.c}"/>
+    <zip destfile="${temp.jar.path.c.war}">
+      <zipfileset dir="${artifact.output.scaradmin:war_exploded}"/>
+    </zip>
+    <copy file="${temp.jar.path.c.war}" tofile="${artifact.temp.output.c}/c.war"/>
+  </target>
+  
+  <target name="artifact.c:war" depends="init.artifacts, artifact.scaradmin:war_exploded" description="Build &#39;c:war&#39; artifact">
+    <property name="artifact.temp.output.c:war" value="${artifacts.temp.dir}/c_war"/>
+    <mkdir dir="${artifact.temp.output.c:war}"/>
+    <zip destfile="${temp.jar.path.c_war.war}">
+      <zipfileset dir="${artifact.output.scaradmin:war_exploded}"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/accessafe.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/activation-1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ant.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/antlr-2.7.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/aopalliance-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/asm-3.3.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/asm-commons-2.2.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/asm-util-2.2.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cglib-nodep-2.1_3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/chardet-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cmbjava15.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/com.springsource.org.codehaus.jackson-1.0.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/com.springsource.org.codehaus.jackson.mapper-1.0.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-beanutils-1.8.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-codec-1.9.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-collections-3.2.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-dbcp.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-email-1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-fileupload-1.3.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-httpclient-3.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-io-2.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-logging-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-logging.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-pool.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/compiler.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cpdetector_1.0.8.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-2.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-services-sts-core-2.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-services-wsn-api-2.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-services-wsn-core-2.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-boolean-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-bug671-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-dv-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-runtime-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-ts-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/dom4j-1.6.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ehcache-core-2.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ezmorph-1.0.6.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/FastInfoset-1.2.12.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/fastjson-1.1.31.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/fontbox-1.2.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/freemarker-2.3.15.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/fscommons_v2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-activation_1.1_spec-1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-annotation_1.0_spec-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-javamail_1.4_spec-1.7.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-jaxws_2.2_spec-1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-jms_1.1_spec-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-servlet_2.5_spec-1.1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-stax-api_1.0_spec-1.0.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-ws-metadata_2.0_spec-1.1.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/gson-2.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/hessian-4.0.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/httpclient-4.2.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/httpcore-4.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ibatis-2.3.4.726.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/icbc.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/IKAnalyzer3.2.3Stable.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/isorelax-20030108.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jargs-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/java_memcached-release_2.6.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/javaee.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jaxb-api-2.2.5.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jaxb-impl-2.2.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jcert.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jcommon-1.0.14.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jdom.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jeewx-api-1.1-20151118.030852-2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jempbox-1.2.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jettison-1.3.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-continuation-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-http-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-io-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-security-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-server-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-util-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jimi-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jna.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jnet.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/joda-time-1.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/js-1.7R2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/json-lib-2.4-jdk15.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/json.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jsoup-1.7.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jsr311-api-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jsse.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jstl.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/junit-4.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jxl.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/log4j-1.2.17.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/lucene-core-3.6.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/mail.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/mimepull-1.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/msv-core-2011.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/mysql-connector-java-5.1.18-bin.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/neethi-3.0.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/netpay.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/netpayclient.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/netpayclient_qh.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/oauth-20100527.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/oauth-provider-20100527.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ojdbc6.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/opensaml-2.5.1-1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/openws-1.4.2-1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.aop-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.asm-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.aspects-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.beans-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.context-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.context.support-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.core-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.expression-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.jdbc-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.orm-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.transaction-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.web-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.web.servlet-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.web.struts-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/poi-3.8-20120326.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/poi-ooxml-3.8-20120326.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/poi-ooxml-schemas-3.8-20120326.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/quartz-all-1.8.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/relaxngDatatype-20020414.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/saaj-api-1.3.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/saaj-impl-1.3.19.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/serializer-2.7.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/slf4j-api-1.6.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/standard-1.1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/stax-api-1.0.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/stax2-api-3.1.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ueditor1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/velocity-1.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/woodstox-core-asl-4.4.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/wsdl4j-1.6.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/wss4j-1.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/wstx-asl-3.2.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xalan-2.7.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xml-resolver-1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xmlbeans-2.5.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xmlschema-core-2.0.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xmlsec-1.5.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xmltooling-1.3.2-1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xsdlib-2010.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xstream-1.3.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/yui-compressor-ant-task-0.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/yuicompressor-2.4.7.jar" prefix="WEB-INF/lib"/>
+    </zip>
+    <copy file="${temp.jar.path.c_war.war}" tofile="${artifact.temp.output.c:war}/c_war.war"/>
+  </target>
+  
+  <target name="artifact.scaradmin:war" depends="init.artifacts, artifact.scaradmin:war_exploded" description="Build &#39;ScarAdmin:war&#39; artifact">
+    <property name="artifact.temp.output.scaradmin:war" value="${artifacts.temp.dir}/ScarAdmin_war"/>
+    <mkdir dir="${artifact.temp.output.scaradmin:war}"/>
+    <zip destfile="${temp.jar.path.ScarAdmin_war.war}">
+      <zipfileset dir="${artifact.output.scaradmin:war_exploded}"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/accessafe.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/activation-1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ant.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/antlr-2.7.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/aopalliance-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/asm-3.3.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/asm-commons-2.2.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/asm-util-2.2.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cglib-nodep-2.1_3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/chardet-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cmbjava15.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/com.springsource.org.codehaus.jackson-1.0.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/com.springsource.org.codehaus.jackson.mapper-1.0.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-beanutils-1.8.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-codec-1.9.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-collections-3.2.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-dbcp.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-email-1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-fileupload-1.3.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-httpclient-3.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-io-2.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-logging-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-logging.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/commons-pool.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/compiler.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cpdetector_1.0.8.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-2.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-services-sts-core-2.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-services-wsn-api-2.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-services-wsn-core-2.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-boolean-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-bug671-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-dv-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-runtime-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/cxf-xjc-ts-2.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/dom4j-1.6.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ehcache-core-2.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ezmorph-1.0.6.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/FastInfoset-1.2.12.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/fastjson-1.1.31.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/fontbox-1.2.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/freemarker-2.3.15.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/fscommons_v2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-activation_1.1_spec-1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-annotation_1.0_spec-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-javamail_1.4_spec-1.7.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-jaxws_2.2_spec-1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-jms_1.1_spec-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-servlet_2.5_spec-1.1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-stax-api_1.0_spec-1.0.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/geronimo-ws-metadata_2.0_spec-1.1.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/gson-2.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/hessian-4.0.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/httpclient-4.2.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/httpcore-4.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ibatis-2.3.4.726.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/icbc.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/IKAnalyzer3.2.3Stable.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/isorelax-20030108.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jargs-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/java_memcached-release_2.6.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/javaee.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jaxb-api-2.2.5.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jaxb-impl-2.2.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jcert.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jcommon-1.0.14.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jdom.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jeewx-api-1.1-20151118.030852-2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jempbox-1.2.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jettison-1.3.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-continuation-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-http-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-io-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-security-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-server-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jetty-util-7.5.4.v20111024.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jimi-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jna.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jnet.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/joda-time-1.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/js-1.7R2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/json-lib-2.4-jdk15.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/json.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jsoup-1.7.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jsr311-api-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jsse.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jstl.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/junit-4.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/jxl.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/log4j-1.2.17.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/lucene-core-3.6.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/mail.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/mimepull-1.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/msv-core-2011.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/mysql-connector-java-5.1.18-bin.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/neethi-3.0.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/netpay.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/netpayclient.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/netpayclient_qh.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/oauth-20100527.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/oauth-provider-20100527.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ojdbc6.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/opensaml-2.5.1-1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/openws-1.4.2-1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.aop-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.asm-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.aspects-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.beans-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.context-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.context.support-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.core-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.expression-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.jdbc-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.orm-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.transaction-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.web-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.web.servlet-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/org.springframework.web.struts-3.1.0.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/poi-3.8-20120326.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/poi-ooxml-3.8-20120326.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/poi-ooxml-schemas-3.8-20120326.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/quartz-all-1.8.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/relaxngDatatype-20020414.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/saaj-api-1.3.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/saaj-impl-1.3.19.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/serializer-2.7.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/slf4j-api-1.6.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/standard-1.1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/stax-api-1.0.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/stax2-api-3.1.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/ueditor1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/velocity-1.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/woodstox-core-asl-4.4.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/wsdl4j-1.6.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/wss4j-1.6.16.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/wstx-asl-3.2.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xalan-2.7.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xml-resolver-1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xmlbeans-2.5.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xmlschema-core-2.0.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xmlsec-1.5.7.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xmltooling-1.3.2-1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xsdlib-2010.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/xstream-1.3.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/yui-compressor-ant-task-0.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/web/WEB-INF/lib/yuicompressor-2.4.7.jar" prefix="WEB-INF/lib"/>
+    </zip>
+    <copy file="${temp.jar.path.ScarAdmin_war.war}" tofile="${artifact.temp.output.scaradmin:war}/ScarAdmin_war.war"/>
+  </target>
+  
+  <target name="artifact.scaradmin:war_exploded" depends="init.artifacts, compile.module.scaradmin" description="Build &#39;ScarAdmin:war exploded&#39; artifact">
+    <mkdir dir="${artifact.output.scaradmin:war_exploded}"/>
+    <mkdir dir="${artifact.output.scaradmin:war_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.scaradmin:war_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.scaradmin:war_exploded}/WEB-INF/classes">
+      <fileset dir="${scaradmin.output.dir}"/>
+    </copy>
+    <mkdir dir="${artifact.output.scaradmin:war_exploded}/WEB-INF/lib"/>
+    <copy todir="${artifact.output.scaradmin:war_exploded}">
+      <fileset dir="${basedir}/web"/>
+    </copy>
+    <mkdir dir="${artifact.output.scaradmin:war_exploded}/WEB-INF"/>
+    <copy file="${basedir}/web/WEB-INF/web.xml" tofile="${artifact.output.scaradmin:war_exploded}/WEB-INF/web.xml"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.c, artifact.c:war, artifact.scaradmin:war, artifact.scaradmin:war_exploded" description="Build all artifacts">
+    <mkdir dir="${artifact.output.c}"/>
+    <copy todir="${artifact.output.c}">
+      <fileset dir="${artifact.temp.output.c}"/>
+    </copy>
+    <mkdir dir="${artifact.output.c:war}"/>
+    <copy todir="${artifact.output.c:war}">
+      <fileset dir="${artifact.temp.output.c:war}"/>
+    </copy>
+    <mkdir dir="${artifact.output.scaradmin:war}"/>
+    <copy todir="${artifact.output.scaradmin:war}">
+      <fileset dir="${artifact.temp.output.scaradmin:war}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
