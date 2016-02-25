@@ -34,7 +34,7 @@
 							所在教学楼：
 						</td>
 						<td width="80%" >
-							<select type="text" id="tbId" name="tbId"  style="width: 300px"  >
+							<select type="text" id="tbId" name="tbId" multiple="multiple"  style="width: 300px"  >
 								<c:forEach items="${teachbuildList}" var="tb" >
 									<c:if test="${listsize==0}">
 										<option value="">请先添加教学楼</option>
