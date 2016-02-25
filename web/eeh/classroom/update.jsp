@@ -34,10 +34,20 @@
 							教学楼名称：
 						</td>
 						<td width="80%" >
-							<input type="text" id="name" name="name"
-								   style="width: 300px"  value="${bo.name}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select type="text" id="tbId" name="tbId"   style="width: 300px"  >
+							<c:forEach items="${teachbuildList}" var="tb" >
+								<c:choose>
+									<c:when test="${tb.name==bo.name}">
+										<option value="${tb.id }" selected="selected">${tb.name}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${tb.id }" >${tb.name}</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							</select>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+
 						</td>
 					</tr>
 					<tr>
@@ -45,10 +55,37 @@
 							楼层数：
 						</td>
 						<td width="80%" >
-							<input type="text" id="floors" name="floors"
-								   style="width: 300px"  onkeyup="clearNoNum(this)" value="${bo.floors}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select type="text" id="floors" name="floors" style="width: 300px" >
+								<option value="1">1层</option>
+								<option value="2">2层</option>
+								<option value="3">3层</option>
+								<option value="4">4层</option>
+								<option value="5">5层</option>
+								<option value="6">6层</option>
+								<option value="7">7层</option>
+								<option value="8">8层</option>
+								<option value="9">9层</option>
+								<option value="10">10层</option>
+							</select>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" height="30" align="right">
+							所属班级：
+						</td>
+						<td width="80%" >
+							<input type="text" id="name" name="name"   style="width: 300px"  value="${bo.name}"/>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" height="30" align="right">
+							对应IP：
+						</td>
+						<td width="80%" >
+							<input type="text" id="ip" name="ip"   style="width: 300px"  value="${bo.ip}"/>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					</tbody>

@@ -8,6 +8,7 @@
 	<result property="floors" column="floors"/>
 	<result property="tbId" column="tbId"/>
 	<result property="classId" column="classId"/>
+	<result property="ip" column="ip"/>
 </resultMap>
 	<!--根据id查询查询-->
 	<select id='findClassRoomById' resultClass='classroomBo'>
@@ -16,7 +17,8 @@
 		name,
 		floors,
 		classId,
-		tbId
+		tbId,
+		ip
 		FROM
 			eeh_class_room
 		WHERE  id=#id#
@@ -29,7 +31,8 @@ SELECT
 	name,	
 	floors,
 	classId,
-	tbId
+	tbId,
+	ip
 FROM
 	eeh_class_room
 <dynamic prepend="WHERE">
@@ -57,12 +60,14 @@ INSTR(name,#name#)>0
 		name,
 		floors,
 		classId,
-		tbId
+		tbId,
+		ip
 	)VALUES(
 		#name#,
 		#floors#，
 		#classId#，
-		#tbId#
+		#tbId#,
+		#ip#
 	)
 </insert>
 <!--修改-->
@@ -73,7 +78,8 @@ INSTR(name,#name#)>0
 	name=#name#,	
 	floors=#floors#,
 	classId=#classId#,
-	tbId=#tbId#
+	tbId=#tbId#,
+	ip=#ip#
  	WHERE
 	ID=#id#
 </update>

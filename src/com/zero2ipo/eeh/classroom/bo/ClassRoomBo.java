@@ -10,6 +10,15 @@ public class ClassRoomBo implements  java.io.Serializable {
    public  String  classId;//所在班级id
    public String name;//教室名称
    public int floors;//楼层
+   public String ip;
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
     public int getId() {
         return id;

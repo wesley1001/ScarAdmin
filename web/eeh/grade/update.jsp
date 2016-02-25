@@ -8,17 +8,17 @@
 %>
 <html>
 <head>
-	<title>修改教学楼</title>
+	<title>修改班级</title>
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
-	<script type="text/javascript" src="<%=basePath %>/eeh/teachingbuilding/js/update.js"></script>
-	<script type="text/javascript" src="<%=basePath %>/eeh/teachingbuilding/js/number.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/update.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/number.js"></script>
 </head>
 
 <body class="dialogBody">
 <form id="form1" onsubmit="return false;"
-	  action="../teachingbuilding/forUpdateAjax.shtml" name="form1" method="post">
+	  action="../grade/forUpdateAjax.shtml" name="form1" method="post">
 	<input type="hidden" id="id" name="id" value="${bo.id}"/>
 	<table width="100%"  align="center" cellpadding="2"
 		   cellspacing="0">

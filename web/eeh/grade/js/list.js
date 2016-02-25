@@ -37,11 +37,11 @@ function onClickRow(rowdata, rowindex, rowDomElement) {
 
 //新增
 function add(){
-	var url="../teachingbuilding/forAddInitPage.shtml";
+	var url="../grade/forAddInitPage.shtml";
 	m = $.ligerDialog.open({ url: url, height: 300,width:450, title:'新增教学楼',showMax:true,showToggle:true,showMin:true});
 }
 function upd(id){
-	var url="../teachingbuilding/forUpdateInitPage.shtml?id="+id;
+	var url="../grade/forUpdateInitPage.shtml?id="+id;
 	m = $.ligerDialog.open({ url: url, height: 250,width:500, title:'修改教学楼',isResize: true ,top:50});
 }
 
@@ -63,7 +63,7 @@ function delObj(){
 			}	
 		}
 		var data={'ids':ids};
-		var url='../teachingbuilding/delSave.shtml';
+		var url='../grade/delSave.shtml';
 		ajax(url,data);
 }
 function ajax(url,data){

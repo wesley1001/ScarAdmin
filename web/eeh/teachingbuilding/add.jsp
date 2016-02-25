@@ -33,10 +33,8 @@
 							教学楼名称：
 						</td>
 						<td width="80%" >
-							<input type="text" id="name" name="name"
-								   style="width: 300px"  />
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<input type="text" id="name" name="name"  style="width: 300px"  />
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
@@ -44,10 +42,19 @@
 							楼层数：
 						</td>
 						<td width="80%" >
-							<input type="text" id="floors" name="floors"
-								   style="width: 300px"  onkeyup="clearNoNum(this)"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select type="text" id="floors" name="floors" style="width: 300px" >
+								   <option value="1">1层</option>
+								   <option value="2">2层</option>
+								   <option value="3">3层</option>
+								   <option value="4">4层</option>
+								   <option value="5">5层</option>
+								   <option value="6">6层</option>
+								   <option value="7">7层</option>
+								   <option value="8">8层</option>
+								   <option value="9">9层</option>
+								   <option value="10">10层</option>
+							</select>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					</tbody>

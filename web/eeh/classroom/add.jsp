@@ -36,7 +36,7 @@
 							所在教学楼：
 						</td>
 						<td width="80%" >
-							<select type="text" id="tbId" name="tbId" multiple="multiple"  style="width: 300px"  >
+							<select type="text" id="tbId" name="tbId"   style="width: 300px"  >
 								<c:forEach items="${teachbuildList}" var="tb" >
 									<c:if test="${listsize==0}">
 										<option value="">请先添加教学楼</option>
@@ -55,10 +55,19 @@
 							第几层：
 						</td>
 						<td width="80%" >
-							<input type="text" id="floors" name="floors"
-								   style="width: 300px"  onkeyup="clearNoNum(this)"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select type="text" id="floors" name="floors" style="width: 300px" >
+								<option value="1">1层</option>
+								<option value="2">2层</option>
+								<option value="3">3层</option>
+								<option value="4">4层</option>
+								<option value="5">5层</option>
+								<option value="6">6层</option>
+								<option value="7">7层</option>
+								<option value="8">8层</option>
+								<option value="9">9层</option>
+								<option value="10">10层</option>
+							</select>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
@@ -66,10 +75,17 @@
 							所属班级：
 						</td>
 						<td width="80%" >
-							<input type="text" id="name" name="name"
-								   style="width: 300px"  />
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<input type="text" id="name" name="name"   style="width: 300px"  />
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" height="30" align="right">
+							对应IP：
+						</td>
+						<td width="80%" >
+							<input type="text" id="ip" name="ip"   style="width: 300px"  />
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					</tbody>

@@ -33,7 +33,7 @@ public class GradeCtrl extends BaseCtrl {
      */
     @RequestMapping("forInit.shtml")
     public ModelAndView forInitPage() {
-        ModelAndView mv = new ModelAndView("/eeh/teachingbuilding/list.jsp");
+        ModelAndView mv = new ModelAndView("/eeh/grade/list.jsp");
         return mv;
     }
     /**
@@ -79,7 +79,7 @@ public class GradeCtrl extends BaseCtrl {
      */
     @RequestMapping("forAddInitPage.shtml")
     public ModelAndView forAddInitPage() {
-        ModelAndView mv = new ModelAndView("/eeh/teachingbuilding/add.jsp");
+        ModelAndView mv = new ModelAndView("/eeh/grade/add.jsp");
         return mv;
     }
     /**
@@ -110,7 +110,7 @@ public class GradeCtrl extends BaseCtrl {
      */
     @RequestMapping("forUpdateInitPage.shtml")
     public ModelAndView forUpdateInitPage(String id) {
-        ModelAndView mv = new ModelAndView("/eeh/teachingbuilding/update.jsp");
+        ModelAndView mv = new ModelAndView("/eeh/grade/update.jsp");
         GradeBo bo=gradeService.findById(id);
         mv.addObject("bo",bo);
         return mv;
