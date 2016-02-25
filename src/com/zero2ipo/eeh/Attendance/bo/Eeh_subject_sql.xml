@@ -1,0 +1,102 @@
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+		 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AttendanceBo" type="com.zero2ipo.eeh.Attendance.bo.AttendanceBo"/>
+<resultMap class="AttendanceBo" id="AttendanceMap">
+	<result property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="xuehao" column="xuehao"/>
+	<result property="sex" column="sex"/>
+	<result property="xuanxiuCourse" column="xuanxiuCourse"/>
+	<result property="classRoom" column="classRoom"/>
+	<result property="seatNum" column="seatNum"/>
+	<result property="type" column="type"/>
+</resultMap>
+	<!--根据id查询查询-->
+	<select id='findAttendanceById' resultClass='AttendanceBo'>
+		SELECT
+		id,
+		name,
+		xuehao,
+		sex,
+		xuanxiuCourse,
+		classRoom,
+		seatNum,
+		type
+		FROM
+			eeh_Attendance
+		WHERE  id=#id#
+	</select>
+
+<!--查询-->
+<select id='findAttendanceList' resultMap='AttendanceMap'>
+SELECT
+	id,
+	name,
+	xuehao,
+	sex,
+	xuanxiuCourse,
+	classRoom,
+	seatNum,
+	type
+FROM
+	eeh_Attendance
+<dynamic prepend="WHERE">
+<isNotEmpty prepend="AND" property="name">
+INSTR(name,#name#)>0
+</isNotEmpty>
+</dynamic>
+</select>
+<!--查询个数-->
+	<select id='findAttendanceListCount' resultClass='java.lang.Integer'>
+		SELECT
+		count(0)
+		FROM
+		eeh_Attendance
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="name">
+				INSTR(name,#name#)>0
+			</isNotEmpty>
+		</dynamic>
+	</select>
+<!--新增-->
+<insert id="add_Attendance" parameterClass="AttendanceBo">
+	INSERT INTO
+		eeh_Attendance(
+		name,
+		xuehao,
+		sex,
+		xuanxiuCourse,
+		classRoom,
+		seatNum,
+		type
+	)VALUES(
+		#name#，
+		#xuehao#,
+		#sex#,
+		#xuanxiuCourse#,
+		#classRoom#,
+		#seatNum#,
+		#type#
+	)
+</insert>
+<!--修改-->
+<update id="upd_Attendance" parameterClass="AttendanceBo">
+	UPDATE
+		eeh_Attendance
+	SET
+	type=#type#
+ 	WHERE
+	ID=#id#
+</update>
+<!--删除-->
+<delete id="del_Attendance" parameterClass="java.util.Map">
+	DELETE FROM 
+	eeh_Attendance
+	WHERE
+	ID IN
+	<iterate property="id" conjunction="," close=")" open="(">
+	#id[]#
+	</iterate> 
+</delete>
+</sqlMap>

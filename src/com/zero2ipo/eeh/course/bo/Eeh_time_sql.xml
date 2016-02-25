@@ -1,0 +1,120 @@
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+		 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CourseBo" type="com.zero2ipo.eeh.course.bo.CourseBo"/>
+<resultMap class="CourseBo" id="CourseMap">
+	<result property="id" column="id"/>
+	<result property="kemu" column="kemu"/>
+	<result property="peopleMax" column="peopleMax"/>
+	<result property="grade" column="grade"/>
+	<result property="banji" column="banji"/>
+	<result property="startTime" column="startTime"/>
+	<result property="endTime" column="endTime"/>
+	<result property="schoolTime" column="schoolTime"/>
+	<result property="classRoom" column="classRoom"/>
+	<result property="teacher" column="teacher"/>
+</resultMap>
+	<!--根据id查询查询-->
+	<select id='findCourseById' resultClass='CourseBo'>
+		SELECT
+		id,
+		kemu,
+		peopleMax,
+		grade,
+		banji,
+		startTime,
+		endTime,
+		schoolTime,
+		classRoom,
+		teacher
+		FROM
+			eeh_Course
+		WHERE  id=#id#
+	</select>
+
+<!--查询-->
+<select id='findCourseList' resultMap='CourseMap'>
+SELECT
+	id,
+	kemu,
+	peopleMax,
+	grade,
+	banji,
+	startTime,
+	endTime,
+	schoolTime,
+	classRoom,
+	teacher
+FROM
+	eeh_Course
+<dynamic prepend="WHERE">
+<isNotEmpty prepend="AND" property="name">
+INSTR(name,#name#)>0
+</isNotEmpty>
+</dynamic>
+</select>
+<!--查询个数-->
+	<select id='findCourseListCount' resultClass='java.lang.Integer'>
+		SELECT
+		count(0)
+		FROM
+		eeh_Course
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="name">
+				INSTR(name,#name#)>0
+			</isNotEmpty>
+		</dynamic>
+	</select>
+<!--新增-->
+<insert id="add_Course" parameterClass="CourseBo">
+	INSERT INTO
+		eeh_Course(
+		kemu,
+		peopleMax,
+		grade,
+		banji,
+		startTime,
+		endTime,
+		schoolTime,
+		classRoom,
+		teacher
+	)VALUES(
+		#kemu#,
+		#peopleMax#,
+		#grade#,
+		#banji#,
+		#startTime#,
+		#endTime#,
+		#schoolTime#,
+		#classRoom#,
+		#teacher#
+	)
+</insert>
+<!--修改-->
+<update id="upd_Course" parameterClass="CourseBo">
+	UPDATE
+		eeh_Course
+	SET
+		kemu=#kemu#,
+		peopleMax=#peopleMax#,
+		grade=#grade#,
+		banji=#banji#,
+		startTime=#startTime#,
+		endTime=#endTime#,
+		schoolTime=#schoolTime#,
+		classRoom=#classRoom#,
+		teacher=#teacher#
+ 	WHERE
+	ID=#id#
+</update>
+<!--删除-->
+<delete id="del_Course" parameterClass="java.util.Map">
+	DELETE FROM 
+	eeh_Course
+	WHERE
+	ID IN
+	<iterate property="id" conjunction="," close=")" open="(">
+	#id[]#
+	</iterate> 
+</delete>
+</sqlMap>

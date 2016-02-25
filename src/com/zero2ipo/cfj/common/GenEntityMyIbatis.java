@@ -14,16 +14,16 @@ import java.util.Date;
 
 public class GenEntityMyIbatis {
 
-	private String packageOutPath = "com.zero2ipo.bsb.entity";//指定实体生成所在包的路径
+	private String packageOutPath = "com.zero2ipo.eeh.teachbuild.bo";//指定实体生成所在包的路径
 	private String authorName = "wangli";//作者名字
-	private String tablename = "orders";//表名
+	private String tablename = "eeh_teachingbuilding";//表名
 	private String[] colnames; // 列名数组
 	private String[] colTypes; //列名类型数组
 	private int[] colSizes; //列名大小数组
 	private boolean f_util = false; // 是否需要导入包java.util.*
 	private boolean f_sql = false; // 是否需要导入包java.sql.*
 	//数据库连接
-	private static final String URL ="jdbc:mysql://172.168.7.10:3306/scar";
+	private static final String URL ="jdbc:mysql://172.168.7.10:3306/eeh";
 	private static final String NAME = "root";
 	private static final String PASS = "zhengyunfei";
 	private static final String DRIVER ="com.mysql.jdbc.Driver";
