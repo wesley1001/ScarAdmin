@@ -11,6 +11,7 @@
 	<title>新增教室</title>
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
+	<%@include file="/s9/common/mutiselect.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
 	<script type="text/javascript" src="<%=basePath %>/eeh/classroom/js/add.js"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/classroom/js/number.js"></script>
