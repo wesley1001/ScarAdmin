@@ -15,6 +15,8 @@
 	<!-- 用户管理操作JS静态资源的引用 -->
 	<script type="text/javascript" src="<%=basePath %>/eeh/classroom/js/add.js"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/classroom/js/number.js"></script>
+	<script type="text/javascript" src="<%=basePath%>/s9/res/js/combox.js" ></script>
+	<link  rel="stylesheet" type="text/css" href="<%=basePath%>/s9/res/css/combox.css">
 </head>
 
 <body class="dialogBody">

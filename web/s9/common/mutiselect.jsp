@@ -18,18 +18,11 @@
 <script type="text/javascript" src="../s9/res/js/mutiselect/multiselectSrc/jquery.multiselect.js"></script>
 <script type="text/javascript">
     $(function(){
-        $("#customerSource").multiselect({
+        $("#tbId").multiselect({
             noneSelectedText: "请选择",
             checkAllText: "全选",
             uncheckAllText: '全不选',
-            selectedList:1,
-            minWidth:'200px'
-        });
-        $("#status").multiselect({
-            noneSelectedText: "请选择",
-            checkAllText: "全选",
-            uncheckAllText: '全不选',
-            selectedList:1,
+            selectedList:3,
             minWidth:'200px'
         });
 
