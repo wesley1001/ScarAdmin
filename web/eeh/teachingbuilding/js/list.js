@@ -11,7 +11,7 @@ function findAllList(url){
 			rownumbers:true,
 			checkbox: true,
     		columns: [
-				{ display: 'ID', name: 'id',hide:false},
+				{ display: 'ID', name: 'id',hide:true},
 				{ display: '教学楼名称', name: 'name' },
 
 				{ display: '楼层数', name: 'floors'},

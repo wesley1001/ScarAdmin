@@ -56,7 +56,7 @@ INSTR(name,#name#)>0
 <!--新增-->
 <insert id="add_ClassRoom" parameterClass="classroomBo">
 	INSERT INTO
-		eeh_teachingbuilding(
+		eeh_class_room(
 		name,
 		floors,
 		classId,
@@ -64,8 +64,8 @@ INSTR(name,#name#)>0
 		ip
 	)VALUES(
 		#name#,
-		#floors#，
-		#classId#，
+		#floors#,
+		#classId#,
 		#tbId#,
 		#ip#
 	)
@@ -86,7 +86,7 @@ INSTR(name,#name#)>0
 <!--删除-->
 <delete id="del_ClassRoom" parameterClass="java.util.Map">
 	DELETE FROM 
-	eeh_teachingbuilding
+	eeh_class_room
 	WHERE
 	ID IN
 	<iterate property="id" conjunction="," close=")" open="(">
