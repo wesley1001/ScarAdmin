@@ -2,6 +2,8 @@ package com.zero2ipo.eeh.classroom.bizc.impl;
 
 import com.zero2ipo.eeh.classroom.bizc.IClassRoomService;
 import com.zero2ipo.eeh.classroom.bo.ClassRoomBo;
+import com.zero2ipo.eeh.teachbuild.bizc.ITeachingBuildingService;
+import com.zero2ipo.eeh.teachbuild.bo.TeachingBuildingBo;
 import com.zero2ipo.framework.FwConstant;
 import com.zero2ipo.framework.db.bizc.IBaseDao;
 import com.zero2ipo.framework.exception.BaseException;
@@ -23,7 +25,9 @@ public class ClassRoomImpl implements IClassRoomService {
     @Autowired
     @Qualifier("baseDao")
     private IBaseDao baseDao;
-
+    @Autowired
+    @Qualifier("teachingBuildingService")
+    private ITeachingBuildingService teachingBuildingService;
     @Override
     public boolean add(ClassRoomBo bo) {
         boolean flag=false;
@@ -88,6 +92,13 @@ public class ClassRoomImpl implements IClassRoomService {
         try {
             baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
             list = baseDao.findForList("findClassRoomList", queryMap,skip,max);
+            int size=list.size();
+            for(int i=0;i<size;i++){
+                String tbId=list.get(i).getTbId();
+                //根据教学楼id查询教学楼名称
+                TeachingBuildingBo teachingBuildingBo=teachingBuildingService.findById(tbId);
+                list.get(i).setTeachingBuildingBo(teachingBuildingBo);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             BaseLog.e(this.getClass(), "findAllList 查询列表", e);

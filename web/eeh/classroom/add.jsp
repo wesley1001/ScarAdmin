@@ -19,8 +19,8 @@
 </head>
 
 <body class="dialogBody">
-<form id="form1" onsubmit="return false;"
-	  action="../classroom/forAddAjax.shtml" name="form1" method="post">
+<form id="form1" onsubmit="return false;" action="../classroom/forAddAjax.shtml" name="form1" method="post">
+
 	<table width="100%"  align="center" cellpadding="2"
 		   cellspacing="0">
 		<tr>
@@ -84,7 +84,6 @@
 						</td>
 						<td width="80%" >
 							<input type="text" id="ip" name="ip"   style="width: 300px"  />
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					</tbody>

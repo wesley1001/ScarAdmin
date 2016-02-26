@@ -3,6 +3,7 @@ package com.zero2ipo.eeh.classroom.web;
 import com.zero2ipo.common.web.BaseCtrl;
 import com.zero2ipo.eeh.classroom.bizc.IClassRoomService;
 import com.zero2ipo.eeh.classroom.bo.ClassRoomBo;
+import com.zero2ipo.eeh.common.CommonConstant;
 import com.zero2ipo.eeh.teachbuild.bizc.ITeachingBuildingService;
 import com.zero2ipo.eeh.teachbuild.bo.TeachingBuildingBo;
 import com.zero2ipo.framework.exception.BaseException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,6 +126,18 @@ public class ClassRoomCtrl extends BaseCtrl {
         ModelAndView mv = new ModelAndView("/eeh/classroom/update.jsp");
         ClassRoomBo bo=classRoomService.findById(id);
         mv.addObject("bo",bo);
+        /**
+         * 查询所在教学楼
+         */
+        List<TeachingBuildingBo> list= teachingBuildingService.findAllList(new HashMap<String, Object>());
+        mv.addObject("teachbuildList",list);
+        //楼层数
+        List<Integer> floorList=new ArrayList<Integer>();
+        int floorSize= CommonConstant.FLOOR_SIZE;
+        for(int i=1;i<=floorSize;i++){
+            floorList.add(i);
+        }
+        mv.addObject("floorList",floorList);//便于页面foreach遍历
         return mv;
     }
     /**

@@ -1,5 +1,7 @@
 package com.zero2ipo.eeh.classroom.bo;
 
+import com.zero2ipo.eeh.teachbuild.bo.TeachingBuildingBo;
+
 /**
  * 教学楼
  * Created by Administrator on 2016/2/24.
@@ -7,10 +9,19 @@ package com.zero2ipo.eeh.classroom.bo;
 public class ClassRoomBo implements  java.io.Serializable {
    public int id;//主键
    public  String tbId;//所在教学楼id
+   public TeachingBuildingBo teachingBuildingBo;//所在教学楼
    public  String  classId;//所在班级id
    public String name;//教室名称
    public int floors;//楼层
    public String ip;
+
+    public TeachingBuildingBo getTeachingBuildingBo() {
+        return teachingBuildingBo;
+    }
+
+    public void setTeachingBuildingBo(TeachingBuildingBo teachingBuildingBo) {
+        this.teachingBuildingBo = teachingBuildingBo;
+    }
 
     public String getIp() {
         return ip;

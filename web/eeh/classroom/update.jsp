@@ -31,7 +31,7 @@
 					<tbody>
 					<tr>
 						<td width="20%" height="30" align="right">
-							教学楼名称：
+							所在教学楼：
 						</td>
 						<td width="80%" >
 							<select type="text" id="tbId" name="tbId"   style="width: 300px"  >
@@ -56,16 +56,17 @@
 						</td>
 						<td width="80%" >
 							<select type="text" id="floors" name="floors" style="width: 300px" >
-								<option value="1">1层</option>
-								<option value="2">2层</option>
-								<option value="3">3层</option>
-								<option value="4">4层</option>
-								<option value="5">5层</option>
-								<option value="6">6层</option>
-								<option value="7">7层</option>
-								<option value="8">8层</option>
-								<option value="9">9层</option>
-								<option value="10">10层</option>
+								<c:forEach items="${floorList}" var="lc" >
+									<c:choose>
+										<c:when test="${lc==bo.floors}">
+											<option value="${lc }" selected="selected">${lc}层</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${lc}" >${lc}层</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
@@ -85,7 +86,6 @@
 						</td>
 						<td width="80%" >
 							<input type="text" id="ip" name="ip"   style="width: 300px"  value="${bo.ip}"/>
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					</tbody>

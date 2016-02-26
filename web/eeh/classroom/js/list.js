@@ -11,9 +11,9 @@ function findAllList(url){
 			rownumbers:true,
 			checkbox: true,
     		columns: [
-				{ display: 'ID', name: 'id',hide:hide},
+				{ display: 'ID', name: 'id',hide:true},
 				{ display: '教室名称', name: 'name' },
-				{ display: '所在教学楼', name: 'tbId'},
+				{ display: '所在教学楼', name: 'teachingBuildingBo.name'},
 				{ display: '楼层', name: 'floors'},
 				{ display: '操作', name: '',render:function(r){
 					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
@@ -41,7 +41,7 @@ function add(){
 }
 function upd(id){
 	var url="../classroom/forUpdateInitPage.shtml?id="+id;
-	m = $.ligerDialog.open({ url: url, height: 250,width:500, title:'修改教室',isResize: true ,top:50});
+	m = $.ligerDialog.open({ url: url, height: 280,width:500, title:'修改教室',isResize: true ,top:50});
 }
 
 //删除
