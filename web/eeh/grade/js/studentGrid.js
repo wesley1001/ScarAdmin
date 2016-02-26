@@ -1,27 +1,20 @@
 var grid = null;//表格对象
 var m; 	//弹出窗口对象
 // 查询用户信息列表数据
-function findAllList(){
+function findAllList(url){
 	   var pageSize=20;
-       grid = $("#maingrid").ligerGrid({
-    	    width:'99.6%',
-    	    height:'100%',
+       grid = $("#studentGrid").ligerGrid({
+    	    width:'95%',
+    	    height:'90%',
 			headerRowHeight:28,
 			rowHeight:26,
 			rownumbers:true,
-			checkbox: true,
+			checkbox: false,
     		columns: [
-				{ display: 'ID', name: 'id',hide:true},
-				{ display: '班级名称', name: 'name' },
-				{ display: '年级', name: 'gradeName'},
-				{ display: '班主任', name: 'teacherName'},
-				{ display: '班级人数', name: 'gradenum'},
-				{ display: '操作', name: '',render:function(r){
-					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
-				}
-				}
-			
-          ],  pageSize:20,rownumbers:false,pageParmName:"curNo",enabledEdit: false,pagesizeParmName:"curSize"
+				{ display: '姓名', name: 'name',width:200 },
+				{ display: '学号', name: 'studentName',width:200},
+				{ display: '性别', name: 'teacherName',width:100}
+          ], url:url, pageSize:20,rownumbers:false,pageParmName:"curNo",enabledEdit: false,pagesizeParmName:"curSize"
     
 		 });
       $("#pageloading").hide();
@@ -34,15 +27,15 @@ function onClickRow(rowdata, rowindex, rowDomElement) {
 	var $v = $(rowDomElement);
 	$v.find(":checkbox").attr("checked","checked")
 }
-
+/*
 //新增
 function add(){
-	var url="../grade/forAddInitPage.shtml";
-	m = $.ligerDialog.open({ url: url, height: 650,width:800, title:'新增班级',showMax:true,showToggle:true,showMin:true});
+	var url="../student/forAddInitPage.shtml";
+	m = $.ligerDialog.open({ url: url, height: 400,width:500, title:'新增班级',showMax:true,showToggle:true,showMin:true});
 }
 function upd(id){
-	var url="../grade/forUpdateInitPage.shtml?id="+id;
-	m = $.ligerDialog.open({ url: url, height: 600,width:800, title:'修改班级',isResize: true ,top:50});
+	var url="../student/forUpdateInitPage.shtml?id="+id;
+	m = $.ligerDialog.open({ url: url, height: 400,width:500, title:'修改班级',isResize: true ,top:50});
 }
 
 //删除
@@ -63,7 +56,7 @@ function delObj(){
 			}	
 		}
 		var data={'ids':ids};
-		var url='../grade/delSave.shtml';
+		var url='../student/delSave.shtml';
 		ajax(url,data);
 }
 function ajax(url,data){
@@ -84,7 +77,7 @@ function ajax(url,data){
 			$.ligerDialog.error('服务器也有duang的时候，请您谅解我一下了');
 		}
 	})
-}
+}*/
 function reload(){
 	if(m){
 		m.close();

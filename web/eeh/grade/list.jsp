@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<script type="text/javascript" src="<%=basePath%>/s9/res/js/jquery.min.js"></script>
 			<script type="text/javascript" src="<%=basePath%>/s9/res/js/ligerUI/js/ligerui.all.js"></script>
 			<script type="text/javascript"  src="<%=basePath%>/s9/res/js/calendar/WdatePicker.js"></script>    
-			<script type="text/javascript" src="<%=basePath%>/eeh/grade/js/list.js"></script>
+			<script type="text/javascript" src="<%=basePath%>/eeh/grade/js/list.js?v=1"></script>
 			
 	</head>
 	<body class="z-body-detail" style="overflow: hidden">

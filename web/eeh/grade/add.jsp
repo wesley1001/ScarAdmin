@@ -12,13 +12,15 @@
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
+	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/studentGrid.js?v=12"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/add.js"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/number.js"></script>
+
 </head>
 
-<body class="dialogBody">
-<form id="form1" onsubmit="return false;"
-	  action="../grade/forAddAjax.shtml" name="form1" method="post">
+<body class="dialogBody" style="overflow-x: hidden">
+<form id="form1" onsubmit="return false;" action="../grade/forAddAjax.shtml" name="form1" method="post">
+
 	<table width="100%"  align="center" cellpadding="2"
 		   cellspacing="0">
 		<tr>
@@ -33,10 +35,8 @@
 							班级名称：
 						</td>
 						<td width="80%" >
-							<input type="text" id="name" name="name"
-								   style="width: 300px"  />
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<input type="text" id="name" name="name" style="width: 300px"  />
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
@@ -81,19 +81,34 @@
 					</tr>
 					</tbody>
 				</table>
-				<div class="z-legend">
+				<div class="z-legend" style="width:100%">
 					<b>学生管理</b>
+				</div>
+				<div class="aui_buttons">
+					<button value="下载标准表格" onclick="javascript:forAdd();" class="z-dlg-button z-dialog-okbutton aui_state_highlight">
+						下载标准表格
+					</button>
+					<button value="导入" onclick="javascript:forAdd();" class="z-dlg-button z-dialog-okbutton aui_state_highlight">
+						导入
+					</button>
+				</div>
+				<div id="studentGrid" style="padding-left: 25px;"></div>
+				<div class="aui_buttons">
+					<button value="保存"  onclick="javascript:forAdd();" class="z-dlg-button z-dialog-okbutton aui_state_highlight">
+						保存
+					</button>
 				</div>
 			</td>
 		</tr>
 	</table>
-	<div class="aui_buttons">
-		<button value="确定" id="z-dialog-2-OKButton"
-				onclick="javascript:forAdd();"
-				class="z-dlg-button z-dialog-okbutton aui_state_highlight">
-			确定
-		</button>
-	</div>
+
 </form>
 </body>
 </html>
+<script type="text/javascript">
+	// 初始化加载
+	$(function(){
+		findAllList();
+	})
+
+</script>
