@@ -15,12 +15,22 @@ function forUpdate() {
 function validData() {
 	var name = $("#name").val();
 	if (name.replace(/(^\s*)|(\s*$)/, "").length == 0) {
-		$.ligerDialog.warn("教学楼名称不能为空！");
+		$.ligerDialog.warn("教师名称不能为空！");
 		return false;
 	}
-	var floors=$("#floors").val();
-	if(""==floors||null==floors){
-		$.ligerDialog.warn("楼层数不能为空！");
+	var subjectId=$("#subjectId").val();
+	if(""==subjectId||null==subjectId){
+		$.ligerDialog.warn("科目不能为空！");
+		return;
+	}
+	var gradeId=$("#gradeId").val();
+	if(""==gradeId||null==gradeId){
+		$.ligerDialog.warn("所属年级不能为空！");
+		return;
+	}
+	var classId=$("#classId").val();
+	if(""==classId||null==classId){
+		$.ligerDialog.warn("授课班级不能为空！");
 		return;
 	}
 	return true;

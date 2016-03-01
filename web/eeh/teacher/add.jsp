@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html;charset=utf-8"
 		 pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -33,10 +34,8 @@
 							教师名称：
 						</td>
 						<td width="80%" >
-							<input type="text" id="name" name="name"
-								   style="width: 300px"  value="${bo.name}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<input type="text" id="name" name="name" style="width: 300px"  value="${bo.name}"/>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
@@ -44,10 +43,16 @@
 							所属科目：
 						</td>
 						<td width="80%" >
-							<input type="text" id="subjectId" name="subjectId"
-								   style="width: 300px"  onkeyup="clearNoNum(this)" value="${bo.subjectId}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select    style="width: 150px" >
+								<option value="">选择科目</option>
+								<option value="基础课程">基础课程</option>
+								<option value="培优课程">培优课程</option>
+								<option value="其他">其他</option>
+							</select>
+							<select  id="subjectId" name="subjectId" style="width: 150px"   value="${bo.subjectId}">
+								<option value="语文">语文</option>
+							</select>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
@@ -55,10 +60,22 @@
 							所属年级：
 						</td>
 						<td width="80%" >
-							<input type="text" id="gradeId" name="gradeId"
-								   style="width: 300px"  onkeyup="clearNoNum(this)" value="${bo.gradeId}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select  id="gradeId" name="gradeId" style="width: 300px"  onchange="">
+							<option value="">选择年级</option>
+							<option value="1">一年级</option>
+							<option value="2">二年级</option>
+							<option value="3">三年级</option>
+							<option value="4">四年级</option>
+							<option value="5">五年级</option>
+							<option value="6">六年级</option>
+							<option value="7">七年级</option>
+							<option value="8">八年级</option>
+							<option value="9">九年级</option>
+							<option value="10">十年级</option>
+							<option value="11">十一年级</option>
+							<option value="12">十二年级</option>
+							</select>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
@@ -66,10 +83,10 @@
 							授课班级：
 						</td>
 						<td width="80%" >
-							<input type="text" id="classId" name="classId"
-								   style="width: 300px"  onkeyup="clearNoNum(this)" value="${bo.classId}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select type="text" id="classId" name="classId"  style="width: 300px"  value="${bo.classId}">
+								<option value="">选择班级</option>
+							</select>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					</tbody>
