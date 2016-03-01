@@ -13,7 +13,8 @@
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
-	<script type="text/javascript" src="<%=basePath %>/eeh/teacher/js/add.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/teacher/js/common.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/teacher/js/add.js?v=1"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/teacher/js/number.js"></script>
 </head>
 
@@ -43,14 +44,13 @@
 							所属科目：
 						</td>
 						<td width="80%" >
-							<select    style="width: 150px" >
+							<select id="pkemu"    style="width: 150px" onchange="loadKeMu()">
 								<option value="">选择科目</option>
 								<option value="基础课程">基础课程</option>
 								<option value="培优课程">培优课程</option>
 								<option value="其他">其他</option>
 							</select>
 							<select  id="subjectId" name="subjectId" style="width: 150px"   value="${bo.subjectId}">
-								<option value="语文">语文</option>
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
@@ -60,7 +60,7 @@
 							所属年级：
 						</td>
 						<td width="80%" >
-							<select  id="gradeId" name="gradeId" style="width: 300px"  onchange="">
+							<select  id="gradeId" name="gradeId" style="width: 300px"  onchange="loadBanJi()">
 							<option value="">选择年级</option>
 							<option value="1">一年级</option>
 							<option value="2">二年级</option>
@@ -83,7 +83,7 @@
 							授课班级：
 						</td>
 						<td width="80%" >
-							<select type="text" id="classId" name="classId"  style="width: 300px"  value="${bo.classId}">
+							<select  id="classId" name="classId"  style="width: 300px"  value="${bo.classId}">
 								<option value="">选择班级</option>
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
@@ -104,3 +104,4 @@
 </form>
 </body>
 </html>
+

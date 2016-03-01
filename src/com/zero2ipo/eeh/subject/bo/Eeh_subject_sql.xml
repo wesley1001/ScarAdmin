@@ -27,9 +27,12 @@ SELECT
 FROM
 	eeh_Subject
 <dynamic prepend="WHERE">
-<isNotEmpty prepend="AND" property="name">
-INSTR(name,#name#)>0
-</isNotEmpty>
+	<isNotEmpty prepend="AND" property="name">
+	INSTR(name,#name#)>0
+	</isNotEmpty>
+	<isNotEmpty prepend="AND" property="subjectClass">
+		subjectClass=#subjectClass#
+	</isNotEmpty>
 </dynamic>
 </select>
 <!--查询个数-->
@@ -42,6 +45,10 @@ INSTR(name,#name#)>0
 			<isNotEmpty prepend="AND" property="name">
 				INSTR(name,#name#)>0
 			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="subjectClass">
+				subjectClass=#subjectClass#
+			</isNotEmpty>
+
 		</dynamic>
 	</select>
 <!--新增-->

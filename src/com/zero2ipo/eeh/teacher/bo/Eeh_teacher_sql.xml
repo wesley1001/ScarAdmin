@@ -59,7 +59,7 @@ INSTR(name,#name#)>0
 		gradeId,
 		classId
 	)VALUES(
-		#name#，
+		#name#,
 		#subjectId#,
 		#gradeId#,
 		#classId#

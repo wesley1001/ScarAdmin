@@ -1,8 +1,11 @@
 package com.zero2ipo.plugins.excel;
 
 import com.zero2ipo.common.web.BaseCtrl;
+import com.zero2ipo.eeh.Timetable.bizc.ITimetableService;
+import com.zero2ipo.eeh.Timetable.bo.TimetableBo;
 import com.zero2ipo.eeh.student.bizc.IStudentService;
 import com.zero2ipo.eeh.student.bo.StudentBo;
+import com.zero2ipo.framework.util.StringUtil;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -26,6 +29,9 @@ public class ExcelOperate extends BaseCtrl {
     @Autowired
     @Qualifier("studentService")
     private IStudentService studentService;
+    @Autowired
+    @Qualifier("TimetableService")
+    private ITimetableService TimetableService;
     public static void main(String[] args) throws Exception {
        /* File file = new File("ExcelDemo.xls");
         String[][] result = getData(file, 1);
@@ -38,6 +44,13 @@ public class ExcelOperate extends BaseCtrl {
         }*/
 
     }
+
+    /**
+     * 学生标准表导入
+     * @param path
+     * @param classId
+     * @return
+     */
     @RequestMapping("/readexcel.shtml")
     @ResponseBody
     public Map<String,Object> readexcel(String path,String classId){
@@ -55,27 +68,82 @@ public class ExcelOperate extends BaseCtrl {
                 //System.out.print("第" + (i) + "行");
                 //List<String> cellList = list.get(i);
                 //for (int j = 0; j < cellList.size(); j++)
-               // {
-                    // System.out.print("    第" + (j + 1) + "列值：");
-                   // System.out.print("    " + cellList.get(j));
-                    StudentBo studentBo=new StudentBo();
-                    String  banji=list.get(i).get(0).replace(".0","");//班级
-                    String xuehao=list.get(i).get(1).replace(".0","");//学号
-                    String name=list.get(i).get(2);//姓名
-                    studentBo.setName(name);
-                    studentBo.setClassId(banji);
-                    studentBo.setXhnum(xuehao);
-                    studentBo.setGradeId(banji.substring(0,1));
-                    if(classId.equals(banji)){
-                        System.out.print("banji="+banji);
-                        System.out.print("xuehao="+xuehao);
-                        System.out.print("name="+name+"\n");
-                        studentService.add(studentBo);
-                    }
-                   // studentService.add(studentBo);
+                // {
+                // System.out.print("    第" + (j + 1) + "列值：");
+                // System.out.print("    " + cellList.get(j));
+                StudentBo studentBo=new StudentBo();
+                String  banji=list.get(i).get(0).replace(".0","");//班级
+                String xuehao=list.get(i).get(1).replace(".0","");//学号
+                String name=list.get(i).get(2);//姓名
+                studentBo.setName(name);
+                studentBo.setClassId(banji);
+                studentBo.setXhnum(xuehao);
+                studentBo.setGradeId(banji.substring(0,1));
+                if(classId.equals(banji)){
+                    System.out.print("banji="+banji);
+                    System.out.print("xuehao="+xuehao);
+                    System.out.print("name="+name+"\n");
+                    studentService.add(studentBo);
+                }
+                // studentService.add(studentBo);
 
-               // }
+                // }
                 System.out.println();
+            }
+        }
+        Map<String,Object> resultMap=new HashMap<String, Object>();
+        return resultMap;
+    }
+    /**
+     * 日常课程表导入
+     * @param path
+     * @param classId
+     * @return
+     */
+    @RequestMapping("/importExcelForTimetable.shtml")
+    @ResponseBody
+    public Map<String,Object> importExcelForTimetable(String path,String classId){
+        ImportExecl poi = new ImportExecl();
+        // List<List<String>> list = poi.read("d:/aaa.xls");
+        String filepath=session.getServletContext().getRealPath("/");
+        path=path.replaceAll("\r\n","");
+        filepath=filepath+path;
+        filepath=filepath.replaceAll("\\\\","/");
+        List<List<String>> list = poi.read(filepath);
+        if (list != null)
+        {
+            for (int i = 1; i < list.size(); i++)
+            {
+                TimetableBo timetableBo=new TimetableBo();
+                StudentBo studentBo=new StudentBo();
+                String  week=list.get(i).get(0);//星期
+                String gradeName=list.get(i).get(1).replace(".0", "");//班级
+                String teacher=list.get(i).get(2);//班主任
+                String firstClass=list.get(i).get(3);//第1节课
+                String secondClass=list.get(i).get(4);//第2节课
+                String threeClass=list.get(i).get(5);//第2节课
+                String fourClass=list.get(i).get(6);//第3节课
+                String fiveClass=list.get(i).get(7);//第1节课
+                String sixClass=list.get(i).get(8);//第1节课
+                String sevenClass=list.get(i).get(9);//第1节课
+                String eightClass=list.get(i).get(10);//第1节课
+                String nineClass=list.get(i).get(11);//第1节课
+                timetableBo.setWeek(week);
+                timetableBo.setgradeName(gradeName);
+                timetableBo.setTeacher(teacher);
+                timetableBo.setFirstClass(firstClass);
+                timetableBo.setSecondClass(secondClass);
+                timetableBo.setThreeClass(threeClass);
+                timetableBo.setFourClass(fourClass);
+                timetableBo.setFiveClass(fiveClass);
+                timetableBo.setSixClass(sixClass);
+                timetableBo.setSevenClass(sevenClass);
+                timetableBo.setEightClass(eightClass);
+                timetableBo.setNineClass(nineClass);
+                if(!StringUtil.isNullOrEmpty(week)){
+                    TimetableService.add(timetableBo);
+                }
+
             }
         }
         Map<String,Object> resultMap=new HashMap<String, Object>();
@@ -90,12 +158,12 @@ public class ExcelOperate extends BaseCtrl {
 
 
     public Map<String,Object> getData(String path)
-             {
-         int ignoreRows=1;
+    {
+        int ignoreRows=1;
         String filepath=session.getServletContext().getRealPath("/");
-               path=path.replaceAll("\r\n","");
-               filepath=filepath+path;
-               filepath=filepath.replaceAll("\\\\","/");
+        path=path.replaceAll("\r\n","");
+        filepath=filepath+path;
+        filepath=filepath.replaceAll("\\\\","/");
         File file = new File(filepath);
         List<String[]> result = new ArrayList<String[]>();
         int rowSize = 0;

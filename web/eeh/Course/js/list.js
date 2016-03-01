@@ -11,11 +11,11 @@ function findAllList(url){
 			rownumbers:true,
 			checkbox: true,
     		columns: [
-				{ display: 'ID', name: 'id',hide:false},
 				{ display: '科目', name: 'kemu' },
 				{ display: '人数', name: 'peopleMax'},
-				{ display: '老师', name: 'teacher'},
-				{ display: '时间', name: 'schoolTime'},
+				{ display: '授课老师', name: 'teacher'},
+				{ display: '星期', name: 'schoolTime'},
+				{ display: '上课时间', name: 'schoolTime'},
 				{ display: '授课教室', name: 'classRoom'},
 				{ display: '操作', name: '',render:function(r){
 					return "<a href='javascript:upd("+r.id+")'>编辑</a>";

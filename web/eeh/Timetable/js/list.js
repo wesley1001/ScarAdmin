@@ -25,12 +25,18 @@ function findAllList(url){
 			rownumbers:true,
 			checkbox: true,
     		columns: [
-				{ display: '教师名称', name: 'name' },
-				{ display: '所属科目', name: 'subjectId' },
-				{ display: '所属年级', name: 'gradeId',render:function(r){
-					return gradeArray[r.gradeId];
-				}},
-				{ display: '授课班级', name: 'classId'},
+				{ display: '星期', name: 'week' },
+				{ display: '班级', name: 'gradeName' },
+				{ display: '班主任', name: 'teacher'},
+				{ display: '第一节', name: 'firstClass'},
+				{ display: '第二节', name: 'secondClass'},
+				{ display: '第三节', name: 'threeClass'},
+				{ display: '第四节', name: 'fourClass'},
+				{ display: '第五节', name: 'fiveClass'},
+				{ display: '第六节', name: 'sixClass'},
+				{ display: '第七节', name: 'sevenClass'},
+				{ display: '第八节', name: 'eightClass'},
+				{ display: '第九节', name: 'nineClass'},
 				{ display: '操作', name: '',render:function(r){
 					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
 				}
@@ -52,11 +58,11 @@ function onClickRow(rowdata, rowindex, rowDomElement) {
 
 //新增
 function add(){
-	var url="../teacher/forAddInitPage.shtml";
+	var url="../Timetable/forAddInitPage.shtml";
 	m = $.ligerDialog.open({ url: url, height: 300,width:450, title:'新增教师',showMax:true,showToggle:true,showMin:true});
 }
 function upd(id){
-	var url="../teacher/forUpdateInitPage.shtml?id="+id;
+	var url="../Timetable/forUpdateInitPage.shtml?id="+id;
 	m = $.ligerDialog.open({ url: url, height: 300,width:450, title:'修改教师',isResize: true ,top:50});
 }
 
@@ -78,7 +84,7 @@ function delObj(){
 			}	
 		}
 		var data={'ids':ids};
-		var url='../teacher/delSave.shtml';
+		var url='../Timetable/delSave.shtml';
 		ajax(url,data);
 }
 function ajax(url,data){

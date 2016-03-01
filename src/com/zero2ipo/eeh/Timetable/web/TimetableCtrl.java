@@ -1,8 +1,8 @@
-package com.zero2ipo.eeh.subject.web;
+package com.zero2ipo.eeh.Timetable.web;
 
 import com.zero2ipo.common.web.BaseCtrl;
-import com.zero2ipo.eeh.subject.bizc.ISubjectService;
-import com.zero2ipo.eeh.subject.bo.SubjectBo;
+import com.zero2ipo.eeh.Timetable.bizc.ITimetableService;
+import com.zero2ipo.eeh.Timetable.bo.TimetableBo;
 import com.zero2ipo.framework.exception.BaseException;
 import com.zero2ipo.framework.log.BaseLog;
 import com.zero2ipo.framework.util.StringUtil;
@@ -22,18 +22,18 @@ import java.util.Map;
  * Created by Administrator on 2016/2/24.
  */
 @Controller
-@RequestMapping("/Subject")
-public class SubjectCtrl extends BaseCtrl {
+@RequestMapping("/Timetable")
+public class TimetableCtrl extends BaseCtrl {
     @Autowired
-    @Qualifier("SubjectService")
-    private ISubjectService SubjectService ;
+    @Qualifier("TimetableService")
+    private ITimetableService TimetableService ;
     /**
      * 初始化页面
      * @return
      */
     @RequestMapping("forInit.shtml")
     public ModelAndView forInitPage() {
-        ModelAndView mv = new ModelAndView("/eeh/Subject/list.jsp");
+        ModelAndView mv = new ModelAndView("/eeh/Timetable/list.jsp");
         return mv;
     }
     /**
@@ -60,41 +60,14 @@ public class SubjectCtrl extends BaseCtrl {
             Map<String, Object> map = new HashMap<String, Object>();
 
             int total=0;
-            total=SubjectService.getTotal(map);
-            List<SubjectBo> list= null;
+            total=TimetableService.getTotal(map);
+            List<TimetableBo> list= null;
             if(total>0){
-                list = SubjectService.findAllList(map, (skip-1)*max, max);
+                list = TimetableService.findAllList(map, (skip-1)*max, max);
             }
             jsonMap.put("Rows", list);
             jsonMap.put("Total", total);
         } catch (Exception e) {
-            BaseLog.e(this.getClass(), "forLinkTypeinitAjax.shtml:管理人分类信息初始化有误", e);
-        }
-        return jsonMap;
-    }
-    /**
-     *根据科目类别查询所有科目
-     * @return
-     */
-    @RequestMapping("findListByQuery.shtml")
-    @ResponseBody
-    public Map<String,Object> findAllList(String subjectClass){
-        Map<String,Object> jsonMap = new HashMap<String, Object>();
-        try {
-            Map<String, Object> map = new HashMap<String, Object>();
-            if(!StringUtil.isNullOrEmpty(subjectClass)){//科目类别
-                map.put("subjectClass",subjectClass);
-            }
-            int total=0;
-            total=SubjectService.getTotal(map);
-            List<SubjectBo> list= null;
-            if(total>0){
-                list = SubjectService.findAllList(map);
-            }
-            jsonMap.put("Rows", list);
-            jsonMap.put("Total", total);
-        } catch (Exception e) {
-            e.printStackTrace();
             BaseLog.e(this.getClass(), "forLinkTypeinitAjax.shtml:管理人分类信息初始化有误", e);
         }
         return jsonMap;
@@ -106,7 +79,7 @@ public class SubjectCtrl extends BaseCtrl {
      */
     @RequestMapping("forAddInitPage.shtml")
     public ModelAndView forAddInitPage() {
-        ModelAndView mv = new ModelAndView("/eeh/Subject/add.jsp");
+        ModelAndView mv = new ModelAndView("/eeh/Timetable/add.jsp");
         return mv;
     }
     /**
@@ -116,11 +89,11 @@ public class SubjectCtrl extends BaseCtrl {
      */
     @RequestMapping("forAddAjax.shtml")
     @ResponseBody
-    public Map<String,Object> addSave(SubjectBo bo) {
+    public Map<String,Object> addSave(TimetableBo bo) {
         Map<String,Object> result=new HashMap<String,Object>();
         boolean flg=false;
         try {
-            flg=SubjectService.add(bo);
+            flg=TimetableService.add(bo);
         } catch (Exception e) {
             flg=false;
             e.printStackTrace();
@@ -137,8 +110,8 @@ public class SubjectCtrl extends BaseCtrl {
      */
     @RequestMapping("forUpdateInitPage.shtml")
     public ModelAndView forUpdateInitPage(String id) {
-        ModelAndView mv = new ModelAndView("/eeh/Subject/update.jsp");
-        SubjectBo bo=SubjectService.findById(id);
+        ModelAndView mv = new ModelAndView("/eeh/Timetable/update.jsp");
+        TimetableBo bo=TimetableService.findById(id);
         mv.addObject("bo",bo);
         return mv;
     }
@@ -149,11 +122,11 @@ public class SubjectCtrl extends BaseCtrl {
      */
     @RequestMapping("forUpdateAjax.shtml")
     @ResponseBody
-    public Map<String,Object> updateSave(SubjectBo bo) {
+    public Map<String,Object> updateSave(TimetableBo bo) {
         Map<String,Object> result=new HashMap<String,Object>();
         boolean flg=false;
         try {
-            flg=SubjectService.update(bo);
+            flg=TimetableService.update(bo);
         } catch (Exception e) {
             flg=false;
             e.printStackTrace();
@@ -171,7 +144,7 @@ public class SubjectCtrl extends BaseCtrl {
         Map<String,Object> result=new HashMap<String,Object>();
         boolean flg=false;
         try {
-            flg=SubjectService.delete(ids);
+            flg=TimetableService.delete(ids);
         } catch (Exception e) {
             flg=false;
             e.printStackTrace();

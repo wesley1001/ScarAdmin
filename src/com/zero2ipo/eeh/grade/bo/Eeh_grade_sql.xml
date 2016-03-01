@@ -33,9 +33,13 @@ SELECT
 FROM
 	eeh_grade
 <dynamic prepend="WHERE">
-<isNotEmpty prepend="AND" property="name">
-INSTR(name,#name#)>0
-</isNotEmpty>
+	<isNotEmpty prepend="AND" property="name">
+		INSTR(name,#name#)>0
+	</isNotEmpty>
+	<isNotEmpty prepend="AND" property="gradeName">
+		gradeName=#gradeName#
+	</isNotEmpty>
+
 </dynamic>
 </select>
 	<select id='findGradeById' resultMap='gradeMap'>
@@ -59,6 +63,10 @@ INSTR(name,#name#)>0
 			<isNotEmpty prepend="AND" property="name">
 				INSTR(name,#name#)>0
 			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="gradeName">
+				gradeName=#gradeName#
+			</isNotEmpty>
+
 		</dynamic>
 	</select>
 <!--新增-->

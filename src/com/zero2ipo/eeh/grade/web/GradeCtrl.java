@@ -73,6 +73,34 @@ public class GradeCtrl extends BaseCtrl {
         }
         return jsonMap;
     }
+    /**
+     * 初始化json数据
+     * @return
+     */
+    @RequestMapping("findListByQuery.shtml")
+    @ResponseBody
+    public Map<String,Object> findListByQuery(String gradeName){
+        Map<String,Object> jsonMap = new HashMap<String, Object>();
+        try {
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            if(!StringUtil.isNullOrEmpty(gradeName)){
+               map.put("gradeName",gradeName);
+            }
+            int total=0;
+            total=gradeService.getTotal(map);
+            List<GradeBo> list= null;
+            if(total>0){
+                list = gradeService.findAllList(map);
+            }
+            jsonMap.put("Rows", list);
+            jsonMap.put("Total", total);
+        } catch (Exception e) {
+            e.printStackTrace();
+            BaseLog.e(this.getClass(), "forLinkTypeinitAjax.shtml:管理人分类信息初始化有误", e);
+        }
+        return jsonMap;
+    }
     /******************************************新增*********************************************************/
     /**
      * 新增页面初始化
