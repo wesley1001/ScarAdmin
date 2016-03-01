@@ -51,7 +51,7 @@ INSTR(name,#name#)>0
 		name,
 		subjectClass
 	)VALUES(
-		#name#，
+		#name#,
 		#subjectClass#
 	)
 </insert>

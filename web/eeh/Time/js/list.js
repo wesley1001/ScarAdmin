@@ -11,12 +11,8 @@ function findAllList(url){
 			rownumbers:true,
 			checkbox: true,
     		columns: [
-				{ display: 'ID', name: 'id',hide:false},
 				{ display: '时段名称', name: 'name' },
-				{ display: '时间', name: '',render:function(r){
-					return ""+ r.startTime+"-"+ r.endTime+"";
-				} },
-
+				{ display: '时间', name: 'time'},
 				{ display: '操作', name: '',render:function(r){
 					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
 				}

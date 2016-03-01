@@ -13,14 +13,14 @@ function forUpdate() {
  * 验证表单数据
  */
 function validData() {
-	var name = $("#name").val();
-	if (name.replace(/(^\s*)|(\s*$)/, "").length == 0) {
-		$.ligerDialog.warn("教学楼名称不能为空！");
+	var subjectClass = $("#subjectClass").val();
+	if (subjectClass.replace(/(^\s*)|(\s*$)/, "").length == 0) {
+		$.ligerDialog.warn("科目分类不能为空！");
 		return false;
 	}
-	var floors=$("#floors").val();
-	if(""==floors||null==floors){
-		$.ligerDialog.warn("楼层数不能为空！");
+	var name=$("#name").val();
+	if(""==name||null==name){
+		$.ligerDialog.warn("科目名称不能为空！");
 		return;
 	}
 	return true;

@@ -38,12 +38,12 @@
 						</td>
 						<td width="80%" >
 							<select id="subjectClass" name="subjectClass" style="width: 300px" >
-								<option value="基础课程">基础课程</option>
-								<option value="选修课程">选修课程</option>
-								<option value="其他">其他</option>
+								<option value="基础课程" <c:if test="${bo.subjectClass=='基础课程'}">selected="selected" </c:if> >基础课程</option>
+								<option value="选修课程" <c:if test="${bo.subjectClass=='选修课程'}">selected="selected" </c:if>>选修课程</option>
+								<option value="其他" <c:if test="${bo.subjectClass=='其他'}">selected="selected" </c:if>>其他</option>
 							</select>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+
 						</td>
 					</tr>
 					<tr>

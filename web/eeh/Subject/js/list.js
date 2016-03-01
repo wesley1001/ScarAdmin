@@ -11,10 +11,8 @@ function findAllList(url){
 			rownumbers:true,
 			checkbox: true,
     		columns: [
-				{ display: 'ID', name: 'id',hide:false},
-				{ display: '科目名称', name: 'name' },
-
-				{ display: '楼层数', name: 'floors'},
+				{ display: '科目类别', name: 'name' },
+				{ display: '科目名称', name: 'subjectClass'},
 				{ display: '操作', name: '',render:function(r){
 					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
 				}

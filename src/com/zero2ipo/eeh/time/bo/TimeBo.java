@@ -7,9 +7,9 @@ package com.zero2ipo.eeh.time.bo;
 public class TimeBo implements  java.io.Serializable {
     public int id;//主键
     public String name;//时段名称
-    public String startTime;//时段区间开始时间
-    public String endTime;//时段区间结束时间
-
+    public String time;//时段区间开始时间
+    public String startTime;//时段结束时间
+    public String endTime;//时段开始时间
     public int getId() {
         return id;
     }
@@ -24,6 +24,14 @@ public class TimeBo implements  java.io.Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getStartTime() {

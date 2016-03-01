@@ -15,14 +15,20 @@ function forAdd() {
 function validData() {
 	var name = $("#name").val();
 	if (name.replace(/(^\s*)|(\s*$)/, "").length == 0) {
-		$.ligerDialog.warn("教学楼名称不能为空！");
+		$.ligerDialog.warn("时段名称不能为空！");
 		return false;
 	}
-	/*var startTime=$("#startTime").val();
+	var startTime=$("#startTime").val();
 	if(""==startTime||null==startTime){
-		$.ligerDialog.warn("楼层数不能为空！");
+		$.ligerDialog.warn("时段开始时间不能为空！");
 		return;
-	}*/
+	}
+	var endTime=$("#endTime").val();
+	if(""==endTime||null==endTime){
+		$.ligerDialog.warn("时段结束时间不能为空！");
+		return;
+	}
+	$("#time").val(startTime+"-"+endTime);
 	return true;
 }
 function ajax(url,data){

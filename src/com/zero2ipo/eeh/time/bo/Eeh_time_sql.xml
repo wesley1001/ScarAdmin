@@ -5,6 +5,7 @@
 <resultMap class="TimeBo" id="TimeMap">
 	<result property="id" column="id"/>
 	<result property="name" column="name"/>
+	<result property="time" column="time"/>
 	<result property="startTime" column="startTime"/>
 	<result property="endTime" column="endTime"/>
 </resultMap>
@@ -13,6 +14,7 @@
 		SELECT
 		id,
 		name,
+		time,
 		startTime,
 		endTime
 		FROM
@@ -25,6 +27,7 @@
 SELECT
 	id,
 	name,
+	time,
 	startTime,
 	endTime
 FROM
@@ -52,10 +55,12 @@ INSTR(name,#name#)>0
 	INSERT INTO
 		eeh_Time(
 		name,
+		time,
 		startTime,
 		endTime
 	)VALUES(
 		#name#,
+		#time#,
 		#startTime#,
 		#endTime#
 	)
@@ -66,6 +71,7 @@ INSTR(name,#name#)>0
 		eeh_Time
 	SET
 	name=#name#,
+	time=#time#,
 	startTime=#startTime#,
 	endTime=#endTime#
  	WHERE

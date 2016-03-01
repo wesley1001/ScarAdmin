@@ -11,15 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- 引用本页面JS、CSS样式静态资源 -->
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
-			<link rel="stylesheet" type="text/css" href="<%=basePath%>/s9/res/js/ligerUI/skins/Aqua/css/ligerui-all.css"	/>
-		    <link href="<%=basePath%>/s9/res/js/ligerUI/skins/ligerui-icons.css" rel="stylesheet" type="text/css" />
-		    <link href="<%=basePath%>/s9/res/js/ligerUI/skins/Gray/css/grid.css" rel="stylesheet" type="text/css" />
-		    <link  rel="stylesheet" type="text/css" href="<%=basePath%>/s9/res/js/calendar/skin/WdatePicker.css">
 		    <!-- JS静态资源的引用 -->
-			<script type="text/javascript" src="<%=basePath%>/s9/res/js/jquery.min.js"></script>
-			<script type="text/javascript" src="<%=basePath%>/s9/res/js/ligerUI/js/ligerui.all.js"></script>
-			<script type="text/javascript"  src="<%=basePath%>/s9/res/js/calendar/WdatePicker.js"></script>    
-			<script type="text/javascript" src="<%=basePath%>/eeh/Subject/js/list.js?v=4"></script>
+			<script type="text/javascript" src="<%=basePath%>/eeh/Subject/js/list.js?v=5"></script>
 			
 	</head>
 	<body class="z-body-detail" style="overflow: hidden">
@@ -32,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="z-toolbar-overflow"> 
 									<div class="z-toolbar-nowrap">
 										<a href="javascript:void(0);" class="z-btn z-btn-flat" onclick="add();">
-											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>添加教学楼<i></i></b>
+											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>添加科目<i></i></b>
 										</a>
 
 										<a href="javascript:void(0);"  class="z-btn z-btn-flat" onclick="delObj();">
