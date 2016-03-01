@@ -1,7 +1,7 @@
-package com.zero2ipo.eeh.grade.bizc.impl;
+package com.zero2ipo.cfj.article.bizc.impl;
 
-import com.zero2ipo.eeh.grade.bizc.IGradeService;
-import com.zero2ipo.eeh.grade.bo.GradeBo;
+import com.zero2ipo.cfj.article.bizc.IArticleService;
+import com.zero2ipo.cfj.article.bo.ArticleBo;
 import com.zero2ipo.framework.FwConstant;
 import com.zero2ipo.framework.db.bizc.IBaseDao;
 import com.zero2ipo.framework.exception.BaseException;
@@ -17,20 +17,20 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/2/24.
  */
-@Service("gradeService")
-public class GradeServiceImpl implements IGradeService {
-
+@Service("ArticleService")
+public class ArticleServiceImpl implements IArticleService {
     @Autowired
     @Qualifier("baseDao")
     private IBaseDao baseDao;
-    public final  static String ADD="add_Grade";
-    public final static String  UPDATE="upd_Grade";
-    public final static String DELETE="del_Grade";
-    public final static String FINDBYID="findGradeById";
-    public final static String FINDALLLIST="findGradeList";
-    public final static String FINDALLLISTCOUNT="findGradeListCount";
+    public final static String common="Article";
+    public final  static String ADD="add_"+common;
+    public final static String  UPDATE="upd_"+common;
+    public final static String DELETE="del_"+common;
+    public final static String FINDBYID="find"+common+"ById";
+    public final static String FINDALLLIST="find"+common+"List";
+    public final static String FINDALLLISTCOUNT="find"+common+"ListCount";
     @Override
-    public boolean add(GradeBo bo) {
+    public boolean add(ArticleBo bo) {
         boolean flag=false;
         try{
             baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
@@ -43,7 +43,7 @@ public class GradeServiceImpl implements IGradeService {
     }
 
     @Override
-    public boolean update(GradeBo bo) {
+    public boolean update(ArticleBo bo) {
         boolean flag=false;
         try{
             baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
@@ -67,15 +67,15 @@ public class GradeServiceImpl implements IGradeService {
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
-            BaseLog.e(this.getClass(), "del_teaching_building 删除出错", e);
+            BaseLog.e(this.getClass(), "del_ClassRoom 删除出错", e);
             throw new BaseException("删除出错！", e);
         }
         return flag;
     }
 
     @Override
-    public List<GradeBo> findAllList(Map<String, Object> queryMap) {
-        List<GradeBo> list = null;
+    public List<ArticleBo> findAllList(Map<String, Object> queryMap) {
+        List<ArticleBo> list = null;
         try {
             baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
             list = baseDao.findForList(FINDALLLIST, queryMap);
@@ -88,8 +88,8 @@ public class GradeServiceImpl implements IGradeService {
     }
 
     @Override
-    public List<GradeBo> findAllList(Map<String, Object> queryMap, int skip, int max) {
-        List<GradeBo> list = null;
+    public List<ArticleBo> findAllList(Map<String, Object> queryMap, int skip, int max) {
+        List<ArticleBo> list = null;
         try {
             baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
             list = baseDao.findForList(FINDALLLIST, queryMap,skip,max);
@@ -108,18 +108,17 @@ public class GradeServiceImpl implements IGradeService {
             count = (Integer) baseDao
                     .findForObject(FINDALLLISTCOUNT, queryMap);
         } catch (Exception e) {
-            e.printStackTrace();
-            BaseLog.e(this.getClass(), "findGradeListCount查询优惠券支付个数", e);
+            BaseLog.e(this.getClass(), "findUserCouponListCount查询优惠券支付个数", e);
         }
         return count;
     }
-    public GradeBo findById(String id){
-        GradeBo bo=null;
+    public ArticleBo findById(String id){
+        ArticleBo bo=null;
         try {
             baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ;
             Map<String,Object> queryMap=new HashMap<String,Object>();
             queryMap.put("id", id);
-            bo = (GradeBo) baseDao.findForObject(FINDBYID, queryMap);
+            bo = (ArticleBo) baseDao.findForObject(FINDBYID, queryMap);
         } catch (Exception e) {
             e.printStackTrace();
         }

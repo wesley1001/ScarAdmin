@@ -1,21 +1,20 @@
 package com.zero2ipo.cfj.upload.webc;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 /**
  * 文件上传-文章附件的上传
  * @title 
@@ -96,6 +95,7 @@ public class UpLoadify extends HttpServlet {
 				}
 			}
 			response.getWriter().println("/upload/source/" + fileName);
+			System.out.println("上传成功=======================================");
 		} catch (FileUploadException e) {
 			response.getWriter().println("0");
 			e.printStackTrace();

@@ -1,10 +1,10 @@
 $(function() {
-    $("#file_upload").uploadify({
+    $("#importExcel").uploadify({
        'auto' : true,
        'method' : "post",
        'formData' : {'folder' : 'file'},
           'height' : 25,
-          'swf' : '../web/upload/uploadify.swf', 
+          'swf' : '../web/upload/uploadify.swf',
           'uploader' : '../c/uploadify',
           'width' : 105,
           'buttonText' : '上传',
@@ -25,6 +25,15 @@ $(function() {
           },
        // 单个文件上传成功时的处理函数
        'onUploadSuccess' : function(file, data, response){
+           alert("上传成功");
+           console.log(data);
+           //获取上传路径
+           var filepath=data;
+           //读取excel文件到表格中
+           var url="../excelOperate/readexcel.shtml";
+           var classId=$("#classId").val();
+           var data={"path":filepath,"classId":classId};
+           ajax(url,data);
     		$("#"+file.id).attr("filePath",data);
     		$("#"+file.id).attr("fileName",file.name);
     		var uploadAuthor=$('#uploadAuthor').val();
@@ -32,10 +41,11 @@ $(function() {
     		$("#"+file.id).attr("uploadTime",format(file.creationdate,'yyyy-MM-dd HH:mm:ss'));
     },
           'onQueueComplete' : function(queueData) {
+              alert("上传完成");
     		// $('#uploader_msg').html(queueData.uploadsSuccessful + ' files were successfully uploaded.');
     }
       });
-	 
+
 	var format = function(time, format){
     var t = new Date(time);
     var tf = function(i){return (i < 10 ? '0' : '') + i};
@@ -63,3 +73,22 @@ $(function() {
     })
 }
 })
+function ajax(url,data){
+    $.ajax({
+        url:url,
+        type:"post",
+        dataType:"json",
+        data:data,
+        async:false,
+        beforeSend:function(XMLHttpRequest){
+        },
+        success:function(msg){
+            $.ligerDialog.success("保存成功");
+            var classId=$("#classId").val();
+            var url='../student/findAllList.shtml?classId='+classId;
+            findAllList(url);
+        },error:function(){
+            $.ligerDialog.error("服务器异常");
+            return;
+        }});
+}

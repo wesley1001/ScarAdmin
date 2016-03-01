@@ -19,6 +19,12 @@ function validData() {
 		$.ligerDialog.warn("班级名称不能为空！");
 		return false;
 	}
+	var gradeName=$("#gradeName").val();
+	if(""==gradeName||null==gradeName){
+		$.ligerDialog.warn("请先选择年级！");
+		return;
+	}
+
 	var teacherName=$("#teacherName").val();
 	if(""==teacherName||null==teacherName){
 		$.ligerDialog.warn("班主任不能为空！");
@@ -29,11 +35,12 @@ function validData() {
 		$.ligerDialog.warn("班级人数不能为空！");
 		return;
 	}
-    var studentGridData=grid.rows;
+   /* var studentGridData=grid.rows;
 	if(""==studentGridData||null==studentGridData){
 		$.ligerDialog.warn("请先导入学生数据！");
 		return;
-	}
+	}*/
+
 	return true;
 }
 function ajax(url,data){
@@ -59,3 +66,4 @@ function ajax(url,data){
 		}
 	});
 }
+

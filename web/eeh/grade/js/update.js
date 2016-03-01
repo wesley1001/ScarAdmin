@@ -13,14 +13,25 @@ function forUpdate() {
  * 验证表单数据
  */
 function validData() {
+
 	var name = $("#name").val();
 	if (name.replace(/(^\s*)|(\s*$)/, "").length == 0) {
-		$.ligerDialog.warn("教学楼名称不能为空！");
+		$.ligerDialog.warn("班级名称不能为空！");
 		return false;
 	}
-	var floors=$("#floors").val();
-	if(""==floors||null==floors){
-		$.ligerDialog.warn("楼层数不能为空！");
+	var gradeName=$("#gradeName").val();
+	if(""==gradeName||null==gradeName){
+		$.ligerDialog.warn("请先选择年级！");
+		return;
+	}
+	var teacherName=$("#teacherName").val();
+	if(""==teacherName||null==teacherName){
+		$.ligerDialog.warn("班主任不能为空！");
+		return;
+	}
+	var gradenum=$("#gradenum").val();
+	if(""==gradenum||null==gradenum){
+		$.ligerDialog.warn("班级人数不能为空！");
 		return;
 	}
 	return true;

@@ -38,6 +38,17 @@ INSTR(name,#name#)>0
 </isNotEmpty>
 </dynamic>
 </select>
+	<select id='findGradeById' resultMap='gradeMap'>
+	SELECT
+	id,
+	name,
+	gradeName,
+	teacherName,
+	gradenum
+	FROM
+	eeh_grade
+	where id=#id#
+</select>
 <!--查询个数-->
 	<select id='findGradeListCount' resultClass='java.lang.Integer'>
 		SELECT

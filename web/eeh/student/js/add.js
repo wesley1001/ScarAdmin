@@ -13,14 +13,19 @@ function forAdd() {
  * 验证表单数据
  */
 function validData() {
-	var name = $("#name").val();
-	if (name.replace(/(^\s*)|(\s*$)/, "").length == 0) {
-		$.ligerDialog.warn("教学楼名称不能为空！");
+	var classId = $("#classId").val();
+	if (classId.replace(/(^\s*)|(\s*$)/, "").length == 0) {
+		$.ligerDialog.warn("班级名称不能为空！");
 		return false;
 	}
-	var floors=$("#floors").val();
-	if(""==floors||null==floors){
-		$.ligerDialog.warn("楼层数不能为空！");
+	var xhnum=$("#xhnum").val();
+	if(""==xhnum||null==xhnum){
+		$.ligerDialog.warn("学号不能为空！");
+		return;
+	}
+	var name=$("#name").val();
+	if(""==name||null==name){
+		$.ligerDialog.warn("姓名不能为空！");
 		return;
 	}
 	return true;

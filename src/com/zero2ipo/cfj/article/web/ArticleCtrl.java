@@ -1,8 +1,8 @@
-package com.zero2ipo.eeh.student.web;
+package com.zero2ipo.cfj.article.web;
 
+import com.zero2ipo.cfj.article.bizc.IArticleService;
+import com.zero2ipo.cfj.article.bo.ArticleBo;
 import com.zero2ipo.common.web.BaseCtrl;
-import com.zero2ipo.eeh.student.bizc.IStudentService;
-import com.zero2ipo.eeh.student.bo.StudentBo;
 import com.zero2ipo.framework.exception.BaseException;
 import com.zero2ipo.framework.log.BaseLog;
 import com.zero2ipo.framework.util.StringUtil;
@@ -22,21 +22,18 @@ import java.util.Map;
  * Created by Administrator on 2016/2/24.
  */
 @Controller
-@RequestMapping("/student")
-public class StudentCtrl extends BaseCtrl {
+@RequestMapping("/Article")
+public class ArticleCtrl extends BaseCtrl {
     @Autowired
-    @Qualifier("studentService")
-    private IStudentService studentService ;
+    @Qualifier("ArticleService")
+    private IArticleService ArticleService ;
     /**
      * 初始化页面
      * @return
      */
     @RequestMapping("forInit.shtml")
-    public ModelAndView forInitPage(String id) {
-        ModelAndView mv = new ModelAndView("/eeh/student/list.jsp");
-        if(!StringUtil.isNullOrEmpty(id)){
-            mv.addObject("classId",id);//班级id
-        }
+    public ModelAndView forInitPage() {
+        ModelAndView mv = new ModelAndView("/eeh/article/list.jsp");
         return mv;
     }
     /**
@@ -47,7 +44,7 @@ public class StudentCtrl extends BaseCtrl {
      */
     @RequestMapping("findAllList.shtml")
     @ResponseBody
-    public Map<String,Object> findAllList(String curNo, String curSize,String classId){
+    public Map<String,Object> findAllList(String curNo, String curSize){
         Map<String,Object> jsonMap = new HashMap<String, Object>();
         try {
             /************* 分页处理 ************/
@@ -61,14 +58,12 @@ public class StudentCtrl extends BaseCtrl {
             max = Integer.parseInt(curSize);
             /************  分页处理结束 ***********/
             Map<String, Object> map = new HashMap<String, Object>();
-            if(!StringUtil.isNullOrEmpty(classId)){
-                map.put("classId",classId);//所在班级
-            }
+
             int total=0;
-            total=studentService.getTotal(map);
-            List<StudentBo> list= null;
+            total=ArticleService.getTotal(map);
+            List<ArticleBo> list= null;
             if(total>0){
-                list = studentService.findAllList(map, (skip-1)*max, max);
+                list = ArticleService.findAllList(map, (skip-1)*max, max);
             }
             jsonMap.put("Rows", list);
             jsonMap.put("Total", total);
@@ -84,7 +79,7 @@ public class StudentCtrl extends BaseCtrl {
      */
     @RequestMapping("forAddInitPage.shtml")
     public ModelAndView forAddInitPage() {
-        ModelAndView mv = new ModelAndView("/eeh/student/add.jsp");
+        ModelAndView mv = new ModelAndView("/eeh/article/add.jsp");
         return mv;
     }
     /**
@@ -94,11 +89,11 @@ public class StudentCtrl extends BaseCtrl {
      */
     @RequestMapping("forAddAjax.shtml")
     @ResponseBody
-    public Map<String,Object> addSave(StudentBo bo) {
+    public Map<String,Object> addSave(ArticleBo bo) {
         Map<String,Object> result=new HashMap<String,Object>();
         boolean flg=false;
         try {
-            flg=studentService.add(bo);
+            flg=ArticleService.add(bo);
         } catch (Exception e) {
             flg=false;
             e.printStackTrace();
@@ -115,8 +110,8 @@ public class StudentCtrl extends BaseCtrl {
      */
     @RequestMapping("forUpdateInitPage.shtml")
     public ModelAndView forUpdateInitPage(String id) {
-        ModelAndView mv = new ModelAndView("/eeh/student/update.jsp");
-        StudentBo bo=studentService.findById(id);
+        ModelAndView mv = new ModelAndView("/eeh/article/update.jsp");
+        ArticleBo bo=ArticleService.findById(id);
         mv.addObject("bo",bo);
         return mv;
     }
@@ -127,11 +122,11 @@ public class StudentCtrl extends BaseCtrl {
      */
     @RequestMapping("forUpdateAjax.shtml")
     @ResponseBody
-    public Map<String,Object> updateSave(StudentBo bo) {
+    public Map<String,Object> updateSave(ArticleBo bo) {
         Map<String,Object> result=new HashMap<String,Object>();
         boolean flg=false;
         try {
-            flg=studentService.update(bo);
+            flg=ArticleService.update(bo);
         } catch (Exception e) {
             flg=false;
             e.printStackTrace();
@@ -149,7 +144,7 @@ public class StudentCtrl extends BaseCtrl {
         Map<String,Object> result=new HashMap<String,Object>();
         boolean flg=false;
         try {
-            flg=studentService.delete(ids);
+            flg=ArticleService.delete(ids);
         } catch (Exception e) {
             flg=false;
             e.printStackTrace();

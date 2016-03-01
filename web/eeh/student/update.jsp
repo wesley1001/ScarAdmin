@@ -8,17 +8,17 @@
 %>
 <html>
 <head>
-	<title>修改教学楼</title>
+	<title>修改学生</title>
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
-	<script type="text/javascript" src="<%=basePath %>/eeh/teachingbuilding/js/update.js"></script>
-	<script type="text/javascript" src="<%=basePath %>/eeh/teachingbuilding/js/number.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/student/js/update.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/student/js/number.js"></script>
 </head>
 
 <body class="dialogBody">
 <form id="form1" onsubmit="return false;"
-	  action="../teachingbuilding/forUpdateAjax.shtml" name="form1" method="post">
+	  action="../student/forUpdateAjax.shtml" name="form1" method="post">
 	<input type="hidden" id="id" name="id" value="${bo.id}"/>
 	<table width="100%"  align="center" cellpadding="2"
 		   cellspacing="0">
@@ -31,22 +31,33 @@
 					<tbody>
 					<tr>
 						<td width="20%" height="30" align="right">
-							教学楼名称：
+							班级：
 						</td>
 						<td width="80%" >
-							<input type="text" id="name" name="name"
-								   style="width: 300px"  value="${bo.name}"/>
+							<input type="text" id="classId" name="classId"
+								   style="width: 300px"  value="${bo.classId}"/>
 										<span
 												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
 						<td width="20%" height="30" align="right">
-							楼层数：
+							学号：
 						</td>
 						<td width="80%" >
-							<input type="text" id="floors" name="floors"
-								   style="width: 300px"  onkeyup="clearNoNum(this)" value="${bo.floors}"/>
+							<input type="text" id="xhnum" name="xhnum"
+								   style="width: 300px"   value="${bo.xhnum}"/>
+										<span
+												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" height="30" align="right">
+							姓名：
+						</td>
+						<td width="80%" >
+							<input type="text" id="name" name="name"
+								   style="width: 300px"   value="${bo.name}"/>
 										<span
 												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>

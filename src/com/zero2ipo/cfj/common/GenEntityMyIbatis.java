@@ -14,9 +14,9 @@ import java.util.Date;
 
 public class GenEntityMyIbatis {
 
-	private String packageOutPath = "com.zero2ipo.eeh.teachbuild.bo";//指定实体生成所在包的路径
+	private String packageOutPath = "com.zero2ipo.cfj.article.bo";//指定实体生成所在包的路径
 	private String authorName = "wangli";//作者名字
-	private String tablename = "eeh_teachingbuilding";//表名
+	private String tablename = "eeh_attach";//表名
 	private String[] colnames; // 列名数组
 	private String[] colTypes; //列名类型数组
 	private int[] colSizes; //列名大小数组

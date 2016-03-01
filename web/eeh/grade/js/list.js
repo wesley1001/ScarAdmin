@@ -1,7 +1,21 @@
 var grid = null;//表格对象
 var m; 	//弹出窗口对象
+var gradeArray=new Array();
+gradeArray[0]="请选择";
+gradeArray[1]="一年级";
+gradeArray[2]="二年级";
+gradeArray[3]="三年级";
+gradeArray[4]="四年级";
+gradeArray[5]="五年级";
+gradeArray[6]="六年级";
+gradeArray[7]="七年级";
+gradeArray[8]="八年级";
+gradeArray[9]="几年级";
+gradeArray[10]="十年级";
+gradeArray[11]="十一年级";
+gradeArray[12]="十二年级";
 // 查询用户信息列表数据
-function findAllList(){
+function findAllList(url){
 	   var pageSize=20;
        grid = $("#maingrid").ligerGrid({
     	    width:'99.6%',
@@ -13,15 +27,18 @@ function findAllList(){
     		columns: [
 				{ display: 'ID', name: 'id',hide:true},
 				{ display: '班级名称', name: 'name' },
-				{ display: '年级', name: 'gradeName'},
+				{ display: '年级', name: 'gradeName',render:function(r){
+					return gradeArray[r.gradeName];
+				}},
 				{ display: '班主任', name: 'teacherName'},
 				{ display: '班级人数', name: 'gradenum'},
 				{ display: '操作', name: '',render:function(r){
-					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
+					return "<a href='javascript:upd("+r.id+")'>编辑</a>"
+						+"&nbsp;&nbsp;<a href='javascript:studentManage("+r.name+")'>学生管理</a>";
 				}
 				}
 			
-          ],  pageSize:20,rownumbers:false,pageParmName:"curNo",enabledEdit: false,pagesizeParmName:"curSize"
+          ],  pageSize:20,url:url,rownumbers:false,pageParmName:"curNo",enabledEdit: false,pagesizeParmName:"curSize"
     
 		 });
       $("#pageloading").hide();
@@ -38,13 +55,16 @@ function onClickRow(rowdata, rowindex, rowDomElement) {
 //新增
 function add(){
 	var url="../grade/forAddInitPage.shtml";
-	m = $.ligerDialog.open({ url: url, height: 650,width:800, title:'新增班级',showMax:true,showToggle:true,showMin:true});
+	m = $.ligerDialog.open({ url: url, height: 450,width:600, title:'新增班级',showMax:true,showToggle:true,showMin:true});
 }
 function upd(id){
 	var url="../grade/forUpdateInitPage.shtml?id="+id;
-	m = $.ligerDialog.open({ url: url, height: 600,width:800, title:'修改班级',isResize: true ,top:50});
+	m = $.ligerDialog.open({ url: url, height: 450,width:600, title:'修改班级',isResize: true ,top:50});
 }
-
+function studentManage(id){
+	var url="../student/forInit.shtml?id="+id;
+	m = $.ligerDialog.open({ url: url, height: 650,width:800, title:'学生管理',showMax:true,showToggle:true,showMin:true});
+}
 //删除
 function delObj(){
 	//获取选中记录行

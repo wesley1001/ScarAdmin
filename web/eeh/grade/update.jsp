@@ -31,24 +31,53 @@
 					<tbody>
 					<tr>
 						<td width="20%" height="30" align="right">
-							教学楼名称：
+							班级名称：
 						</td>
 						<td width="80%" >
-							<input type="text" id="name" name="name"
-								   style="width: 300px"  value="${bo.name}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<input type="text" id="name" name="name" style="width: 300px" value="${bo.name}" />班
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
 						<td width="20%" height="30" align="right">
-							楼层数：
+							选择年级：
 						</td>
 						<td width="80%" >
-							<input type="text" id="floors" name="floors"
-								   style="width: 300px"  onkeyup="clearNoNum(this)" value="${bo.floors}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select id="gradeName" name="gradeName" style="width:300px">
+								<option value="">选择年级</option>
+								<option value="1">一年级</option>
+								<option value="2">二年级</option>
+								<option value="3">三年级</option>
+								<option value="4">四年级</option>
+								<option value="5">五年级</option>
+								<option value="6">六年级</option>
+								<option value="7">七年级</option>
+								<option value="8">八年级</option>
+								<option value="9">九年级</option>
+								<option value="10">十年级</option>
+								<option value="11">十一年级</option>
+								<option value="12">十二年级</option>
+							</select>
+							<input type="hidden" id="gradeId" name="gradeId"/>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" height="30" align="right">
+							班主任：
+						</td>
+						<td width="80%" >
+							<input type="text" id="teacherName" name="teacherName" value="${bo.teacherName}" style="width: 300px"  />
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" height="30" align="right">
+							班级人数：
+						</td>
+						<td width="80%" >
+							<input type="text" id="gradenum" name="gradenum" value="${bo.gradenum}" style="width: 300px"  onkeyup="clearNoNum(this)" value="${bo.gradenum}"/>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					</tbody>
@@ -66,3 +95,9 @@
 </form>
 </body>
 </html>
+<script>
+
+	$(function() {
+		$("#gradeName").val("${bo.gradeName}");
+	});
+</script>

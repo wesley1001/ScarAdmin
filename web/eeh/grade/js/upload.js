@@ -1,5 +1,5 @@
 $(function() {
-    $("#file_upload").uploadify({
+    $("#importExcel").uploadify({
        'auto' : true,
        'method' : "post",
        'formData' : {'folder' : 'file'},
@@ -25,6 +25,16 @@ $(function() {
           },
        // 单个文件上传成功时的处理函数
        'onUploadSuccess' : function(file, data, response){
+           alert("上传成功");
+           console.log(data);
+           //获取上传路径
+           var filepath=data;
+           //读取excel文件到表格中
+           var url="../excelOperate/readexcel.shtml";
+           var gradeId=$("#gradeId").val();
+           var data={"path":filepath,"gardeId":gradeId};
+           ajax(url,data);
+           console.log(file.name)
     		$("#"+file.id).attr("filePath",data);
     		$("#"+file.id).attr("fileName",file.name);
     		var uploadAuthor=$('#uploadAuthor').val();
@@ -32,6 +42,7 @@ $(function() {
     		$("#"+file.id).attr("uploadTime",format(file.creationdate,'yyyy-MM-dd HH:mm:ss'));
     },
           'onQueueComplete' : function(queueData) {
+              alert("上传完成");
     		// $('#uploader_msg').html(queueData.uploadsSuccessful + ' files were successfully uploaded.');
     }
       });
@@ -63,3 +74,19 @@ $(function() {
     })
 }
 })
+function ajax(url,data){
+    $.ajax({
+        url:url,
+        type:"post",
+        dataType:"json",
+        data:data,
+        async:false,
+        beforeSend:function(XMLHttpRequest){
+        },
+        success:function(msg){
+            $.ligerDialog.success("保存成功");
+        },error:function(){
+            $.ligerDialog.error("服务器异常");
+            return;
+        }});
+}

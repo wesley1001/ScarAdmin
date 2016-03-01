@@ -12,9 +12,12 @@
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
-	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/studentGrid.js?v=12"></script>
+	<%--<link rel="stylesheet" type="text/css" href="<%=basePath%>/web/upload/uploadify.css">--%>
+	<%--<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/studentGrid.js?v=12"></script>--%>
 	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/add.js"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/number.js"></script>
+	<%--<script type="text/javascript" src="<%=basePath%>/web/upload/jquery.uploadify.min.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/upload.js"></script>--%>
 
 </head>
 
@@ -35,7 +38,7 @@
 							班级名称：
 						</td>
 						<td width="80%" >
-							<input type="text" id="name" name="name" style="width: 300px"  />
+							<input type="text" id="name" name="name" style="width: 300px"  />班
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
@@ -45,6 +48,7 @@
 						</td>
 						<td width="80%" >
 						<select id="gradeName" name="gradeName" style="width:300px">
+							<option value="">选择年级</option>
 							<option value="1">一年级</option>
 							<option value="2">二年级</option>
 							<option value="3">三年级</option>
@@ -58,6 +62,7 @@
 							<option value="11">十一年级</option>
 							<option value="12">十二年级</option>
 						</select>
+						<input type="hidden" id="gradeId" name="gradeId"/>
 						<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
@@ -81,18 +86,18 @@
 					</tr>
 					</tbody>
 				</table>
-				<div class="z-legend" style="width:100%">
+				<%--<div class="z-legend" style="width:100%">
 					<b>学生管理</b>
 				</div>
 				<div class="aui_buttons">
-					<button value="下载标准表格" onclick="javascript:forAdd();" class="z-dlg-button z-dialog-okbutton aui_state_highlight">
+					<button value="下载标准表格" onclick="javascript:download();" class="z-dlg-button z-dialog-okbutton aui_state_highlight">
 						下载标准表格
 					</button>
-					<button value="导入" onclick="javascript:forAdd();" class="z-dlg-button z-dialog-okbutton aui_state_highlight">
+					<button value="导入" id="importExcel" class="z-dlg-button z-dialog-okbutton aui_state_highlight">
 						导入
 					</button>
 				</div>
-				<div id="studentGrid" style="padding-left: 25px;"></div>
+				<div id="studentGrid" style="padding-left: 25px;"></div>--%>
 				<div class="aui_buttons">
 					<button value="保存"  onclick="javascript:forAdd();" class="z-dlg-button z-dialog-okbutton aui_state_highlight">
 						保存
@@ -110,5 +115,10 @@
 	$(function(){
 		findAllList();
 	})
-
+	/**
+	 * 下载标准表格
+	 * **/
+	function download(){
+		window.location.href="<%=basePath %>/eeh/excel/学生信息标准表.xlsx";
+	}
 </script>

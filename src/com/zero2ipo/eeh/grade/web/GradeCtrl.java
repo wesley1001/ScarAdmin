@@ -1,6 +1,7 @@
 package com.zero2ipo.eeh.grade.web;
 
 import com.zero2ipo.common.web.BaseCtrl;
+import com.zero2ipo.eeh.common.CommonConstant;
 import com.zero2ipo.eeh.grade.bizc.IGradeService;
 import com.zero2ipo.eeh.grade.bo.GradeBo;
 import com.zero2ipo.framework.exception.BaseException;
@@ -58,7 +59,6 @@ public class GradeCtrl extends BaseCtrl {
             max = Integer.parseInt(curSize);
             /************  分页处理结束 ***********/
             Map<String, Object> map = new HashMap<String, Object>();
-
             int total=0;
             total=gradeService.getTotal(map);
             List<GradeBo> list= null;
@@ -68,11 +68,12 @@ public class GradeCtrl extends BaseCtrl {
             jsonMap.put("Rows", list);
             jsonMap.put("Total", total);
         } catch (Exception e) {
+            e.printStackTrace();
             BaseLog.e(this.getClass(), "forLinkTypeinitAjax.shtml:管理人分类信息初始化有误", e);
         }
         return jsonMap;
     }
- /******************************************新增*********************************************************/
+    /******************************************新增*********************************************************/
     /**
      * 新增页面初始化
      * @return
@@ -80,6 +81,8 @@ public class GradeCtrl extends BaseCtrl {
     @RequestMapping("forAddInitPage.shtml")
     public ModelAndView forAddInitPage() {
         ModelAndView mv = new ModelAndView("/eeh/grade/add.jsp");
+        int classRoomSize= CommonConstant.ClASS_ROOM_SIZE;
+
         return mv;
     }
     /**
@@ -112,7 +115,13 @@ public class GradeCtrl extends BaseCtrl {
     public ModelAndView forUpdateInitPage(String id) {
         ModelAndView mv = new ModelAndView("/eeh/grade/update.jsp");
         GradeBo bo=gradeService.findById(id);
+      /*  int gradeSize=CommonConstant.ClASS_ROOM_SIZE;
+        List<Integer> gradeRoomList=new ArrayList<Integer>();
+        for(int i=1;i<=gradeSize;i++){
+            gradeRoomList.add(i);
+        }*/
         mv.addObject("bo",bo);
+       // mv.addObject("gradeRoomList",gradeRoomList);
         return mv;
     }
     /**
