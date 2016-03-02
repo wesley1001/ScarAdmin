@@ -5,12 +5,6 @@
  * 验证表单数据
  */
 function validData() {
- /*   var name = $("#name").val();
-    if (name.replace(/(^\s*)|(\s*$)/, "").length == 0) {
-        $.ligerDialog.warn("教师名称不能为空！");
-        return false;
-    }
- */
     return true;
 }
 function ajax(url,data){

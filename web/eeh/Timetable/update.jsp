@@ -12,14 +12,14 @@
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
-	<script type="text/javascript" src="<%=basePath %>/eeh/teacher/js/common.js"></script>
-	<script type="text/javascript" src="<%=basePath %>/eeh/teacher/js/update.js"></script>
-	<script type="text/javascript" src="<%=basePath %>/eeh/teacher/js/number.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/Timetable/js/common.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/Timetable/js/update.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/Timetable/js/number.js"></script>
 </head>
 
 <body class="dialogBody">
 <form id="form1" onsubmit="return false;"
-	  action="../teacher/forUpdateAjax.shtml" name="form1" method="post">
+	  action="../Timetable/forUpdateAjax.shtml" name="form1" method="post">
 	<input type="hidden" id="id" name="id" value="${bo.id}"/>
 	<table width="100%"  align="center" cellpadding="2"
 		   cellspacing="0">
@@ -154,12 +154,5 @@
 </body>
 </html>
 <script>
-	init();
-	function init(){
-		$("#subjectId").append("<option value='${bo.subjectId}'>${bo.subjectId}</option>");
-		$("#classId").append("<option value='${bo.classId}'>${bo.classId}</option>");
-		var gradeId="${bo.classId}";
-		$("#gradeId").val(gradeId.substr(0,1));
 
-	}
 </script>
