@@ -1,8 +1,16 @@
 package com.zero2ipo.eeh.course.web;
 
 import com.zero2ipo.common.web.BaseCtrl;
+import com.zero2ipo.eeh.classroom.bizc.IClassRoomService;
+import com.zero2ipo.eeh.classroom.bo.ClassRoomBo;
 import com.zero2ipo.eeh.course.bizc.ICourseService;
 import com.zero2ipo.eeh.course.bo.CourseBo;
+import com.zero2ipo.eeh.subject.bizc.ISubjectService;
+import com.zero2ipo.eeh.subject.bo.SubjectBo;
+import com.zero2ipo.eeh.teacher.bizc.ITeacherService;
+import com.zero2ipo.eeh.teacher.bo.TeacherBo;
+import com.zero2ipo.eeh.time.bizc.ITimeService;
+import com.zero2ipo.eeh.time.bo.TimeBo;
 import com.zero2ipo.framework.exception.BaseException;
 import com.zero2ipo.framework.log.BaseLog;
 import com.zero2ipo.framework.util.StringUtil;
@@ -27,6 +35,18 @@ public class CourseCtrl extends BaseCtrl {
     @Autowired
     @Qualifier("CourseService")
     private ICourseService CourseService ;
+    @Autowired
+    @Qualifier("SubjectService")
+    private ISubjectService SubjectService;
+    @Autowired
+    @Qualifier("teacherService")
+    private ITeacherService teacherService;
+    @Autowired
+    @Qualifier("TimeService")
+    private ITimeService TimeService;
+    @Autowired
+    @Qualifier("classRoomService")
+    private IClassRoomService classRoomService;
     /**
      * 初始化页面
      * @return
@@ -80,6 +100,27 @@ public class CourseCtrl extends BaseCtrl {
     @RequestMapping("forAddInitPage.shtml")
     public ModelAndView forAddInitPage() {
         ModelAndView mv = new ModelAndView("/eeh/Course/add.jsp");
+        //查询所有科目
+        Map<String,Object> queryMap=new HashMap<String, Object>();
+        List<SubjectBo> subjectList=SubjectService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(subjectList)&&subjectList.size()>0){
+            mv.addObject("subjectList",subjectList);
+        }
+        //查询所有授课老师
+        List<TeacherBo> teacherList=teacherService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(teacherList)&&teacherList.size()>0){
+            mv.addObject("teacherList",teacherList);
+        }
+        //查询所有时段
+        List<TimeBo> timeList=TimeService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(timeList)&&timeList.size()>0){
+            mv.addObject("timeList",timeList);
+        }
+        //查询所有教室
+        List<ClassRoomBo> classRoomList=classRoomService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(classRoomList)&&classRoomList.size()>0){
+            mv.addObject("classRoomList",classRoomList);
+        }
         return mv;
     }
     /**

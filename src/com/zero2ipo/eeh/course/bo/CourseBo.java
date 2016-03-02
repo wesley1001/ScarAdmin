@@ -6,15 +6,11 @@ package com.zero2ipo.eeh.course.bo;
 public class CourseBo implements  java.io.Serializable {
     public int id;//主键
     public String kemu;//科目名称
-    public String cengci;//层次
     public String peopleMax;//上线人数
-    public String grade;//年级
-    public String banji;//班级
     public String teacher;//授课老师
-    public String startTime;//开始时间
-    public String endTime;//结束时间
-    public String schoolTime;//上课时间
     public String classRoom;//授课教室
+    public String schoolTime;//上课时间 从时段里面过来
+    public String week;//星期 从时段里面获取
 
     public int getId() {
         return id;
@@ -32,36 +28,12 @@ public class CourseBo implements  java.io.Serializable {
         this.kemu = kemu;
     }
 
-    public String getCengci() {
-        return cengci;
-    }
-
-    public void setCengci(String cengci) {
-        this.cengci = cengci;
-    }
-
     public String getPeopleMax() {
         return peopleMax;
     }
 
     public void setPeopleMax(String peopleMax) {
         this.peopleMax = peopleMax;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getBanji() {
-        return banji;
-    }
-
-    public void setBanji(String banji) {
-        this.banji = banji;
     }
 
     public String getTeacher() {
@@ -72,20 +44,12 @@ public class CourseBo implements  java.io.Serializable {
         this.teacher = teacher;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getClassRoom() {
+        return classRoom;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setClassRoom(String classRoom) {
+        this.classRoom = classRoom;
     }
 
     public String getSchoolTime() {
@@ -96,11 +60,11 @@ public class CourseBo implements  java.io.Serializable {
         this.schoolTime = schoolTime;
     }
 
-    public String getClassRoom() {
-        return classRoom;
+    public String getWeek() {
+        return week;
     }
 
-    public void setClassRoom(String classRoom) {
-        this.classRoom = classRoom;
+    public void setWeek(String week) {
+        this.week = week;
     }
 }

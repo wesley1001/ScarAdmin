@@ -39,11 +39,11 @@ function onClickRow(rowdata, rowindex, rowDomElement) {
 //新增
 function add(){
 	var url="../Course/forAddInitPage.shtml";
-	m = $.ligerDialog.open({ url: url, height: 300,width:450, title:'新增教学楼',showMax:true,showToggle:true,showMin:true});
+	m = $.ligerDialog.open({ url: url, height: 300,width:450, title:'新增培优课程',showMax:true,showToggle:true,showMin:true});
 }
 function upd(id){
 	var url="../Course/forUpdateInitPage.shtml?id="+id;
-	m = $.ligerDialog.open({ url: url, height: 250,width:500, title:'修改教学楼',isResize: true ,top:50});
+	m = $.ligerDialog.open({ url: url, height: 300,width:500, title:'修改培优课程',isResize: true ,top:50});
 }
 
 //删除

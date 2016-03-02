@@ -6,13 +6,10 @@
 	<result property="id" column="id"/>
 	<result property="kemu" column="kemu"/>
 	<result property="peopleMax" column="peopleMax"/>
-	<result property="grade" column="grade"/>
-	<result property="banji" column="banji"/>
-	<result property="startTime" column="startTime"/>
-	<result property="endTime" column="endTime"/>
 	<result property="schoolTime" column="schoolTime"/>
 	<result property="classRoom" column="classRoom"/>
 	<result property="teacher" column="teacher"/>
+	<result property="week" column="week"/>
 </resultMap>
 	<!--根据id查询查询-->
 	<select id='findCourseById' resultClass='CourseBo'>
@@ -20,12 +17,9 @@
 		id,
 		kemu,
 		peopleMax,
-		grade,
-		banji,
-		startTime,
-		endTime,
 		schoolTime,
 		classRoom,
+		week,
 		teacher
 		FROM
 			eeh_Course
@@ -38,12 +32,9 @@ SELECT
 	id,
 	kemu,
 	peopleMax,
-	grade,
-	banji,
-	startTime,
-	endTime,
 	schoolTime,
 	classRoom,
+	week,
 	teacher
 FROM
 	eeh_Course
@@ -71,22 +62,16 @@ INSTR(name,#name#)>0
 		eeh_Course(
 		kemu,
 		peopleMax,
-		grade,
-		banji,
-		startTime,
-		endTime,
 		schoolTime,
 		classRoom,
+		week,
 		teacher
 	)VALUES(
 		#kemu#,
 		#peopleMax#,
-		#grade#,
-		#banji#,
-		#startTime#,
-		#endTime#,
 		#schoolTime#,
 		#classRoom#,
+		#week#,
 		#teacher#
 	)
 </insert>
@@ -97,12 +82,9 @@ INSTR(name,#name#)>0
 	SET
 		kemu=#kemu#,
 		peopleMax=#peopleMax#,
-		grade=#grade#,
-		banji=#banji#,
-		startTime=#startTime#,
-		endTime=#endTime#,
 		schoolTime=#schoolTime#,
 		classRoom=#classRoom#,
+		week=#week#,
 		teacher=#teacher#
  	WHERE
 	ID=#id#

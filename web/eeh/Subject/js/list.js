@@ -11,8 +11,8 @@ function findAllList(url){
 			rownumbers:true,
 			checkbox: true,
     		columns: [
-				{ display: '科目类别', name: 'name' },
-				{ display: '科目名称', name: 'subjectClass'},
+				{ display: '科目类别', name: 'subjectClass' },
+				{ display: '科目名称', name: 'name'},
 				{ display: '操作', name: '',render:function(r){
 					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
 				}

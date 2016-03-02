@@ -48,7 +48,7 @@
 						</td>
 						<td width="80%" >
 							<input type="hidden" id="time" name="time">
-							<input type="text" id="startTime" name="startTime" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})" class="Wdate"
+							<input type="text" id="startTime" name="startTime" readonly="readonly" onfocus="WdatePicker({dateFmt:'HH:mm',alwaysUseStartDate:true})" class="Wdate"
 								   style="width: 300px"   value="${bo.startTime}"/>
 										<span
 												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
@@ -59,7 +59,7 @@
 							时段结束时间：
 						</td>
 						<td width="80%" >
-							<input type="text" id="endTime" name="endTime" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})" class="Wdate"
+							<input type="text" id="endTime" name="endTime" readonly="readonly" onfocus="WdatePicker({dateFmt:'HH:mm',alwaysUseStartDate:true})" class="Wdate"
 								   style="width: 300px"   value="${bo.endTime}"/>
 										<span
 												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
