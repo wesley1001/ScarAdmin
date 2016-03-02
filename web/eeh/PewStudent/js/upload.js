@@ -84,7 +84,7 @@ function ajaxImport(url,data){
         success:function(msg){
             $.ligerDialog.success("保存成功");
             var classId=$("#classId").val();
-            var url='../student/findAllList.shtml?classId='+classId;
+            var url='../PewStudent/findAllList.shtml';
             findAllList(url);
         },error:function(){
             $.ligerDialog.error("服务器异常");

@@ -22,7 +22,7 @@ public class PewStudentImpl implements IPewStudentService {
     @Autowired
     @Qualifier("baseDao")
     private IBaseDao baseDao;
-    public final static String common="PewPewStudent";
+    public final static String common="PewStudent";
     public final  static String ADD="add_"+common;
     public final static String  UPDATE="upd_"+common;
     public final static String DELETE="del_"+common;

@@ -5,6 +5,8 @@ import com.zero2ipo.eeh.Timetable.bizc.ITimetableService;
 import com.zero2ipo.eeh.Timetable.bo.TimetableBo;
 import com.zero2ipo.eeh.course.bizc.ICourseService;
 import com.zero2ipo.eeh.course.bo.CourseBo;
+import com.zero2ipo.eeh.pewstudent.bizc.IPewStudentService;
+import com.zero2ipo.eeh.pewstudent.bo.PewStudentBo;
 import com.zero2ipo.eeh.student.bizc.IStudentService;
 import com.zero2ipo.eeh.student.bo.StudentBo;
 import com.zero2ipo.framework.util.StringUtil;
@@ -37,6 +39,9 @@ public class ExcelOperate extends BaseCtrl {
     @Autowired
     @Qualifier("CourseService")
     private ICourseService CourseService;
+    @Autowired
+    @Qualifier("PewStudentService")
+    private IPewStudentService PewStudentService;
     public static void main(String[] args) throws Exception {
        /* File file = new File("ExcelDemo.xls");
         String[][] result = getData(file, 1);
@@ -176,7 +181,7 @@ public class ExcelOperate extends BaseCtrl {
                 CourseBo bo=new CourseBo();
                 String  week=list.get(i).get(0);//星期
                 String schoolTime=list.get(i).get(1);
-                String classRoom=list.get(i).get(2).replace(".0","");
+                String classRoom=list.get(i).get(2).replace(".0", "");
                 String teacher=list.get(i).get(3);
                 String kemu=list.get(i).get(4);
                 String peopleMax=list.get(i).get(5);
@@ -195,7 +200,54 @@ public class ExcelOperate extends BaseCtrl {
         Map<String,Object> resultMap=new HashMap<String, Object>();
         return resultMap;
     }
+    /**
+     * 导入培优学生表
+     * @param path
+     * @param classId
+     * @return
+     */
+    @RequestMapping("/importExcelForPewStudent.shtml")
+    @ResponseBody
+    public Map<String,Object> importExcelForPewStudent(String path,String classId){
+        ImportExecl poi = new ImportExecl();
+        // List<List<String>> list = poi.read("d:/aaa.xls");
+        String filepath=session.getServletContext().getRealPath("/");
+        path=path.replaceAll("\r\n","");
+        filepath=filepath+path;
+        filepath=filepath.replaceAll("\\\\","/");
+        List<List<String>> list = poi.read(filepath);
+        if (list != null)
+        {
+            for (int i = 1; i < list.size(); i++)
+            {
+                PewStudentBo bo=new PewStudentBo();
 
+                String  className=list.get(i).get(0);//星期
+                String name=list.get(i).get(1);
+                String xhnum=list.get(i).get(2).replace(".0", "");
+                String sex=list.get(i).get(3);
+                String type=list.get(i).get(4);
+                String electiveCourse=list.get(i).get(5);
+                String classRoom=list.get(i).get(6).replace(".0","");
+                String seatNumer=list.get(i).get(7).replace(".0","");
+                String schoolTime=list.get(i).get(8);
+                bo.setClassName(className);
+                bo.setName(name);
+                bo.setXhnum(xhnum);
+                bo.setType(type);
+                bo.setElectiveCourse(electiveCourse);
+                bo.setClassRoom(classRoom);
+                bo.setSeatNumer(seatNumer);
+                bo.setSchoolTime(schoolTime);
+                if(!StringUtil.isNullOrEmpty(className)){
+                    PewStudentService.add(bo);
+                }
+
+            }
+        }
+        Map<String,Object> resultMap=new HashMap<String, Object>();
+        return resultMap;
+    }
     /**
      * 读取Excel的内容，第一维数组存储的是一行中格列的值，二维数组存储的是多少个行
      * @return 读出的Excel中数据的内容
