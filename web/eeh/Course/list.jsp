@@ -12,30 +12,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
 		    <!-- JS静态资源的引用 -->
+			<link rel="stylesheet" type="text/css" href="<%=basePath%>/web/upload/uploadify.css">
 			<script type="text/javascript" src="<%=basePath%>/eeh/Course/js/list.js?v=5"></script>
+		<script type="text/javascript" src="<%=basePath%>/web/upload/jquery.uploadify.min.js"></script>
+		<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/upload.js"></script>
 			
 	</head>
 	<body class="z-body-detail" style="overflow: hidden">
 		<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
 			<tbody>
 				<tr>
-					<td>
+					<td style="width: 70%">
 						<div class="z-toolbar" id="ToolBar1" >
 							<div class="z-toolbar-ct">
 								<div class="z-toolbar-overflow"> 
 									<div class="z-toolbar-nowrap">
 										<a href="javascript:void(0);" class="z-btn z-btn-flat" onclick="add();">
-											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>添加<i></i></b>
+											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>手动添加培优课程<i></i></b>
 										</a>
 
 										<a href="javascript:void(0);"  class="z-btn z-btn-flat" onclick="delObj();">
 											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>删除<i></i></b>
+										</a>
+										<a href="javascript:download();"  class="z-btn z-btn-flat">
+											<img class="icon021a3" src="../s9/res/img/icon000.png"><b>下载培优课程表<i></i></b>
 										</a>
 									</div>
 								</div>
 							</div>
 						</div>
 						
+					</td>
+					<td>
+						<a href="javascript:importExcel();" id="importExcel"   class="z-btn z-btn-flat">
+							<img class="icon021a3" src="../s9/res/img/icon000.png"><b>导入<i></i></b>
+						</a>
 					</td>
 				</tr>
 				<tr valign="top">
@@ -54,7 +65,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var url='../Course/findAllList.shtml';
 				findAllList(url);
 			})
-		
+			//下载标准课程表
+			function download(){
+				window.location.href="<%=basePath%>/eeh/excel/表格四：培优课课程表.xlsx";
+			}
 		</script>
 	</body>
 </html> 
