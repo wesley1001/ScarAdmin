@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
 		    <!-- JS静态资源的引用 -->
-			<script type="text/javascript" src="<%=basePath%>/eeh/Course/js/list.js?v=4"></script>
+			<script type="text/javascript" src="<%=basePath%>/eeh/Course/js/list.js?v=5"></script>
 			
 	</head>
 	<body class="z-body-detail" style="overflow: hidden">

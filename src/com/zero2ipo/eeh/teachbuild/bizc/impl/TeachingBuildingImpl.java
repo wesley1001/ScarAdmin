@@ -101,9 +101,9 @@ public class TeachingBuildingImpl implements ITeachingBuildingService {
         int count = 0;
         try {
             count = (Integer) baseDao
-                    .findForObject("findUserCouponListCount", queryMap);
+                    .findForObject("findteachingbuildingListCount", queryMap);
         } catch (Exception e) {
-            BaseLog.e(this.getClass(), "findUserCouponListCount查询优惠券支付个数", e);
+            BaseLog.e(this.getClass(), "findteachingbuildingListCount查询个数", e);
         }
         return count;
     }

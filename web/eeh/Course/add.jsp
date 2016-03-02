@@ -12,9 +12,8 @@
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
-	<link  rel="stylesheet" type="text/css" href="<%=basePath%>/s9/res/js/calendar/skin/WdatePicker.css">
-	<script type="text/javascript"  src="<%=basePath%>/s9/res/js/calendar/WdatePicker.js"></script>
-	<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/add.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/common.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/add.js?v=1"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/number.js"></script>
 </head>
 
@@ -38,7 +37,7 @@
 							<select id="kemu" name="kemu" style="width:300px">
 								<option>请选择科目</option>
 								<c:forEach items="${subjectList}" var="subject" varStatus="vs">
-									<option value="${subject.id}">${subject.name}</option>
+									<option value="${subject.name}">${subject.name}</option>
 								</c:forEach>
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
@@ -61,10 +60,10 @@
 							授课老师：
 						</td>
 						<td width="80%" >
-							<select id="grade" name="grade" style="width:300px">
+							<select id="teacher" name="teacher" style="width:300px">
 								<option>请选择</option>
 								<c:forEach items="${teacherList}" varStatus="vs" var="teacher">
-									<option value="${teacher.id}">${teacher.name}</option>
+									<option value="${teacher.name}">${teacher.name}</option>
 								</c:forEach>
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
@@ -75,43 +74,17 @@
 							上课时间：
 						</td>
 						<td width="80%" >
-							<select id="banji" name="banji" style="width:300px">
+							<select id="time" name="time" style="width:300px">
 								<option>请选择</option>
 								<c:forEach items="${timeList}" var="time" varStatus="vs">
-									<option value="${time.id}">${time.time}</option>
+									<option value="${time.id}">${time.name}&nbsp;${time.time}</option>
 								</c:forEach>
 							</select>
+							<input type="hidden" id="week" name="week"/>
+							<input type="hidden" id="schoolTime" name="schoolTime"/>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
-
-				<%--	<tr>
-						<td width="20%" height="30" align="right">
-							开始时间：
-						</td>
-						<td width="80%" >
-							<input name="startTime"  type="text" id="startTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" class="Wdate" />
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
-						</td>
-					</tr>
-					<tr>
-						<td width="20%" height="30" align="right">
-							结束时间：
-						</td>
-						<td width="80%" >
-							<input name="endTime"  type="text" id="endTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" class="Wdate" />
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
-						</td>
-					</tr>
-					<tr>
-						<td width="20%" height="30" align="right">
-							上课时间：
-						</td>
-						<td width="80%" >
-							<input name="schoolTime"  type="text" id="schoolTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" class="Wdate" />
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
-						</td>
-					</tr>--%>
 					<tr>
 						<td width="20%" height="30" align="right">
 							授课教室：
@@ -120,7 +93,7 @@
 							<select id="classRoom" name="classRoom" style="width:300px">
 								<option>请选择</option>
 								<c:forEach items="${classRoomList}" varStatus="vs" var="room">
-									<option value="${room.id}">${room.name}</option>
+									<option value="${room.name}">${room.name}</option>
 								</c:forEach>
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>

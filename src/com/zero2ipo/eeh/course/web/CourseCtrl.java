@@ -101,26 +101,7 @@ public class CourseCtrl extends BaseCtrl {
     public ModelAndView forAddInitPage() {
         ModelAndView mv = new ModelAndView("/eeh/Course/add.jsp");
         //查询所有科目
-        Map<String,Object> queryMap=new HashMap<String, Object>();
-        List<SubjectBo> subjectList=SubjectService.findAllList(queryMap);
-        if(!StringUtil.isNullOrEmpty(subjectList)&&subjectList.size()>0){
-            mv.addObject("subjectList",subjectList);
-        }
-        //查询所有授课老师
-        List<TeacherBo> teacherList=teacherService.findAllList(queryMap);
-        if(!StringUtil.isNullOrEmpty(teacherList)&&teacherList.size()>0){
-            mv.addObject("teacherList",teacherList);
-        }
-        //查询所有时段
-        List<TimeBo> timeList=TimeService.findAllList(queryMap);
-        if(!StringUtil.isNullOrEmpty(timeList)&&timeList.size()>0){
-            mv.addObject("timeList",timeList);
-        }
-        //查询所有教室
-        List<ClassRoomBo> classRoomList=classRoomService.findAllList(queryMap);
-        if(!StringUtil.isNullOrEmpty(classRoomList)&&classRoomList.size()>0){
-            mv.addObject("classRoomList",classRoomList);
-        }
+        getSelectList(mv);
         return mv;
     }
     /**
@@ -154,8 +135,39 @@ public class CourseCtrl extends BaseCtrl {
         ModelAndView mv = new ModelAndView("/eeh/Course/update.jsp");
         CourseBo bo=CourseService.findById(id);
         mv.addObject("bo",bo);
+        getSelectList(mv);
+
         return mv;
     }
+
+    /**
+     * 获取下来列表的值
+     * @param mv
+     */
+    private void getSelectList(ModelAndView mv) {
+        //查询所有科目
+        Map<String,Object> queryMap=new HashMap<String, Object>();
+        List<SubjectBo> subjectList=SubjectService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(subjectList)&&subjectList.size()>0){
+            mv.addObject("subjectList",subjectList);
+        }
+        //查询所有授课老师
+        List<TeacherBo> teacherList=teacherService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(teacherList)&&teacherList.size()>0){
+            mv.addObject("teacherList",teacherList);
+        }
+        //查询所有时段
+        List<TimeBo> timeList=TimeService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(timeList)&&timeList.size()>0){
+            mv.addObject("timeList",timeList);
+        }
+        //查询所有教室
+        List<ClassRoomBo> classRoomList=classRoomService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(classRoomList)&&classRoomList.size()>0){
+            mv.addObject("classRoomList",classRoomList);
+        }
+    }
+
     /**
      * 修改保存数据
      * @param bo

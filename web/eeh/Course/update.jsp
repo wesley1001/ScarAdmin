@@ -12,6 +12,7 @@
 	<!-- 引用本页面JS、CSS样式静态资源 -->
 	<%@include file="/s9/common/common.jsp"%>
 	<!-- 用户管理操作JS静态资源的引用 -->
+	<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/common.js"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/update.js"></script>
 	<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/number.js"></script>
 </head>
@@ -36,52 +37,23 @@
 						<td width="80%" >
 							<select id="kemu" name="kemu" style="width:300px">
 								<option>请选择科目</option>
+								<c:forEach items="${subjectList}" var="subject" varStatus="vs">
+									<option value="${subject.name}" <c:if test="${subject.name==bo.kemu}">selected="selected" </c:if>>${subject.name}</option>
+								</c:forEach>
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
-					<tr>
-						<td width="20%" height="30" align="right">
-							选择层次：
-						</td>
-						<td width="80%" >
-							<select id="cengci" name="cengci" style="width:300px">
-								<option>请选择层次</option>
-							</select>
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
-						</td>
-					</tr>
+
 					<tr>
 						<td width="20%" height="30" align="right">
 							上线人数：
 						</td>
 						<td width="80%" >
-							<input type="text" id="peopleMax" name="peopleMax"
+							<input type="text" id="peopleMax" name="peopleMax" value="${bo.peopleMax}"
 								   style="width: 300px"  onkeyup="clearNoNum(this)"/>
 										<span
 												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
-						</td>
-					</tr>
-					<tr>
-						<td width="20%" height="30" align="right">
-							选择年级：
-						</td>
-						<td width="80%" >
-							<select id="grade" name="grade" style="width:300px">
-								<option>请选择</option>
-							</select>
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
-						</td>
-					</tr>
-					<tr>
-						<td width="20%" height="30" align="right">
-							选定班级：
-						</td>
-						<td width="80%" >
-							<select id="banji" name="banji" style="width:300px">
-								<option>请选择</option>
-							</select>
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
 					<tr>
@@ -91,25 +63,10 @@
 						<td width="80%" >
 							<select id="teacher" name="teacher" style="width:300px">
 								<option>请选择</option>
+								<c:forEach items="${teacherList}" varStatus="vs" var="teacher">
+									<option value="${teacher.name}" <c:if test="${teacher.name==bo.teacher}">selected="selected" </c:if>>${teacher.name}</option>
+								</c:forEach>
 							</select>
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
-						</td>
-					</tr>
-					<tr>
-						<td width="20%" height="30" align="right">
-							开始时间：
-						</td>
-						<td width="80%" >
-							<input name="startTime"  type="text" id="startTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" class="Wdate" />
-							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
-						</td>
-					</tr>
-					<tr>
-						<td width="20%" height="30" align="right">
-							结束时间：
-						</td>
-						<td width="80%" >
-							<input name="endTime"  type="text" id="endTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" class="Wdate" />
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
@@ -118,7 +75,14 @@
 							上课时间：
 						</td>
 						<td width="80%" >
-							<input name="schoolTime"  type="text" id="schoolTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" class="Wdate" />
+							<select id="time" name="time" style="width:300px">
+								<option>请选择</option>
+								<c:forEach items="${timeList}" var="time" varStatus="vs">
+									<option value="${time.id}" <c:if test="${time.time==bo.schoolTime&&time.name==bo.week}">selected="selected" </c:if>>${time.name}&nbsp;${time.time}</option>
+								</c:forEach>
+							</select>
+							<input type="hidden" id="week" name="week" value="${bo.week}"/>
+							<input type="hidden" id="schoolTime" name="schoolTime" value="${bo.schoolTime}"/>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
 					</tr>
@@ -129,6 +93,9 @@
 						<td width="80%" >
 							<select id="classRoom" name="classRoom" style="width:300px">
 								<option>请选择</option>
+								<c:forEach items="${classRoomList}" varStatus="vs" var="room">
+									<option value="${room.name}" <c:if test="${room.name==bo.classRoom}">selected="selected" </c:if>>${room.name}</option>
+								</c:forEach>
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
 						</td>
