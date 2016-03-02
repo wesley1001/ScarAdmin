@@ -15,7 +15,7 @@ public class PewStudentBo implements  java.io.Serializable {
    public String classRoom;//上课教室
    public String  seatNumer;//座位号
    public String  schoolTime;//上课时间
-
+   public String status;//已审、待审
     public int getId() {
         return id;
     }
@@ -94,5 +94,13 @@ public class PewStudentBo implements  java.io.Serializable {
 
     public void setSchoolTime(String schoolTime) {
         this.schoolTime = schoolTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

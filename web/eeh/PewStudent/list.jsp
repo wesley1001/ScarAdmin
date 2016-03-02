@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
 			<tbody>
 				<tr>
-					<td style="width:70%">
+					<td style="width:95%">
 						<div class="z-toolbar" id="ToolBar1" >
 							<div class="z-toolbar-ct">
 								<div class="z-toolbar-overflow"> 
@@ -38,8 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="javascript:download();"  class="z-btn z-btn-flat">
 											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>下载标准表格<i></i></b>
 										</a>
-
-
+										<%--<select id="status" name="status">
+											<option value="已审">已审</option>
+											<option value="待审">待审</option>
+										</select>
+											<a href="javascript:shenhe();"  class="z-btn z-btn-flat">
+												<img class="icon021a4" src="../s9/res/img/icon000.png"><b>审核<i></i></b>
+											</a>--%>
 									</div>
 								</div>
 							</div>

@@ -6,7 +6,7 @@ $(function() {
           'height' : 25,
           'swf' : '../web/upload/uploadify.swf', 
           'uploader' : '../c/uploadify',
-          'width' : 85,
+          'width' : 45,
           'buttonText' : '导入',
           'uploadLimit' : 5,
           'atuo':false,
@@ -31,11 +31,6 @@ $(function() {
            var url="../excelOperate/importExcelForTimetable.shtml";
            var data={"path":filepath};
            ajaxImport(url,data);
-    		$("#"+file.id).attr("filePath",data);
-    		$("#"+file.id).attr("fileName",file.name);
-    		var uploadAuthor=$('#uploadAuthor').val();
-    		$("#"+file.id).attr("uploadAuthor",uploadAuthor);
-    		$("#"+file.id).attr("uploadTime",format(file.creationdate,'yyyy-MM-dd HH:mm:ss'));
     },
           'onQueueComplete' : function(queueData) {
     		// $('#uploader_msg').html(queueData.uploadsSuccessful + ' files were successfully uploaded.');

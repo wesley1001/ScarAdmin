@@ -6,7 +6,7 @@ $(function() {
           'height' : 25,
           'swf' : '../web/upload/uploadify.swf',
           'uploader' : '../c/uploadify',
-          'width' : 105,
+          'width' : 45,
           'buttonText' : '上传',
           'uploadLimit' : 5,
           'atuo':false,

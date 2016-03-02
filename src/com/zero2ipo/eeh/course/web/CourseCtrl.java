@@ -57,6 +57,15 @@ public class CourseCtrl extends BaseCtrl {
         return mv;
     }
     /**
+     * 初始化页面
+     * @return
+     */
+    @RequestMapping("peiyouke.shtml")
+    public ModelAndView peiyouke() {
+        ModelAndView mv = new ModelAndView("/eeh/Course/pewClass.jsp");
+        return mv;
+    }
+    /**
      * 初始化json数据
      * @param curNo
      * @param curSize

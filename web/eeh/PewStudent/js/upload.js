@@ -6,8 +6,8 @@ $(function() {
           'height' : 25,
           'swf' : '../web/upload/uploadify.swf',
           'uploader' : '../c/uploadify',
-          'width' : 105,
-          'buttonText' : '上传',
+          'width' : 45,
+          'buttonText' : '导入',
           'uploadLimit' : 5,
           'atuo':false,
           'multi':true,
@@ -29,18 +29,13 @@ $(function() {
            //获取上传路径
            var filepath=data;
            //读取excel文件到表格中
-           var url="../excelOperate/readexcel.shtml";
-           var classId=$("#classId").val();
-           var data={"path":filepath,"classId":classId};
+           var url="../excelOperate/importExcelForPewStudent.shtml";
+           var data={"path":filepath};
            ajaxImport(url,data);
-    		$("#"+file.id).attr("filePath",data);
-    		$("#"+file.id).attr("fileName",file.name);
-    		var uploadAuthor=$('#uploadAuthor').val();
-    		$("#"+file.id).attr("uploadAuthor",uploadAuthor);
-    		$("#"+file.id).attr("uploadTime",format(file.creationdate,'yyyy-MM-dd HH:mm:ss'));
+
     },
           'onQueueComplete' : function(queueData) {
-              alert("上传完成");
+              //alert("上传完成");
     		// $('#uploader_msg').html(queueData.uploadsSuccessful + ' files were successfully uploaded.');
     }
       });
@@ -83,7 +78,6 @@ function ajaxImport(url,data){
         },
         success:function(msg){
             $.ligerDialog.success("保存成功");
-            var classId=$("#classId").val();
             var url='../PewStudent/findAllList.shtml';
             findAllList(url);
         },error:function(){

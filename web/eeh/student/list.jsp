@@ -12,16 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
 		    <link rel="stylesheet" type="text/css" href="<%=basePath%>/web/upload/uploadify.css">
-			<link rel="stylesheet" type="text/css" href="<%=basePath%>/s9/res/js/ligerUI/skins/Aqua/css/ligerui-all.css"	/>
-		    <link href="<%=basePath%>/s9/res/js/ligerUI/skins/ligerui-icons.css" rel="stylesheet" type="text/css" />
-		    <link href="<%=basePath%>/s9/res/js/ligerUI/skins/Gray/css/grid.css" rel="stylesheet" type="text/css" />
-		    <link  rel="stylesheet" type="text/css" href="<%=basePath%>/s9/res/js/calendar/skin/WdatePicker.css">
 		    <!-- JS静态资源的引用 -->
-			<script type="text/javascript" src="<%=basePath%>/s9/res/js/jquery.min.js"></script>
-			<script type="text/javascript" src="<%=basePath%>/s9/res/js/ligerUI/js/ligerui.all.js"></script>
-			<script type="text/javascript"  src="<%=basePath%>/s9/res/js/calendar/WdatePicker.js"></script>
 		    <script type="text/javascript" src="<%=basePath%>/web/upload/jquery.uploadify.min.js"></script>
-			<script type="text/javascript" src="<%=basePath%>/eeh/student/js/list.js?v=7"></script>
+			<script type="text/javascript" src="<%=basePath%>/eeh/student/js/list.js"></script>
 			<script type="text/javascript" src="<%=basePath %>/eeh/student/js/upload.js"></script>
 			
 	</head>
@@ -30,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
 			<tbody>
 				<tr>
-					<td style="width:70%">
+					<td style="width:95%">
 						<div class="z-toolbar" id="ToolBar1" >
 							<div class="z-toolbar-ct">
 								<div class="z-toolbar-overflow"> 

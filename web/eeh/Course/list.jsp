@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
 			<tbody>
 				<tr>
-					<td style="width: 70%">
+					<td style="width: 95%">
 						<div class="z-toolbar" id="ToolBar1" >
 							<div class="z-toolbar-ct">
 								<div class="z-toolbar-overflow"> 

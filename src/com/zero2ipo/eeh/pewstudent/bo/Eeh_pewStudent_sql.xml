@@ -13,6 +13,7 @@
 	<result property="classRoom" column="classRoom"/>
 	<result property="seatNumer" column="seatNumer"/>
 	<result property="schoolTime" column="schoolTime"/>
+	<result property="status" column="status"/>
 </resultMap>
 	<!--根据id查询查询-->
 	<select id='findPewStudentById' resultClass='PewStudentBo'>
@@ -26,7 +27,8 @@
 		electiveCourse,
 		classRoom,
 		seatNumer,
-		schoolTime
+		schoolTime,
+		status
 		FROM
 			eeh_pewstudent
 		WHERE  id=#id#
@@ -44,7 +46,8 @@ SELECT
 	electiveCourse,
 	classRoom,
 	seatNumer,
-	schoolTime
+	schoolTime,
+	status
 FROM
 	eeh_pewstudent
 <dynamic prepend="WHERE">
@@ -83,7 +86,8 @@ FROM
 		electiveCourse,
 		classRoom,
 		seatNumer,
-		schoolTime
+		schoolTime,
+		status
 	)VALUES(
 		#className#,
 		#name#,
@@ -93,7 +97,8 @@ FROM
 		#electiveCourse#,
 		#classRoom#,
 		#seatNumer#,
-		#schoolTime#
+		#schoolTime#,
+		#status#
 	)
 </insert>
 <!--修改-->
@@ -124,6 +129,9 @@ FROM
 		</isNotEmpty>
 		<isNotEmpty prepend="," property="schoolTime">
 			schoolTime=#schoolTime#
+		</isNotEmpty>
+		<isNotEmpty prepend="," property="status">
+			status=#status#
 		</isNotEmpty>
 	</dynamic>
  	WHERE

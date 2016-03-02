@@ -30,7 +30,7 @@
 					<tbody>
 					<tr>
 						<td width="20%" height="30" align="right">
-							班级：
+							所在班级：
 						</td>
 						<td width="80%" >
 							<input type="text" id="className" name="className"

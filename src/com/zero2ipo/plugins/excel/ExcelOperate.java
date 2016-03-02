@@ -222,7 +222,7 @@ public class ExcelOperate extends BaseCtrl {
             {
                 PewStudentBo bo=new PewStudentBo();
 
-                String  className=list.get(i).get(0);//星期
+                String  className=list.get(i).get(0).replace(".0","");
                 String name=list.get(i).get(1);
                 String xhnum=list.get(i).get(2).replace(".0", "");
                 String sex=list.get(i).get(3);

@@ -4,26 +4,21 @@ var m; 	//弹出窗口对象
 function findAllList(url){
 	   var pageSize=20;
        grid = $("#maingrid").ligerGrid({
-    	    width:'100%',
+    	    width:'99.6%',
     	    height:'100%',
 			headerRowHeight:28,
 			rowHeight:26,
 			rownumbers:true,
 			checkbox: true,
     		columns: [
-				{ display: '班级', name: 'className' },
-				{ display: '姓名', name: 'name' },
-				{ display: '学号', name: 'xhnum'},
-				{ display: '性别', name: 'sex' },
-				{ display: '类型', name: 'type' },
-				{ display: '选修课程', name: 'electiveCourse' },
-				{ display: '上课教室', name: 'classRoom' },
-				{ display: '座位号', name: 'seatNumer' },
-				{ display: '上课时间', name: 'schoolTime' }
-				,{ display: '状态', name: 'status' },
+				{ display: '科目', name: 'kemu' },
+				{ display: '人数', name: 'peopleMax'},
+				{ display: '授课老师', name: 'teacher'},
+				{ display: '星期', name: 'week'},
+				{ display: '上课时间', name: 'schoolTime'},
+				{ display: '授课教室', name: 'classRoom'},
 				{ display: '操作', name: '',render:function(r){
-					return "<a href='javascript:updStatused("+r.id+")'>已审</a>"+
-						"&nbsp;<a href='javascript:updStatusing("+r.id+")'>待审</a>";
+					return "<a href='javascript:upd("+r.id+")'>学生列表</a>";
 				}
 				}
 			
@@ -43,24 +38,17 @@ function onClickRow(rowdata, rowindex, rowDomElement) {
 
 //新增
 function add(){
-	var url="../PewStudent/forAddInitPage.shtml";
-	m = $.ligerDialog.open({ url: url, height: 300,width:450, title:'新增学生',showMax:true,showToggle:true,showMin:true});
+	var url="../Course/forAddInitPage.shtml";
+	m = $.ligerDialog.open({ url: url, height: 300,width:450, title:'新增培优课程',showMax:true,showToggle:true,showMin:true});
 }
 function upd(id){
-	var url="../PewStudent/forUpdateInitPage.shtml?id="+id;
-	m = $.ligerDialog.open({ url: url, height: 250,width:500, title:'修改学生',isResize: true ,top:50});
+	var url="../Course/forUpdateInitPage.shtml?id="+id;
+	m = $.ligerDialog.open({ url: url, height: 300,width:500, title:'修改培优课程',isResize: true ,top:50});
 }
-//已审
-function updStatused(id){
-	var url="../PewStudent/forUpdateAjax.shtml";
-	var data={"id":id,"status":"已审"};
-	ajax(url,data)
-}
-//待审
-function updStatusing(id){
-	var url="../PewStudent/forUpdateAjax.shtml";
-	var data={"id":id,"status":"待审"};
-	ajax(url,data)
+function start(id){
+	var url="../Course/forUpdateAjax.shtml?id="+id;
+	var data={"status":"已开始"};
+	ajax(url,data);
 }
 //删除
 function delObj(){
@@ -80,7 +68,7 @@ function delObj(){
 			}	
 		}
 		var data={'ids':ids};
-		var url='../PewStudent/delSave.shtml';
+		var url='../Course/delSave.shtml';
 		ajax(url,data);
 }
 function ajax(url,data){
@@ -102,7 +90,6 @@ function ajax(url,data){
 		}
 	})
 }
-
 function reload(){
 	if(m){
 		m.close();
