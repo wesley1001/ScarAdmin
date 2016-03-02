@@ -11,7 +11,7 @@ public class CourseBo implements  java.io.Serializable {
     public String classRoom;//授课教室
     public String schoolTime;//上课时间 从时段里面过来
     public String week;//星期 从时段里面获取
-
+    public String status;//状态
     public int getId() {
         return id;
     }
@@ -66,5 +66,13 @@ public class CourseBo implements  java.io.Serializable {
 
     public void setWeek(String week) {
         this.week = week;
+    }
+
+    public String getStatus() {
+        return status==null?"":status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -17,8 +17,12 @@ function findAllList(url){
 				{ display: '星期', name: 'week'},
 				{ display: '上课时间', name: 'schoolTime'},
 				{ display: '授课教室', name: 'classRoom'},
+				{ display: '状态', name: 'status',render:function(r){
+					return "<font color='red'>"+ r.status+"</font>";
+				}},
 				{ display: '操作', name: '',render:function(r){
-					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
+					return "<a href='javascript:upd("+r.id+")'>编辑</a>"+
+						"&nbsp;&nbsp;<a href='javascript:start("+r.id+")'>开始</a>";
 				}
 				}
 			
@@ -45,7 +49,11 @@ function upd(id){
 	var url="../Course/forUpdateInitPage.shtml?id="+id;
 	m = $.ligerDialog.open({ url: url, height: 300,width:500, title:'修改培优课程',isResize: true ,top:50});
 }
-
+function start(id){
+	var url="../Course/forUpdateAjax.shtml?id="+id;
+	var data={"status":"已开始"};
+	ajax(url,data);
+}
 //删除
 function delObj(){
 	//获取选中记录行

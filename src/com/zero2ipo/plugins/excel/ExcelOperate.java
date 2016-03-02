@@ -176,7 +176,7 @@ public class ExcelOperate extends BaseCtrl {
                 CourseBo bo=new CourseBo();
                 String  week=list.get(i).get(0);//星期
                 String schoolTime=list.get(i).get(1);
-                String classRoom=list.get(i).get(2);
+                String classRoom=list.get(i).get(2).replace(".0","");
                 String teacher=list.get(i).get(3);
                 String kemu=list.get(i).get(4);
                 String peopleMax=list.get(i).get(5);

@@ -10,6 +10,7 @@
 	<result property="classRoom" column="classRoom"/>
 	<result property="teacher" column="teacher"/>
 	<result property="week" column="week"/>
+	<result property="status" column="status"/>
 </resultMap>
 	<!--根据id查询查询-->
 	<select id='findCourseById' resultClass='CourseBo'>
@@ -20,7 +21,8 @@
 		schoolTime,
 		classRoom,
 		week,
-		teacher
+		teacher,
+		status
 		FROM
 			eeh_Course
 		WHERE  id=#id#
@@ -35,7 +37,8 @@ SELECT
 	schoolTime,
 	classRoom,
 	week,
-	teacher
+	teacher,
+	status
 FROM
 	eeh_Course
 <dynamic prepend="WHERE">
@@ -65,27 +68,45 @@ INSTR(name,#name#)>0
 		schoolTime,
 		classRoom,
 		week,
-		teacher
+		teacher,
+	    status
 	)VALUES(
 		#kemu#,
 		#peopleMax#,
 		#schoolTime#,
 		#classRoom#,
 		#week#,
-		#teacher#
+		#teacher#,
+		#status#
 	)
 </insert>
 <!--修改-->
 <update id="upd_Course" parameterClass="CourseBo">
 	UPDATE
 		eeh_Course
-	SET
-		kemu=#kemu#,
-		peopleMax=#peopleMax#,
-		schoolTime=#schoolTime#,
-		classRoom=#classRoom#,
-		week=#week#,
-		teacher=#teacher#
+	<dynamic prepend="SET">
+		<isNotEmpty prepend="," property="kemu">
+			kemu=#kemu#
+		</isNotEmpty>
+		<isNotEmpty prepend="," property="peopleMax">
+			peopleMax=#peopleMax#
+		</isNotEmpty>
+		<isNotEmpty prepend="," property="schoolTime">
+			schoolTime=#schoolTime#
+		</isNotEmpty>
+		<isNotEmpty prepend="," property="classRoom">
+			classRoom=#classRoom#
+		</isNotEmpty>
+		<isNotEmpty prepend="," property="week">
+			week=#week#
+		</isNotEmpty>
+		<isNotEmpty prepend="," property="teacher">
+			teacher=#teacher#
+		</isNotEmpty>
+		<isNotEmpty prepend="," property="status">
+			status=#status#
+		</isNotEmpty>
+	</dynamic>
  	WHERE
 	ID=#id#
 </update>
