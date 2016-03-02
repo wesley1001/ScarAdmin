@@ -33,7 +33,7 @@ $(function() {
            var url="../excelOperate/readexcel.shtml";
            var gradeId=$("#gradeId").val();
            var data={"path":filepath,"gardeId":gradeId};
-           ajax(url,data);
+           ajaxImport(url,data);
            console.log(file.name)
     		$("#"+file.id).attr("filePath",data);
     		$("#"+file.id).attr("fileName",file.name);
@@ -74,7 +74,7 @@ $(function() {
     })
 }
 })
-function ajax(url,data){
+function ajaxImport(url,data){
     $.ajax({
         url:url,
         type:"post",

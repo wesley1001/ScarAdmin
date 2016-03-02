@@ -30,7 +30,7 @@ $(function() {
            //读取excel文件到表格中
            var url="../excelOperate/importExcelForTimetable.shtml";
            var data={"path":filepath};
-           ajax(url,data);
+           ajaxImport(url,data);
     		$("#"+file.id).attr("filePath",data);
     		$("#"+file.id).attr("fileName",file.name);
     		var uploadAuthor=$('#uploadAuthor').val();
@@ -69,7 +69,7 @@ $(function() {
     })
 }
 })
-function ajax(url,data){
+function ajaxImport(url,data){
     $.ajax({
         url:url,
         type:"post",

@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>手动添加培优课程<i></i></b>
 										</a>
 
-										<a href="javascript:void(0);"  class="z-btn z-btn-flat" onclick="delObj();">
+										<a href="javascript:delObj();"  class="z-btn z-btn-flat" >
 											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>删除<i></i></b>
 										</a>
 										<a href="javascript:download();"  class="z-btn z-btn-flat">

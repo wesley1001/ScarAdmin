@@ -25,15 +25,14 @@ $(function() {
           },
        // 单个文件上传成功时的处理函数
        'onUploadSuccess' : function(file, data, response){
-           alert("上传成功");
-           console.log(data);
+
            //获取上传路径
            var filepath=data;
            //读取excel文件到表格中
            var url="../excelOperate/readexcel.shtml";
            var classId=$("#classId").val();
            var data={"path":filepath,"classId":classId};
-           ajax(url,data);
+           ajaxImport(url,data);
     		$("#"+file.id).attr("filePath",data);
     		$("#"+file.id).attr("fileName",file.name);
     		var uploadAuthor=$('#uploadAuthor').val();
@@ -73,7 +72,7 @@ $(function() {
     })
 }
 })
-function ajax(url,data){
+function ajaxImport(url,data){
     $.ajax({
         url:url,
         type:"post",

@@ -180,6 +180,12 @@ public class ExcelOperate extends BaseCtrl {
                 String teacher=list.get(i).get(3);
                 String kemu=list.get(i).get(4);
                 String peopleMax=list.get(i).get(5);
+                bo.setWeek(week);
+                bo.setSchoolTime(schoolTime);
+                bo.setClassRoom(classRoom);
+                bo.setTeacher(teacher);
+                bo.setKemu(kemu);
+                bo.setPeopleMax(peopleMax);
                 if(!StringUtil.isNullOrEmpty(week)){
                     CourseService.add(bo);
                 }
