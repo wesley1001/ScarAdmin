@@ -19,8 +19,8 @@ function findAllList(url){
 				{ display: '选修课程', name: 'electiveCourse' },
 				{ display: '上课教室', name: 'classRoom' },
 				{ display: '座位号', name: 'seatNumer' },
-				{ display: '上课时间', name: 'schoolTime' }
-				,{ display: '状态', name: 'status' },
+				{ display: '上课时间', name: 'schoolTime' },
+				{ display: '状态', name: 'status' },
 				{ display: '操作', name: '',render:function(r){
 					return "<a href='javascript:updStatused("+r.id+")'>已审</a>"+
 						"&nbsp;<a href='javascript:updStatusing("+r.id+")'>待审</a>";

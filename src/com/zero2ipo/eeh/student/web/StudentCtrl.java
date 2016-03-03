@@ -1,6 +1,8 @@
 package com.zero2ipo.eeh.student.web;
 
 import com.zero2ipo.common.web.BaseCtrl;
+import com.zero2ipo.eeh.grade.bizc.IGradeService;
+import com.zero2ipo.eeh.grade.bo.GradeBo;
 import com.zero2ipo.eeh.student.bizc.IStudentService;
 import com.zero2ipo.eeh.student.bo.StudentBo;
 import com.zero2ipo.framework.exception.BaseException;
@@ -27,6 +29,9 @@ public class StudentCtrl extends BaseCtrl {
     @Autowired
     @Qualifier("studentService")
     private IStudentService studentService ;
+    @Autowired
+    @Qualifier("gradeService")
+    private IGradeService gradeService;
     /**
      * 初始化页面
      * @return
@@ -85,8 +90,20 @@ public class StudentCtrl extends BaseCtrl {
     @RequestMapping("forAddInitPage.shtml")
     public ModelAndView forAddInitPage() {
         ModelAndView mv = new ModelAndView("/eeh/student/add.jsp");
+        getSelectList(mv);
+
         return mv;
     }
+
+    private void getSelectList(ModelAndView mv) {
+        //查询所有班级
+        Map<String,Object> queryMap=new HashMap<String, Object>();
+        List<GradeBo> list=gradeService.findAllList(queryMap);
+        if(!StringUtil.isNullOrEmpty(list)){
+            mv.addObject("gradeList",list);
+        }
+    }
+
     /**
      * 添加保存数据
      * @param bo
@@ -118,6 +135,8 @@ public class StudentCtrl extends BaseCtrl {
         ModelAndView mv = new ModelAndView("/eeh/student/update.jsp");
         StudentBo bo=studentService.findById(id);
         mv.addObject("bo",bo);
+        //查询所有班级
+        getSelectList(mv);
         return mv;
     }
     /**

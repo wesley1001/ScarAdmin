@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <!-- JS静态资源的引用 -->
 		    <script type="text/javascript" src="<%=basePath%>/web/upload/jquery.uploadify.min.js"></script>
 			<script type="text/javascript" src="<%=basePath%>/eeh/PewStudent/js/list.js"></script>
-			<script type="text/javascript" src="<%=basePath %>/eeh/PewStudent/js/upload.js?v=11"></script>
+			<script type="text/javascript" src="<%=basePath %>/eeh/PewStudent/js/upload.js?v=1"></script>
 			
 	</head>
 	<body class="z-body-detail" style="overflow: hidden">

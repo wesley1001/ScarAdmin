@@ -12,8 +12,9 @@ function findAllList(url){
 			checkbox: true,
     		columns: [
 				{ display: '班级', name: 'classId' },
-				{ display: '学号', name: 'xhnum'},
 				{ display: '姓名', name: 'name' },
+				{ display: '学号', name: 'xhnum'},
+				{ display: '性别', name: 'sex'},
 				{ display: '操作', name: '',render:function(r){
 					return "<a href='javascript:upd("+r.id+")'>编辑</a>";
 				}
@@ -40,7 +41,7 @@ function add(){
 }
 function upd(id){
 	var url="../student/forUpdateInitPage.shtml?id="+id;
-	m = $.ligerDialog.open({ url: url, height: 250,width:500, title:'修改学生',isResize: true ,top:50});
+	m = $.ligerDialog.open({ url: url, height: 330,width:500, title:'修改学生',isResize: true ,top:50});
 }
 
 //删除

@@ -18,15 +18,24 @@ function validData() {
 		$.ligerDialog.warn("班级名称不能为空！");
 		return false;
 	}
-	var xhnum=$("#xhnum").val();
-	if(""==xhnum||null==xhnum){
-		$.ligerDialog.warn("学号不能为空！");
-		return;
-	}
 	var name=$("#name").val();
 	if(""==name||null==name){
 		$.ligerDialog.warn("姓名不能为空！");
 		return;
+	}
+	/*var sex=$("#sex").val();
+	if(""==sex||null==sex){
+		$.ligerDialog.warn("性别不能为空！");
+		return;
+	}*/
+	var password=$("#password").val();
+	var password2=$("#password2").val();
+	if(password!=password2){
+		$.ligerDialog.warn("两次输入的密码不一致！");
+		return;
+	}else if(""!=password&&null!=password){
+		password=hex_md5(password);
+		$("#password").val(password);
 	}
 	return true;
 }

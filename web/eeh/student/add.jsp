@@ -33,10 +33,14 @@
 							班级：
 						</td>
 						<td width="80%" >
-							<input type="text" id="classId" name="classId"
-								   style="width: 300px"  value="${bo.classId}"/>
-										<span
-												style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+							<select type="text" id="classId" name="classId" style="width: 300px"  >
+								<option value="">选择班级</option>
+								<c:forEach items="${gradeList}" var="grade" varStatus="vs">
+									<option value="${grade.name}" >${grade.name}</option>
+								</c:forEach>
+							</select>
+							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>
+
 						</td>
 					</tr>
 					<tr>

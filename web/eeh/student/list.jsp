@@ -64,7 +64,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 	// 初始化加载
 	$(function(){
+		var classId=$("#classId").val();
 		var url='../student/findAllList.shtml';
+		if(''!=classId&&null!=classId){
+			url+="?classId="+classId;
+		}
 		findAllList(url);
 	})
 	/**
