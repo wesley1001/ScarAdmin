@@ -12,17 +12,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
 		    <!-- JS静态资源的引用 -->
-			<link rel="stylesheet" type="text/css" href="<%=basePath%>/web/upload/uploadify.css">
 			<script type="text/javascript" src="<%=basePath%>/eeh/Course/js/list.js?v=5"></script>
 		<script type="text/javascript" src="<%=basePath%>/web/upload/jquery.uploadify.min.js"></script>
-		<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/upload.js"></script>
+		<script type="text/javascript" src="<%=basePath %>/eeh/Course/js/upload.js?v=11"></script>
 			
 	</head>
 	<body class="z-body-detail" style="overflow: hidden">
 		<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
 			<tbody>
 				<tr>
-					<td style="width: 95%">
+					<td style="width: 100%">
 						<div class="z-toolbar" id="ToolBar1" >
 							<div class="z-toolbar-ct">
 								<div class="z-toolbar-overflow"> 
@@ -37,17 +36,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="javascript:download();"  class="z-btn z-btn-flat">
 											<img class="icon021a3" src="../s9/res/img/icon000.png"><b>下载培优课程表<i></i></b>
 										</a>
+										<a href="javascript:importExcel();" id="importExcel"   class="z-btn z-btn-flat">
+
+										</a>
 									</div>
 								</div>
 							</div>
 						</div>
 						
 					</td>
-					<td>
-						<a href="javascript:importExcel();" id="importExcel"   class="z-btn z-btn-flat">
-							<img class="icon021a3" src="../s9/res/img/icon000.png"><b>导入<i></i></b>
-						</a>
-					</td>
+
 				</tr>
 				<tr valign="top">
 					<!-- 数据信息 --> 

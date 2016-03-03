@@ -89,10 +89,9 @@ public class ExcelOperate extends BaseCtrl {
                 studentBo.setClassId(banji);
                 studentBo.setXhnum(xuehao);
                 studentBo.setGradeId(banji.substring(0,1));
-                if(classId.equals(banji)){
-                    System.out.print("banji="+banji);
-                    System.out.print("xuehao="+xuehao);
-                    System.out.print("name="+name+"\n");
+                if(classId.equals(banji)&&!StringUtil.isNullOrEmpty(classId)){
+                    studentService.add(studentBo);
+                }else{
                     studentService.add(studentBo);
                 }
                 // studentService.add(studentBo);

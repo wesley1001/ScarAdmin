@@ -6,8 +6,8 @@ $(function() {
           'height' : 25,
           'swf' : '../web/upload/uploadify.swf',
           'uploader' : '../c/uploadify',
-          'width' : 45,
-          'buttonText' : '上传',
+          'width' : 70,
+          'buttonText' : '导入学生表',
           'uploadLimit' : 5,
           'atuo':false,
           'multi':true,
@@ -25,7 +25,6 @@ $(function() {
           },
        // 单个文件上传成功时的处理函数
        'onUploadSuccess' : function(file, data, response){
-
            //获取上传路径
            var filepath=data;
            //读取excel文件到表格中
@@ -33,18 +32,13 @@ $(function() {
            var classId=$("#classId").val();
            var data={"path":filepath,"classId":classId};
            ajaxImport(url,data);
-    		$("#"+file.id).attr("filePath",data);
-    		$("#"+file.id).attr("fileName",file.name);
-    		var uploadAuthor=$('#uploadAuthor').val();
-    		$("#"+file.id).attr("uploadAuthor",uploadAuthor);
-    		$("#"+file.id).attr("uploadTime",format(file.creationdate,'yyyy-MM-dd HH:mm:ss'));
     },
           'onQueueComplete' : function(queueData) {
-              alert("上传完成");
+              //alert("上传完成");
     		// $('#uploader_msg').html(queueData.uploadsSuccessful + ' files were successfully uploaded.');
     }
       });
-
+    $("#importExcel").removeClass().addClass("z-btn z-btn-flat");
 	var format = function(time, format){
     var t = new Date(time);
     var tf = function(i){return (i < 10 ? '0' : '') + i};
@@ -82,10 +76,12 @@ function ajaxImport(url,data){
         beforeSend:function(XMLHttpRequest){
         },
         success:function(msg){
-            $.ligerDialog.success("保存成功");
-            var classId=$("#classId").val();
-            var url='../student/findAllList.shtml?classId='+classId;
-            findAllList(url);
+            $.ligerDialog.success("保存成功",function(){
+                var classId=$("#classId").val();
+                var url='../student/findAllList.shtml?classId='+classId;
+                findAllList(url);
+            });
+
         },error:function(){
             $.ligerDialog.error("服务器异常");
             return;

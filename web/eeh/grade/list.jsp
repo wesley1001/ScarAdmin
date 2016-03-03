@@ -11,22 +11,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- 引用本页面JS、CSS样式静态资源 -->
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
-			<link rel="stylesheet" type="text/css" href="<%=basePath%>/s9/res/js/ligerUI/skins/Aqua/css/ligerui-all.css"	/>
-		    <link href="<%=basePath%>/s9/res/js/ligerUI/skins/ligerui-icons.css" rel="stylesheet" type="text/css" />
-		    <link href="<%=basePath%>/s9/res/js/ligerUI/skins/Gray/css/grid.css" rel="stylesheet" type="text/css" />
-		    <link  rel="stylesheet" type="text/css" href="<%=basePath%>/s9/res/js/calendar/skin/WdatePicker.css">
-		    <!-- JS静态资源的引用 -->
-			<script type="text/javascript" src="<%=basePath%>/s9/res/js/jquery.min.js"></script>
-			<script type="text/javascript" src="<%=basePath%>/s9/res/js/ligerUI/js/ligerui.all.js"></script>
-			<script type="text/javascript"  src="<%=basePath%>/s9/res/js/calendar/WdatePicker.js"></script>    
-			<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/list.js?v=6"></script>
+			<script type="text/javascript" src="<%=basePath %>/eeh/grade/js/list.js"></script>
 			
 	</head>
 	<body class="z-body-detail" style="overflow: hidden">
 		<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
 			<tbody>
 				<tr>
-					<td>
+					<td style="width: 100%">
 						<div class="z-toolbar" id="ToolBar1" >
 							<div class="z-toolbar-ct">
 								<div class="z-toolbar-overflow"> 

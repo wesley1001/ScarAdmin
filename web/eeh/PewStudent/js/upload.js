@@ -6,8 +6,8 @@ $(function() {
           'height' : 25,
           'swf' : '../web/upload/uploadify.swf',
           'uploader' : '../c/uploadify',
-          'width' : 45,
-          'buttonText' : '导入',
+          'width' : 90,
+          'buttonText' : '导入培优学生表',
           'uploadLimit' : 5,
           'atuo':false,
           'multi':true,
@@ -39,7 +39,7 @@ $(function() {
     		// $('#uploader_msg').html(queueData.uploadsSuccessful + ' files were successfully uploaded.');
     }
       });
-
+    $("#importExcel").removeClass().addClass("z-btn z-btn-flat");
 	var format = function(time, format){
     var t = new Date(time);
     var tf = function(i){return (i < 10 ? '0' : '') + i};

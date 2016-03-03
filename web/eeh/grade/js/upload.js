@@ -34,19 +34,13 @@ $(function() {
            var gradeId=$("#gradeId").val();
            var data={"path":filepath,"gardeId":gradeId};
            ajaxImport(url,data);
-           console.log(file.name)
-    		$("#"+file.id).attr("filePath",data);
-    		$("#"+file.id).attr("fileName",file.name);
-    		var uploadAuthor=$('#uploadAuthor').val();
-    		$("#"+file.id).attr("uploadAuthor",uploadAuthor);
-    		$("#"+file.id).attr("uploadTime",format(file.creationdate,'yyyy-MM-dd HH:mm:ss'));
     },
           'onQueueComplete' : function(queueData) {
-              alert("上传完成");
+
     		// $('#uploader_msg').html(queueData.uploadsSuccessful + ' files were successfully uploaded.');
     }
       });
-	 
+    $("#importExcel").removeClass().addClass("z-btn z-btn-flat");
 	var format = function(time, format){
     var t = new Date(time);
     var tf = function(i){return (i < 10 ? '0' : '') + i};

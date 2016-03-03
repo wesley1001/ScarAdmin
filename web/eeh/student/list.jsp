@@ -11,11 +11,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- 引用本页面JS、CSS样式静态资源 -->
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
-		    <link rel="stylesheet" type="text/css" href="<%=basePath%>/web/upload/uploadify.css">
-		    <!-- JS静态资源的引用 -->
 		    <script type="text/javascript" src="<%=basePath%>/web/upload/jquery.uploadify.min.js"></script>
 			<script type="text/javascript" src="<%=basePath%>/eeh/student/js/list.js"></script>
-			<script type="text/javascript" src="<%=basePath %>/eeh/student/js/upload.js"></script>
+			<script type="text/javascript" src="<%=basePath %>/eeh/student/js/upload.js?v=1"></script>
 			
 	</head>
 	<body class="z-body-detail" style="overflow: hidden">
@@ -23,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
 			<tbody>
 				<tr>
-					<td style="width:95%">
+					<td style="width:100%">
 						<div class="z-toolbar" id="ToolBar1" >
 							<div class="z-toolbar-ct">
 								<div class="z-toolbar-overflow"> 
@@ -38,7 +36,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="javascript:download();"  class="z-btn z-btn-flat">
 											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>下载标准表格<i></i></b>
 										</a>
-
+										<a href="javascript:void(0);"  class="z-btn z-btn-flat" id="importExcel">
+											<img class="icon021a4" src="../s9/res/img/icon000.png"><b>导入学生表<i></i></b>
+										</a>
 
 									</div>
 								</div>
@@ -46,11 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						
 					</td>
-					<td>
-						<a href="javascript:void(0);"  class="z-btn z-btn-flat" id="importExcel">
-							<img class="icon021a1" src="../s9/res/img/icon000.png"><b>导入<i></i></b>
-						</a>
-					</td>
+
 				</tr>
 				<tr valign="top">
 					<!-- 数据信息 --> 
