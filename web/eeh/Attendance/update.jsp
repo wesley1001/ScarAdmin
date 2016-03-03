@@ -39,7 +39,7 @@
 						<td width="80%" >
 							<select id="subjectClass" name="subjectClass" style="width: 300px" >
 								<option value="基础课程">基础课程</option>
-								<option value="选修课程">培优课程</option>
+								<option value="培优课程">培优课程</option>
 								<option value="其他">其他</option>
 							</select>
 							<span style="color: red; padding-left: 2px; padding-top: 13px;">*</span>

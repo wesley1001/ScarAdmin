@@ -97,7 +97,7 @@
 								</tr>
 								<tr>
 									<td width="20%" height="30" align="right">
-										选修课程：
+										培优课程：
 									</td>
 									<td width="80%" >
 										<input type="text" id="electiveCourse" name="electiveCourse"
