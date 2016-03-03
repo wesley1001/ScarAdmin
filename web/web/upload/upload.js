@@ -12,7 +12,7 @@ $(function() {
           'atuo':false,
           'multi':true,
           // 两个配套使用
-           'fileTypeExts': "*.xlsx;*.xls;",             // 扩展名
+           'fileTypeExts': "*.xlsx;",             // 扩展名
            'fileTypeDesc': "请选择 excel文件",     // 文件说明
           //'successTimeout' : 5,
           'requeueErrors' : false,

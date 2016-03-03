@@ -78,7 +78,7 @@
 							<select id="time" name="time" style="width:300px">
 								<option>请选择</option>
 								<c:forEach items="${timeList}" var="time" varStatus="vs">
-									<option value="${time.id}" <c:if test="${time.time==bo.schoolTime&&time.name==bo.week}">selected="selected" </c:if>>${time.name}&nbsp;${time.time}</option>
+									<option value="${time.id}" <c:if test="${time.name==bo.week&&time.time==bo.schoolTime}">selected="selected" </c:if>>${time.name}&nbsp;${time.time}</option>
 								</c:forEach>
 							</select>
 							<input type="hidden" id="week" name="week" value="${bo.week}"/>

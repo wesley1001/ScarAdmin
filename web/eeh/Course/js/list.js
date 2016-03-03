@@ -105,7 +105,9 @@ function reload(msg){
 	if(m){
 		m.close();
 	}
-	$.ligerDialog.success(msg);
+	if(''!=msg&&null!=msg){
+		$.ligerDialog.success(msg);
+	}
 	grid.loadData()
 }
 

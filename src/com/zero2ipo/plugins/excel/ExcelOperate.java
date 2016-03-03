@@ -179,7 +179,12 @@ public class ExcelOperate extends BaseCtrl {
             {
                 CourseBo bo=new CourseBo();
                 String  week=list.get(i).get(0);//星期
-                String schoolTime=list.get(i).get(1);
+                String schoolTime=list.get(i).get(1);//6:40-7:40针对这种时间格式前面执行补零操作
+                if(schoolTime.length()==9){
+                    schoolTime=schoolTime.substring(0,4)+"-0"+schoolTime.substring(5,9);
+                    schoolTime="0"+schoolTime.replaceAll("：",":");
+
+                }
                 String classRoom=list.get(i).get(2).replace(".0", "");
                 String teacher=list.get(i).get(3);
                 String kemu=list.get(i).get(4);
