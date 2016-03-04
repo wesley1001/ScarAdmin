@@ -14,7 +14,7 @@
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
 		<script type="text/javascript"
-			src="<%=basePath%>/s9/order/js/order.js?v=2"></script>
+			src="<%=basePath%>/s9/order/js/order.js"></script>
 	</head>
 	<script type="text/javascript">
 	$( function() {

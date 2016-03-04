@@ -16,7 +16,7 @@ public class CarServiceImpl implements ICarService {
 		String id="";
 		try{
 			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
-			id=baseDao.updObject("addCar", car)+"";
+			id=baseDao.addObject("addCar", car)+"";
 		}catch(Exception e){
 			e.printStackTrace();
 		}

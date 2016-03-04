@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script type="text/javascript">
 			function forAddSave() {
-				var password=str_md5("111111");//手动添加的订单用户默认账号密码是111111
+				var password=hex_md5("111111");//手动添加的订单用户默认账号密码是111111
 				$("#password").val(password);
 				var account=$("#account").val();
 				if(''==account||null==account){

@@ -113,7 +113,8 @@
 		pay_type,
 		order_status,
 		confirm_info,
-		mobile
+		mobile,
+		car_id
 		)VALUES(
 		#orderId#,
 		#userId#,
@@ -137,7 +138,8 @@
 		#payType#,
 		#orderStatus#,
 		#confirmInfo#,
-		#mobile#
+		#mobile#,
+		#carId#
 		)
 		<selectKey resultClass="int" keyProperty="id"> SELECT @@IDENTITY
 			AS id</selectKey>

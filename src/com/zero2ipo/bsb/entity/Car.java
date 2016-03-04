@@ -4,7 +4,7 @@ package com.zero2ipo.bsb.entity;
  * Created by zhengyunfei on 2015/8/31.
  */
 public class Car {
-    private String id;
+    private int id;
     private String userCarId;
     private String carNo;
     private String carColor;
@@ -122,11 +122,11 @@ public class Car {
         this.createTime = createTime;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

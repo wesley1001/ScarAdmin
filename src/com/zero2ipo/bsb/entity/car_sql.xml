@@ -25,16 +25,16 @@
 	<result property="status" column="STATUS"/>
 </resultMap>
 <select id='findPdCarList' resultMap='pdMap'>
-SELECT  
+SELECT
 	PRE_TIME,
 	STATUS,
 	COUNT(pre_time) washInfo
-	FROM 
+	FROM
 	CAR
-WHERE 
+WHERE
 	pre_time IS NOT NULL
-GROUP 
-	BY 
+GROUP
+	BY
 		pre_time
 </select>
 <select id='findCarList' resultMap='carMap'>
@@ -121,7 +121,8 @@ FROM CAR
 	WASH_ADDR,
 	WASH_INFO,
 	CREATE_TIME,
-	PRE_TIME
+	PRE_TIME,
+	NAME
 )VALUES(
 	#userCarId#,
 	#carNo#,
@@ -131,31 +132,32 @@ FROM CAR
 	#washAddr#,
 	#washInfo#,
 	now(),
-	#preTime#
+	#preTime#,
+	#name#
 )
-<selectKey resultClass="int" keyProperty="id" >
-   SELECT @@IDENTITY AS id
-</selectKey>
+	<selectKey resultClass="int" keyProperty="id">
+		SELECT @@IDENTITY AS id
+	</selectKey>
 
 </insert>
 <!-- 修改车辆信息 -->
 	<update id="updCar" parameterClass="carEntity">
-		
-			 UPDATE 
+
+			 UPDATE
 			 	CAR
 	<dynamic prepend="SET">
-		
+
 		<isNotEmpty prepend="," property="status">
 				STATUS=#status#
 		</isNotEmpty>
-		
-	</dynamic>	
-	  WHERE 
+
+	</dynamic>
+	  WHERE
 	PRE_TIME=#preTime#
 	</update>
 <!--删除-->
 <delete id="delCar" parameterClass="java.util.Map">
-	DELETE FROM 
+	DELETE FROM
 		CAR
 	<dynamic prepend="WHERE">
 		<isNotEmpty prepend="AND" property="id">

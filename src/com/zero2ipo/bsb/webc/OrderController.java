@@ -107,15 +107,16 @@ public class OrderController {
 	 */
 	@RequestMapping("addOrder.shtml")
 	@ResponseBody
-	public  Map<String,Object> addOrder(Users bo,Order order,Car car){
+	public  Map<String,Object> addOrder(Users bo,Order order,String name){
 		Map<String,Object> map=new HashMap<String, Object>();
 		boolean flg=false;
 		try {
 			String userId=vipManage.addUser(bo);//创建新用户
-
 			order.setUserId(bo.getPhoneNum());
 			//获取当前时间
+			Car car=new Car();
 			String createTime= DateUtil.getCurrentTime();
+			car.setName(name);
 			car.setCreateTime(createTime);
 			car.setUserCarId(bo.getPhoneNum());
 			car.setCarNo(bo.getAccount());

@@ -28,19 +28,46 @@ function findOrderInfoList(url) {
 				rowHeight :26,
 				checkbox :true,
 				columns : [
-				{ display: 'ID', name: 'id', width: '150'},
-				{ display: '订单号', name: 'orderId', width: '150'},
-				{
-					display :'总价',
-					name :'price',
-					width :'80'
-				}, {
-					display :'预约时间',
-					name :'washTime',
-					width :'160',
-					type: 'date'
+					{
+						display :'车主',
+						name :'car.name',
+						width :'80'
+					},
+					{
+						display :'电话',
+						name :'mobile',
+						width :'100'
+					}, {
+						display :'车牌号',
+						name :'carNum',
+						width :'100'
+					},
+					{
+						display :'预约时间',
+						name :'washTime',
+						width :'160',
+						type: 'date'
 
-				},
+					},
+					{ display: '洗车类型', name: 'washType', width: '150'},
+					{
+						display :'总价',
+						name :'price',
+						width :'80'
+					},
+					{
+						display :'地址',
+						name :'address',
+						width :'150'
+					},
+					{
+						display :'备注',
+						name :'discription',
+						width :'150'
+					}
+					,
+				{ display: '订单号', name: 'orderId', width: '150'},
+
 				{
 					display :'下单时间',
 					name :'createTime',
@@ -65,28 +92,6 @@ function findOrderInfoList(url) {
 							return "支付失败";
 						}
 					}
-				}, {
-					display :'地址',
-					name :'address',
-					width :'150'
-				},
-				 {
-					display :'备注',
-					name :'discription',
-					width :'150'
-				}
-				, {
-					display :'电话',
-					name :'mobile',
-					width :'100'
-				}, {
-					display :'车牌号',
-					name :'carNum',
-					width :'100'
-				}, {
-					display :'称呼',
-					name :'car.name',
-					width :'250'
 				}, {
 					display :'派单状态',
 					name :'sendOrderStatus',
