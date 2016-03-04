@@ -109,7 +109,7 @@ public class VipManageCtrl  extends BaseCtrl{
     	mv.addObject("type",type);
     	return mv;
     }
-    
+
     /**
      * @title: 初始会员页面
      * @description: 初始会员页面
@@ -175,7 +175,7 @@ public class VipManageCtrl  extends BaseCtrl{
 	 * @return： ModelAndView 新增用户成功、失败信息
 	 */
     @RequestMapping("addUser.shtml")
-    public ModelAndView addUser(UserBo user) {
+    public ModelAndView addUser(Users user) {
     	ModelAndView mv=new ModelAndView("/s9/vip/vipManage_add.jsp");
     	String backInfo = null;
     	try{
@@ -382,7 +382,7 @@ public class VipManageCtrl  extends BaseCtrl{
 		jsonMap.put("message", backInfo);
     	return jsonMap;
     }
-    
+
     /**
 	 * @title： 批量操作
 	 * @param: userIds   用户标识（多个用户时用,号隔开）

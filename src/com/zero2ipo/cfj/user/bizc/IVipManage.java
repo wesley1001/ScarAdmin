@@ -29,7 +29,7 @@ public interface IVipManage {
      * @date: 2013-07-08 10:25
 	 * @return： String 新增用户成功、失败信息
 	 */
-	public String addUser(UserBo user);
+	public String addUser(Users user);
 	/**
 	 * @title： 用户信息修改页面初始化
 	 * @description: 对不同系统用户信息的查询修改数据初始化

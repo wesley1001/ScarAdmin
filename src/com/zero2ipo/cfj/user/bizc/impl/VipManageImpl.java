@@ -7,7 +7,6 @@ import com.zero2ipo.cfj.user.bo.UserBo;
 import com.zero2ipo.cfj.user.bo.UserInfoBo;
 import com.zero2ipo.cfj.user.bo.Users;
 import com.zero2ipo.common.GlobalConstant;
-import com.zero2ipo.common.SeqConstant;
 import com.zero2ipo.framework.FwConstant;
 import com.zero2ipo.framework.db.bizc.IBaseDao;
 import com.zero2ipo.framework.exception.BaseException;
@@ -85,7 +84,7 @@ public class VipManageImpl implements IVipManage{
 		List<UserEntity> vipInfoList = new ArrayList<UserEntity>();
 		try {
 			//设置数据库类型: 网站全局库(01)
-    		baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ; 
+    		baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ;
     		vipInfoList = (List<UserEntity>)baseDao.findForList("findVipInfoList", map);
     		for(int i=0;i<vipInfoList.size();i++){
     			UserEntity entity=vipInfoList.get(i);
@@ -130,7 +129,7 @@ public class VipManageImpl implements IVipManage{
 		List<UserEntity> vipInfoList = new ArrayList<UserEntity>();
 		try {
 			//设置数据库类型: 网站全局库(01)
-    		baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ; 
+    		baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ;
     		vipInfoList = (List<UserEntity>)baseDao.findForList("findOrganInfoList", map,skip,max);
     		for(int i=0;i<vipInfoList.size();i++){
     			String userId=vipInfoList.get(i).getUserId();
@@ -188,17 +187,17 @@ public class VipManageImpl implements IVipManage{
 	public int queryVipInfoListCount(Map<String, Object> map){
 		int count=0;
 		try {
-			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ; 
+			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ;
 			if(!map.containsValue("organ")){
 				count = (Integer)baseDao.findForObject("findUsersListCount", map);
 			}else{
 				count = (Integer)baseDao.findForObject("findOrganInfoListCount", map);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return count;
 	}
 	/**
@@ -208,16 +207,15 @@ public class VipManageImpl implements IVipManage{
      * @date: 2013-07-08 10:25
 	 * @return： String 新增用户成功、失败信息
 	 */
-	public String addUser(UserBo user) {
+	public String addUser(Users user) {
 		String backInfo="保存成功";
 		try{
-			UserEntity entity=UserBo.boToEntity(user);
 			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
 			//序列获取用户标识
-			entity.setUserId(baseDao.getSerialNo(SeqConstant.SEQ_SYS_SUPPORT)+"");
+			user.setUserId(user.getPhoneNum());
 			//添加用户
-			baseDao.addObject("addVipManage", entity);
-			
+			baseDao.addObject("addAppUsers", user);
+
 		}catch(Exception e){
 			e.printStackTrace();
 			backInfo="保存失败";
@@ -262,7 +260,7 @@ public class VipManageImpl implements IVipManage{
 			if(!StringUtil.isNullOrEmpty(entity)){
 				bo=UserInfoBo.entityToBo(entity);
 			}
-			
+
 		}catch(Exception e){
 			e.printStackTrace();
 		    BaseLog.e(this.getClass(), "个人明细查询", e);
@@ -284,7 +282,7 @@ public class VipManageImpl implements IVipManage{
 			if(!StringUtil.isNullOrEmpty(entity)){
 				bo=OrganizationUserInfoBo.getEntityToBo(entity);
 			}
-			
+
 		}catch(Exception e){
 			e.printStackTrace();
 		    BaseLog.e(this.getClass(), "机构明细查询", e);
@@ -425,5 +423,5 @@ public class VipManageImpl implements IVipManage{
         }
 		return backInfo;
 	}
-	
+
 }

@@ -45,7 +45,7 @@ public class OrderServiceImpl implements IOrderService{
 		Map<String,Object> query=new HashMap<String,Object>();
 		try {
 			//设置数据库类型: 网站全局库(01)
-			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ; 
+			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ;
 			list = (List<Order>)baseDao.findForList("findBsbOrderList", map,skip,max);
 			for(int i=0;i<list.size();i++){
 				String orderId=list.get(i).getId();//订单id
@@ -94,7 +94,7 @@ public class OrderServiceImpl implements IOrderService{
 		public int findAllListCount(Map<String, Object> map){
 			int count=0;
 			try {
-				baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ; 
+				baseDao.setDbType(FwConstant.DBTYPE_GLOBAL) ;
 				count = (Integer)baseDao.findForObject("findBsbOrderListCount", map);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -146,5 +146,21 @@ public class OrderServiceImpl implements IOrderService{
 			}
 			return backInfo;
 		}
+	public boolean addOrder(Order order){
+		SqlMapClient client = baseDao.getSqlMapClient();
+		boolean flg = false;
+		try {
+			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
+			client.update("addBsbOrder", order);
+			client.executeBatch();// 执行批处理模式
+			flg =true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			BaseLog.e(this.getClass(), "addBsbOrder手动创建订单", e);
+			throw new BaseException("修改订单信息出错！", e);
+		}
+		return flg;
+	}
+
 }
 

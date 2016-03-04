@@ -2,6 +2,8 @@ package com.zero2ipo.bsb.webc;
 
 import com.zero2ipo.bsb.bizc.IOrderService;
 import com.zero2ipo.bsb.entity.Order;
+import com.zero2ipo.cfj.user.bizc.IVipManage;
+import com.zero2ipo.cfj.user.bo.Users;
 import com.zero2ipo.framework.log.BaseLog;
 import com.zero2ipo.framework.util.StringUtil;
 import com.zero2ipo.plugins.CodeCommon;
@@ -27,12 +29,9 @@ public class OrderController {
 	@Autowired
 	@Qualifier("codeManage")
 	private ICodeManage codeManage;
-	/**
-     * @title: 初始管理人页面
-     * @author: yangxiaoning
-     * @date: 2013-10-15 16:53
-     * @return：/s9/order/order_init.jsp
-     */
+	@Autowired
+	@Qualifier("vipManage")
+	private IVipManage vipManage;
     @RequestMapping("forInit.shtml")
     public ModelAndView forInit(){
 		ModelAndView mv=new ModelAndView("/s9/order/order_init.jsp");
@@ -54,16 +53,7 @@ public class OrderController {
 		mv.addObject("messageFush", flg);
 		return mv;
     }
-    
-    /**
-     * @title: 查找管理人分类信息列表
-     * @description:查找管理人信息列表
-     * @param : curNo  分页-页码
-     * @param : curSize  分页-页面加载记录条数
-     * @author: yangxiaoning
-     * @date: 2013-10-15 16:53
-     * @return:jsonMap
-     */
+
     @RequestMapping("orderInfoList.shtml")
     @ResponseBody
     public Map<String,Object>  orderInfoList(String curNo, String curSize,String status,String orderNo,String sendOrderStatus){
@@ -96,5 +86,18 @@ public class OrderController {
 		}
 		return jsonMap;
     }
-    
-}
+	/*********************************************添加订单*************************************************************/
+	@RequestMapping("forAddInit.shtml")
+	public ModelAndView forAddInit() {
+		ModelAndView mv = new ModelAndView("/s9/order/order_add.jsp");
+		return mv;
+	}
+
+	@RequestMapping("addOrder.shtml")
+	public  Map<String,Object> addOrder(Users bo,Order order){
+		Map<String,Object> map=new HashMap<String, Object>();
+		vipManage.addUser(bo);//创建新用户
+		orderService.addOrder(order);//创建新订单
+		return map;
+	}
+ }

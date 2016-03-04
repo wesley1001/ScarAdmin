@@ -1,11 +1,10 @@
 package com.zero2ipo.bsb.bizc;
 
-import java.util.List;
-import java.util.Map;
-
+import com.zero2ipo.bsb.entity.Order;
 import org.springframework.stereotype.Service;
 
-import com.zero2ipo.bsb.entity.Order;
+import java.util.List;
+import java.util.Map;
 
 /**
  * cfjCollection 实体类
@@ -30,7 +29,7 @@ public interface IOrderService {
 	 * @return： sendOrder   系统派单信息实体类
 	 */
 	public Order updOrderInit(String id);
-	
+
 	/**
 	 * @title： 订单信息	修改
 	 * @description: 修改订单的信息,对订单信息的修改操作
@@ -39,5 +38,7 @@ public interface IOrderService {
 	 * @return： String 修改订单信息的成功、失败信息
 	 */
 	public String updOrder(Order order);
+
+	public boolean addOrder(Order order);
 }
 

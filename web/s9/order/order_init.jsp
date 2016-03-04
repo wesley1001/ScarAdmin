@@ -14,7 +14,7 @@
 		<%@include file="/s9/common/common.jsp"%>
 		<!-- 用户管理操作JS静态资源的引用 -->
 		<script type="text/javascript"
-			src="<%=basePath%>/s9/order/js/order.js?v=20"></script>
+			src="<%=basePath%>/s9/order/js/order.js?v=2"></script>
 	</head>
 	<script type="text/javascript">
 	$( function() {
@@ -37,7 +37,7 @@
 							<div class="z-toolbar-ct">
 								<div class="z-toolbar-overflow">
 									<div class="z-toolbar-nowrap">
-										<a href="javascript:void(0);" id="Button2"	class="z-btn z-btn-flat" onclick="addNoticInit();">
+										<a href="javascript:void(0);" id="Button2"	class="z-btn z-btn-flat" onclick="addInit();">
 												<img class="icon021a2" src="../s9/res/img/icon000.png"><b>手工添加订单<i></i></b>
 										</a>
                                             <a href="javascript:void(0);" id="Button6"
