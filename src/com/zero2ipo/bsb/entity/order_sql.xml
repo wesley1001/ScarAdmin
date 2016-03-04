@@ -89,7 +89,7 @@
 		</dynamic>
 	</select>
 <!--新增-->
-	<insert id="add" parameterClass="orderBsbEntity">
+	<insert id="addOrder" parameterClass="orderBsbEntity">
 		INSERT INTO orders(
 		order_id,
 		user_id,

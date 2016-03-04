@@ -1,10 +1,13 @@
 package com.zero2ipo.bsb.webc;
 
+import com.zero2ipo.bsb.bizc.ICarService;
 import com.zero2ipo.bsb.bizc.IOrderService;
+import com.zero2ipo.bsb.entity.Car;
 import com.zero2ipo.bsb.entity.Order;
 import com.zero2ipo.cfj.user.bizc.IVipManage;
 import com.zero2ipo.cfj.user.bo.Users;
 import com.zero2ipo.framework.log.BaseLog;
+import com.zero2ipo.framework.util.DateUtil;
 import com.zero2ipo.framework.util.StringUtil;
 import com.zero2ipo.plugins.CodeCommon;
 import com.zero2ipo.plugins.code.biz.ICodeManage;
@@ -32,6 +35,9 @@ public class OrderController {
 	@Autowired
 	@Qualifier("vipManage")
 	private IVipManage vipManage;
+	@Autowired
+	@Qualifier("carService")
+	private ICarService carService;
     @RequestMapping("forInit.shtml")
     public ModelAndView forInit(){
 		ModelAndView mv=new ModelAndView("/s9/order/order_init.jsp");
@@ -93,11 +99,41 @@ public class OrderController {
 		return mv;
 	}
 
+	/**
+	 * 保存手动添加的订单信息
+	 * @param bo
+	 * @param order
+	 * @return
+	 */
 	@RequestMapping("addOrder.shtml")
-	public  Map<String,Object> addOrder(Users bo,Order order){
+	@ResponseBody
+	public  Map<String,Object> addOrder(Users bo,Order order,Car car){
 		Map<String,Object> map=new HashMap<String, Object>();
-		vipManage.addUser(bo);//创建新用户
-		orderService.addOrder(order);//创建新订单
+		boolean flg=false;
+		try {
+			String userId=vipManage.addUser(bo);//创建新用户
+
+			order.setUserId(bo.getPhoneNum());
+			//获取当前时间
+			String createTime= DateUtil.getCurrentTime();
+			car.setCreateTime(createTime);
+			car.setUserCarId(bo.getPhoneNum());
+			car.setCarNo(bo.getAccount());
+			car.setWashAddr(order.getAddress());
+			car.setWashInfo(order.getDiscription());
+			car.setPreTime(order.getWashTime());
+			/**保存车辆信息***/
+			String carId=carService.add(car);
+			order.setCarId(carId);
+			order.setCreateTime(createTime);
+			order.setCarNum(bo.getAccount());
+			order.setMobile(bo.getPhoneNum());
+			orderService.addOrder(order);//创建新订单
+			flg=true;
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		map.put("success",flg);
 		return map;
 	}
  }

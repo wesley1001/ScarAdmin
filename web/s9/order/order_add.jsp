@@ -16,20 +16,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="<%=basePath %>/s9/res/js/util/md5.js"></script>
 
 		<script type="text/javascript">
-		 $(function (){
-				var flag="${backInfo}";
-				if(flag=='1'){
-					window.parent.reload("修改成功");
-				}else if(flag=='0'){
-					$.ligerDialog.error("修改失败");
+			function forAddSave() {
+				var password=str_md5("111111");//手动添加的订单用户默认账号密码是111111
+				$("#password").val(password);
+				var account=$("#account").val();
+				if(''==account||null==account){
+					$.ligerDialog.error("车牌号不能为空！");
 					return;
 				}
-			});
+				var phoneNum=$("#phoneNum").val();
+				if(''==phoneNum||null==phoneNum){
+					$.ligerDialog.error("手机号不能为空！");
+					return;
+				}
+				var name=$("#name").val();
+				if(''==name||null==name){
+					$.ligerDialog.error("称呼不能为空！");
+					return;
+				}
+				var preTime=$("#washTime").val();
+				if(''==preTime||null==preTime){
+					$.ligerDialog.error("预约时间不能为空！");
+					return;
+				}
+				var washAddr=$("#address").val();
+				if(''==washAddr||null==washAddr){
+					$.ligerDialog.error("预约地址不能为空！");
+					return;
+				}
+				var url=$("#form1").attr('action');
+				var data=$("#form1").serialize();
+				$.ajax({
+					url: url,
+					dataType: 'json',
+					data: data,
+					success: function(r){
+						if(r.success){
+							parent.reload("保存成功");
+						}
+
+					},error:function(error){
+						$.ligerDialog.error(error);
+					}
+
+				});
+
+			}
+
 		</script>
 	</head>
 
 	<body class="dialogBody">
-		<form id="form1" action="/bsborder/addOrder.shtml"  method="post" onsubmit="return false">
+		<form id="form1" action="<%=basePath %>/bsborder/addOrder.shtml"  method="post" onsubmit="return false">
 			<input type="hidden" id="password" name="password">
 			<div style="height: 5px;"></div>
 			<table width="100%" height="100" align="center" cellpadding="2" cellspacing="0">
@@ -39,68 +77,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      <table width="100%" border="0" cellpadding="0" cellspacing="0">
 			      	<tbody>
 						<tr>
-							<td height="30" align="right"  style="padding-right: 5px;" nowrap="nowrap"><span class="dye" >
+							<td height="30" align="right"  nowrap="nowrap"><span class="dye" >
 								称呼：</span>
 							</td>
 							<td>
-								<input type="text" id="name" name="name"   />
+								<input type="text" id="name" name="name"   style="width: 75%;" />
 							</td>
 
 						</tr>
 						<tr>
-							<td height="30" align="right"  style="padding-right: 5px;" nowrap="nowrap"><span class="dye" >
+							<td height="30" align="right"   nowrap="nowrap"><span class="dye" >
 								车牌号：</span>
 							</td>
 							<td>
-								<input type="text" id="account" name="account" />
+								<input type="text" id="account" name="account" style="width: 75%;" />
 							</td>
 						</tr>
 						<tr>
-							<td height="30" align="right"  style="padding-right: 5px;" nowrap="nowrap"><span class="dye" >
+							<td height="30" align="right"   nowrap="nowrap"><span class="dye" >
 								电话：</span>
 							</td>
 							<td>
-								<input type="text" id="phoneNum" name="phoneNum" />
+								<input type="text" id="phoneNum" name="phoneNum" style="width: 75%;" />
 							</td>
 						</tr>
 						<tr>
-							<td height="30" align="right"  style="padding-right: 5px;" nowrap="nowrap"><span class="dye" >
+							<td height="30" align="right"   nowrap="nowrap"><span class="dye" >
 								预约时间：</span>
 							</td>
 							<td>
-								<input type="text" id="preTime" name="preTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" class="Wdate"/>
+								<input type="text" id="washTime" style="width: 75%;"  name="washTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" class="Wdate"/>
 							</td>
 						</tr>
 						<tr>
-							<td height="30" align="right"  style="padding-right: 5px;" nowrap="nowrap"><span class="dye" >
+							<td height="30" align="right"   nowrap="nowrap"><span class="dye" >
 								预约地址：</span>
 							</td>
 							<td>
-								<input type="text" id="washAddr" name="washAddr" />
+								<input type="text"  id="address" name="address" style="width: 75%;" />
 							</td>
 						</tr>
 						<tr>
-							<td height="30" align="right"  style="padding-right: 5px;" nowrap="nowrap"><span class="dye" >
+							<td height="30" align="right"   nowrap="nowrap"><span class="dye" >
 								洗车类型：</span>
 							</td>
 							<td>
-								<input type="text" id="washType" name="washType" />
+								<input type="text" id="washType" name="washType" style="width: 75%;"/>
 							</td>
 						</tr>
 						<tr>
-							<td height="30" align="right"  style="padding-right: 5px;" nowrap="nowrap"><span class="dye" >
+							<td height="30" align="right"  nowrap="nowrap"><span class="dye" >
 								备注：</span>
 							</td>
 							<td>
-								<input type="text" id="remark" name="remark" />
+								<textarea id="discription" name="discription"  style="width: 75%;"></textarea>
 							</td>
 						</tr>
 						<tr>
-							<td height="30" align="right"  style="padding-right: 5px;" nowrap="nowrap"><span class="dye" >
+							<td height="30" align="right"   nowrap="nowrap"><span class="dye" >
 								预约金额：</span>
 							</td>
 							<td>
-								<input type="text" id="total" name="total" />
+								<input type="text" id="price" name="price" style="width: 75%;"/>
 							</td>
 						</tr>
 						<tr>
@@ -108,9 +146,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								支付状态：</span>
 							</td>
 							<td>
-								<select name="payStatus" id="payStatus" style="width: 75%">
-									<option value="1" >支付完成</option>
+								<select name="orderStatus" id="orderStatus" style="width: 75%">
 									<option value="-1">未支付</option>
+									<option value="1" >支付完成</option>
 								</select>
 							</td>
 						</tr>

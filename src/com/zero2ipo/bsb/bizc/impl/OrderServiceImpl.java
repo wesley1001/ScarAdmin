@@ -8,6 +8,7 @@ import com.zero2ipo.bsb.bizc.ISendOrderService;
 import com.zero2ipo.bsb.entity.Car;
 import com.zero2ipo.bsb.entity.Order;
 import com.zero2ipo.bsb.entity.SendOrder;
+import com.zero2ipo.common.SeqConstant;
 import com.zero2ipo.framework.FwConstant;
 import com.zero2ipo.framework.db.bizc.IBaseDao;
 import com.zero2ipo.framework.exception.BaseException;
@@ -150,8 +151,10 @@ public class OrderServiceImpl implements IOrderService{
 		SqlMapClient client = baseDao.getSqlMapClient();
 		boolean flg = false;
 		try {
+			long sendOrderId = baseDao.getSerialNo(SeqConstant.SEQ_SYS_SUPPORT);
+			order.setOrderId((String.valueOf(sendOrderId)));
 			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
-			client.update("addBsbOrder", order);
+			client.update("addOrder", order);
 			client.executeBatch();// 执行批处理模式
 			flg =true;
 		} catch (Exception e) {

@@ -171,7 +171,7 @@ public class VipManageCtrl  extends BaseCtrl{
 	 * @description: 存储系统用户的信息,不同管理人员对用户信息的添加操作
 	 * @param: user   系统用户信息实体类
 	 * @author: zhengYunFei
-     * @date: 2013-07-08 10:25
+     * @date: 2013-07-08 10:25kk
 	 * @return： ModelAndView 新增用户成功、失败信息
 	 */
     @RequestMapping("addUser.shtml")

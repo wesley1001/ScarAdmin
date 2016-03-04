@@ -208,21 +208,20 @@ public class VipManageImpl implements IVipManage{
 	 * @return： String 新增用户成功、失败信息
 	 */
 	public String addUser(Users user) {
-		String backInfo="保存成功";
+		String userId="";
 		try{
 			baseDao.setDbType(FwConstant.DBTYPE_GLOBAL);
 			//序列获取用户标识
 			user.setUserId(user.getPhoneNum());
 			//添加用户
-			baseDao.addObject("addAppUsers", user);
+			userId=baseDao.addObject("addAppUsers", user)+"";
 
 		}catch(Exception e){
 			e.printStackTrace();
-			backInfo="保存失败";
 		    BaseLog.e(this.getClass(), "addSysOper 添加运维人员", e);
 		    throw new BaseException("添加运维人员出错！",e);
 		}
-		return backInfo;
+		return userId;
 	}
 	/**
 	 * @title： 用户信息修改页面初始化

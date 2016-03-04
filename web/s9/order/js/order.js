@@ -39,14 +39,14 @@ function findOrderInfoList(url) {
 					name :'washTime',
 					width :'160',
 					type: 'date'
-						
+
 				},
 				{
 					display :'下单时间',
 					name :'createTime',
 					width :'160',
 					type: 'date'
-						
+
 				}
 				, {
 					display :'订单状态',
@@ -105,7 +105,7 @@ function findOrderInfoList(url) {
 						}else if (row.sendOrderStatus == "4") {
 							return "洗车结束";
 						}
-						
+
 
 					}
 				},
@@ -168,39 +168,7 @@ function sendOrderAddInit() {
 //手工添加订单
 function addInit(){
 	var url="../bsborder/forAddInit.shtml";
-	m = $.ligerDialog.open({ url: url, height: 600,width:600, title:'手工添加订单',showMax:true,showToggle:true,showMin:true});
-}
-function forAddSave() {
-    var password=str_md5("111111");//手动添加的订单用户默认账号密码是111111
-	$("#password").val(password);
-	var account=$("#account").val();
-	if(''==account||null==account){
-		$.ligerDialog.error("车牌号不能为空！");
-		return;
-	}
-	var phoneNum=$("#phoneNum").val();
-	if(''==phoneNum||null==phoneNum){
-		$.ligerDialog.error("手机号不能为空！");
-		return;
-	}
-	var name=$("#name").val();
-	if(''==name||null==name){
-		$.ligerDialog.error("称呼不能为空！");
-		return;
-	}
-	var preTime=$("#preTime").val();
-	if(''==preTime||null==preTime){
-		$.ligerDialog.error("预约时间不能为空！");
-		return;
-	}
-	var washAddr=$("#washAddr").val();
-	if(''==washAddr||null==washAddr){
-		$.ligerDialog.error("预约地址不能为空！");
-		return;
-	}
-	$("#form1").attr('onsubmit', '');
-	$("#form1").submit();
-
+	m = $.ligerDialog.open({ url: url, height: 500,width:600, title:'手工添加订单',showMax:true,showToggle:true,showMin:true});
 }
 
 
